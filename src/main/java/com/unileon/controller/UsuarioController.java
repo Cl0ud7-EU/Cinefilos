@@ -5,19 +5,12 @@
  */
 package com.unileon.controller;
 
-import com.unileon.EJB.RolFacadeLocal;
 import com.unileon.EJB.UsuarioFacadeLocal;
-import com.unileon.modelo.Persona;
-import com.unileon.modelo.Rol;
 import com.unileon.modelo.Usuario;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -26,93 +19,64 @@ import javax.inject.Named;
 @ViewScoped
 public class UsuarioController implements Serializable {
     private Usuario usuario;
-    
-    //Atributos Persona:
-    private String apellido1;
-    private String apellido2;
+
     private String nombre;
-    private Date fechaNacimiento;
-    private char sexo;
-    
-    //Atributos Usuario:
-    private boolean estado;
-    private Persona persona;
-    private Rol rol;
+    private String apellido;
     private String password;
-    private Date ultimaConexion;
-    private String user;
-    
-    private List<Rol> listaRoles;
-    private List<String> listaDescripcionesRoles;
+    private String email;
+    private int numeroTelefono;
 
-	@EJB
-	private UsuarioFacadeLocal usuarioEJB;
-        
-        @EJB
-        private RolFacadeLocal rolEJB;
+    @EJB
+    private UsuarioFacadeLocal usuarioEJB;
 
-	@PostConstruct //Se accede después de crear la clase
-	public void init(){
-                    try{
-                        rol = new Rol();
-                        usuario = new Usuario();
-                        persona = new Persona();
-                  
-                    listaRoles = rolEJB.findAll();
-                   }catch(Exception e){
-                        System.out.println("error al buscar el rol" + e );
-                   }
-                    
-	}
+    @PostConstruct //Se accede después de crear la clase
+    public void init(){
+        usuario = new Usuario();
+    }
 
     //Da de alta al usuario en la BBDD:
-    public String create(){
-    
-        //Inicializamos a la persona:
+    public void insertarUsuario(){
+        
         try{
-        persona.setNombre(nombre);
-        persona.setApellido1(apellido1);
-        persona.setApellido2(apellido2);
-        persona.setFechaNacimeinto(fechaNacimiento);
-        persona.setSexo(sexo);
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        usuario.setPassword(password);
+        usuario.setEmail(email);
+        usuario.setNumeroTelefono(numeroTelefono);
                 
         }catch(Exception e){
-            System.out.println("Error al iniciar el objeto Persona " +e);
+            System.out.println("Error al iniciar el objeto Usuario " +e);
         }         
-        //Inicializamos al usuario:
-        try{
-         this.usuario.setIdRol(rolEJB.find(rol.getIdRol()));
-         this.usuario.setIdPersona(persona);
-
-         usuario.setEstado(estado);
-         usuario.setPassword(password);
-         usuario.setUltimaConexion(ultimaConexion);
-         usuario.setUser(user);
-
-         usuarioEJB.create(usuario);
-         System.out.println("El usuario se ha creado correctamente :)");
-          }catch(Exception e){
-              System.out.println("Error al iniciar el objeto Usuario " +e);
-
-          }
-      this.compruebaUsuario();
-       return "index.html";
+        
+        usuarioEJB.create(usuario);
     }
 
-    public String getApellido1() {
-        return apellido1;
+//    public String compruebaUsuario(){
+//        try{
+//            if(persona.getNombre().equals("")){
+//                FacesContext.getCurrentInstance().addMessage("idUserMal", new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención: ","Campo nombre vacío"));
+//                return "index.xhtml";
+//            }else if(persona.getApellido1().equals("")){
+//                FacesContext.getCurrentInstance().addMessage("idUserMal", new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención: ","Campo apellido1 vacío"));
+//                return "index.xhtml";
+//            }else if(persona.getApellido2().equals("")){
+//                FacesContext.getCurrentInstance().addMessage("idUserMal", new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención: ","Campo apellido2 vacío"));
+//                return "index.xhtml";
+//            }else{
+//                return "index.html";
+//            }
+//        }catch(Exception e){
+//          System.out.println("error al comporbar el usuario " + e );
+//        }
+//        return "index.html";
+//    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setApellido1(String apellido1) {
-        this.apellido1 = apellido1;
-    }
-
-    public String getApellido2() {
-        return apellido2;
-    }
-
-    public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getNombre() {
@@ -123,55 +87,12 @@ public class UsuarioController implements Serializable {
         this.nombre = nombre;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public char getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
-    }
-
-    public String compruebaUsuario(){
-        try{
-            if(persona.getNombre().equals("")){
-                FacesContext.getCurrentInstance().addMessage("idUserMal", new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención: ","Campo nombre vacío"));
-                return "index.xhtml";
-            }else if(persona.getApellido1().equals("")){
-                FacesContext.getCurrentInstance().addMessage("idUserMal", new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención: ","Campo apellido1 vacío"));
-                return "index.xhtml";
-            }else if(persona.getApellido2().equals("")){
-                FacesContext.getCurrentInstance().addMessage("idUserMal", new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención: ","Campo apellido2 vacío"));
-                return "index.xhtml";
-            }else{
-                return "index.html";
-            }
-        }catch(Exception e){
-          System.out.println("error al comporbar el usuario " + e );
-        }
-        return "index.html";
-    }
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getPassword() {
@@ -182,69 +103,20 @@ public class UsuarioController implements Serializable {
         this.password = password;
     }
 
-    public Date getUltimaConexion() {
-        return ultimaConexion;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUltimaConexion(Date ultimaConexion) {
-        this.ultimaConexion = ultimaConexion;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUser() {
-        return user;
+    public int getNumeroTelefono() {
+        return numeroTelefono;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-    
-    public List<Rol> getRoles(){
-       
-        return this.listaRoles;
-    }
-    
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
-    public List<Rol> getListaRoles() {
-        return listaRoles;
-    }
-
-    public void setListaRoles(List<Rol> listaRoles) {
-        this.listaRoles = listaRoles;
-    }
-
-    public List<String> getListaDescripcionesRoles() {
-        return listaDescripcionesRoles;
-    }
-
-    public void setListaDescripcionesRoles(List<String> listaDescripcionesRoles) {
-        this.listaDescripcionesRoles = listaDescripcionesRoles;
-    }
-
-    public RolFacadeLocal getRolEJB() {
-        return rolEJB;
-    }
-
-    public void setRolEJB(RolFacadeLocal rolEJB) {
-        this.rolEJB = rolEJB;
-    }
-	
-	public void insertarUsuario(){
-		usuarioEJB.create(usuario);
-	}
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setNumeroTelefono(int numeroTelefono) {
+        this.numeroTelefono = numeroTelefono;
     }
 
     public UsuarioFacadeLocal getUsuarioEJB() {
@@ -257,9 +129,14 @@ public class UsuarioController implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.usuario);
-        hash = 23 * hash + Objects.hashCode(this.usuarioEJB);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.usuario);
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.apellido);
+        hash = 97 * hash + Objects.hashCode(this.password);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + this.numeroTelefono;
+        hash = 97 * hash + Objects.hashCode(this.usuarioEJB);
         return hash;
     }
 
@@ -275,6 +152,21 @@ public class UsuarioController implements Serializable {
             return false;
         }
         final UsuarioController other = (UsuarioController) obj;
+        if (this.numeroTelefono != other.numeroTelefono) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellido, other.apellido)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
@@ -283,5 +175,7 @@ public class UsuarioController implements Serializable {
         }
         return true;
     }
+    
+    
         
 }

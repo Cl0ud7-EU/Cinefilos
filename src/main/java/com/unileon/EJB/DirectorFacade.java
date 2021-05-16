@@ -5,16 +5,19 @@
  */
 package com.unileon.EJB;
 
-import com.unileon.modelo.Persona;
+import com.unileon.modelo.Director;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
+/**
+ *
+ * @author jcorral
+ */
 @Stateless
-public class PersonaFacade extends AbstractFacade<Persona> implements PersonaFacadeLocal {
+public class DirectorFacade extends AbstractFacade<Director> implements DirectorFacadeLocal {
 
-    @PersistenceContext(unitName = "PublicacionesPU")
+    @PersistenceContext(unitName = "cinefilosPU")
     private EntityManager em;
 
     @Override
@@ -22,8 +25,8 @@ public class PersonaFacade extends AbstractFacade<Persona> implements PersonaFac
         return em;
     }
 
-    public PersonaFacade() {
-        super(Persona.class);
+    public DirectorFacade() {
+        super(Director.class);
     }
     
 }

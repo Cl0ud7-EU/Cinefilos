@@ -5,7 +5,7 @@
  */
 package com.unileon.EJB;
 
-import com.unileon.modelo.Usuario;
+import com.unileon.modelo.Director;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author jcorral
  */
 @Local
-public interface UsuarioFacadeLocal {
+public interface DirectorFacadeLocal {
 
-    void create(Usuario usuario);
+    void create(Director director);
 
-    void edit(Usuario usuario);
+    void edit(Director director);
 
-    void remove(Usuario usuario);
+    void remove(Director director);
 
-    Usuario find(Object id);
+    Director find(Object id);
 
-    List<Usuario> findAll();
+    List<Director> findAll();
 
-    List<Usuario> findRange(int[] range);
+    List<Director> findRange(int[] range);
 
     int count();
     
