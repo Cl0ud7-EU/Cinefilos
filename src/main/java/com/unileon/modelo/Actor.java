@@ -19,8 +19,8 @@ import javax.persistence.Table;
  * @author jcorral
  */
 @Entity
-@Table(name="Director")
-public class Director implements Serializable{
+@Table(name="Actor")
+public class Actor implements Serializable{
    
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY) //Hace que se autoincremente y le asocia el valor de tal forma que lo que cambiemos aquí se cambia en la BBDD
@@ -71,11 +71,11 @@ public class Director implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 41 * hash + this.id;
-        hash = 41 * hash + Objects.hashCode(this.nombre);
-        hash = 41 * hash + Objects.hashCode(this.apellido);
-        hash = 41 * hash + Objects.hashCode(this.biografia);
+        int hash = 5;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.apellido);
+        hash = 37 * hash + Objects.hashCode(this.biografia);
         return hash;
     }
 
@@ -90,7 +90,7 @@ public class Director implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Director other = (Director) obj;
+        final Actor other = (Actor) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -105,5 +105,6 @@ public class Director implements Serializable{
         }
         return true;
     }
+
    
 }
