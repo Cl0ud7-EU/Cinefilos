@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -51,7 +52,19 @@ public class UsuarioController implements Serializable {
         usuarioEJB.create(usuario);
     }
 
-//    public String compruebaUsuario(){
+    public String compruebaUsuario(){
+        
+        usuario.setEmail(email);
+        usuario.setPassword(password);
+
+        if (usuarioEJB.verificarUsuario(usuario) != null) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+            System.out.println("principal.xhtml");
+            return "privado/principal.xhtml?faces-redirect=true";
+        } else{
+            System.out.println("permisosInsuficientes.xhtml");
+            return "publico/permisosInsuficientes.xhtml?faces-redirect=true";
+        }     
 //        try{
 //            if(persona.getNombre().equals("")){
 //                FacesContext.getCurrentInstance().addMessage("idUserMal", new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención: ","Campo nombre vacío"));
@@ -68,8 +81,8 @@ public class UsuarioController implements Serializable {
 //        }catch(Exception e){
 //          System.out.println("error al comporbar el usuario " + e );
 //        }
-//        return "index.html";
-//    }
+//            return "index.html";
+    }
 
     public Usuario getUsuario() {
         return usuario;

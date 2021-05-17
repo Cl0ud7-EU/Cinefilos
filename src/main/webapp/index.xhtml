@@ -8,43 +8,18 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-       <h:form>
-        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
-
-        <h1 class="p-mt-0">UNIVERSIDAD DE LEÓN </h1>
-        <p:messages id="messages" showDetail="true" skipDetailIfEqualsSummary="true">
-            <p:autoUpdate/>
-        </p:messages>
-        <p:fieldset legend="Datos">
-             <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center"
-                 >
-                     
-                <p:outputLabel for="nombre" value="Nombre: "/>
-                <p:inputText id="nombre" required="true" value="#{usuarioController.nombre}"/> 
-                <p:message for="nombre"/>
-                
-                <p:outputLabel  for="apellido" value="Apellido: "/>
-                <p:inputText id="apellido" required="true" value="#{usuarioController.apellido}"/> 
-                <p:message for="apellido"/>
-
-                <p:outputLabel for="numeroTelefono" value="Numero de Telefono: "/>
-                <p:inputText id="numeroTelefono" required="true" value="#{usuarioController.numeroTelefono}"/> 
-                <p:message for="numeroTelefono"/>
-                
-                <p:outputLabel for="email" value="Email: "/>
-                <p:inputText id="email" required="true" value="#{usuarioController.email}"/> 
-                <p:message for="email"/>
-                
-                <p:outputLabel for="toggle1" value="Password: "/>
-                <p:password required="true" id="toggle1" value="#{usuarioController.password}" redisplay="true"/>
-                <p:message for="toggle1"/>
-    
-             </p:panelGrid>
-        </p:fieldset>
-
-        <p:commandButton value="Registrar" action="#{usuarioController.insertarUsuario()}"/>
-        
-       </h:form>
+        <h:form>
+            <h1 class="p-mt-0">LOGIN </h1>
+            <p:fieldset legend="REGISTRO USUARIO">
+                <h:panelGrid columns="2" id="grid" cellpadding="2">
+                    <p:outputLabel for="email" value="Email: "/>
+                    <p:inputText id="email" required="true" value="#{usuarioController.email}" /> 
+                    <p:outputLabel for="toggle1" value="Password: "/>
+                    <p:password required="true" id="toggle1" value="#{usuarioController.password}" />
+                </h:panelGrid>
+            </p:fieldset>
+            <p:commandButton value="Acceder" action="#{usuarioController.compruebaUsuario()}"/>
+            <h:link outcome="publico/registroUsuario.xhtml" value="Pagina de alta de usuarios"/>
+        </h:form>
     </h:body>
 </html>
-
