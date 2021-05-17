@@ -6,7 +6,6 @@
 package com.unileon.controller;
 
 import com.unileon.EJB.CompaniaFacadeLocal;
-import com.unileon.EJB.DirectorFacadeLocal;
 import com.unileon.modelo.Compania;
 import java.io.Serializable;
 import java.util.Objects;
