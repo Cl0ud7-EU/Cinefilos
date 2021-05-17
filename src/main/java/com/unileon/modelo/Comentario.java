@@ -30,13 +30,13 @@ public class Comentario implements Serializable{
    @Column(name="comentario")
    private String comentario;
    
-   @JoinColumn(name="idUsuario")
+   @JoinColumn(name="IdUsuario")
    @ManyToOne
-   private String idUsuario;
+   private Usuario usuario;
    
-   @JoinColumn(name="idPelicula")
+   @JoinColumn(name="IdPelicula")
    @ManyToOne
-   private String idPelicula;
+   private Pelicula pelicula;
 
     public int getId() {
         return id;
@@ -54,29 +54,29 @@ public class Comentario implements Serializable{
         this.comentario = comentario;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public String getIdPelicula() {
-        return idPelicula;
+    public Pelicula getPelicula() {
+        return pelicula;
     }
 
-    public void setIdPelicula(String idPelicula) {
-        this.idPelicula = idPelicula;
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + this.id;
-        hash = 47 * hash + Objects.hashCode(this.comentario);
-        hash = 47 * hash + Objects.hashCode(this.idUsuario);
-        hash = 47 * hash + Objects.hashCode(this.idPelicula);
+        hash = 71 * hash + this.id;
+        hash = 71 * hash + Objects.hashCode(this.comentario);
+        hash = 71 * hash + Objects.hashCode(this.usuario);
+        hash = 71 * hash + Objects.hashCode(this.pelicula);
         return hash;
     }
 
@@ -98,14 +98,15 @@ public class Comentario implements Serializable{
         if (!Objects.equals(this.comentario, other.comentario)) {
             return false;
         }
-        if (!Objects.equals(this.idUsuario, other.idUsuario)) {
+        if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
-        if (!Objects.equals(this.idPelicula, other.idPelicula)) {
+        if (!Objects.equals(this.pelicula, other.pelicula)) {
             return false;
         }
         return true;
     }
-   
+
+    
    
 }
