@@ -19,7 +19,15 @@
         </div>
         <div>
             <div id="left">
-                <ui:insert name="left">Left</ui:insert>
+                <ui:insert name="left">
+                    <h:link outcome="./../../privado/registros/registroPelicula.xhtml" value="Registro Pelicula"/>
+                    <h:link outcome="./../../privado/registros/registroSerie.xhtml" value="Registro Serie"/>
+                    <h:link outcome="./../../privado/registros/registroDirector.xhtml" value="Registro Director"/>
+                    <h:link outcome="./../../privado/registros/registroActor.xhtml" value="Registro Actor"/>
+                    <h:link outcome="./../../privado/registros/registroCompania.xhtml" value="Registro Compañia"/>
+                    <h:link outcome="./../../privado/registros/registroGenero.xhtml" value="Registro Genero"/>
+
+                </ui:insert>
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>
