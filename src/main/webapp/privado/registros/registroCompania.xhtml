@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/templateRegistros.xhtml">
+
+            <ui:define name="content">
+                <h1 class="p-mt-0">REGISTRAR COMPAÑÍA</h1>    
+            <p:fieldset legend="Datos">
+                <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
+
+                   <p:outputLabel for="nombre" value="Nombre: "/>
+                   <p:inputText id="nombre" required="true" value="#{companiaController.compania.nombre}"/> 
+                   <p:message for="nombre"/>
+
+                   <p:outputLabel for="descripcion" value="Descripción: "/>
+                   <p:inputText id="descripcion" value="#{companiaController.compania.descripcion}"/> 
+                   <p:message for="descripcion"/>
+
+                </p:panelGrid>
+            </p:fieldset>
+
+                <p:commandButton value="Registrar" action="#{companiaController.insertar()}"/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

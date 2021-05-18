@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/templateRegistros.xhtml">
+
+            <ui:define name="content">
+            <h1 class="p-mt-0">REGISTRAR PELÍCULA</h1>    
+            <p:fieldset legend="Datos">
+                <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
+
+                   <p:outputLabel for="titulo" value="Titulo: "/>
+                   <p:inputText id="titulo" required="true" value="#{peliculaController.pelicula.titulo}"/> 
+                   <p:message for="titulo"/>
+
+                   <p:outputLabel  for="anyo" value="Año: "/>
+                   <p:inputText id="anyo" required="true" value="#{peliculaController.pelicula.anyo}"/> 
+                   <p:message for="anyo"/>
+
+                   <p:outputLabel for="duracion" value="Duración: "/>
+                   <p:inputText id="duracion" required="true" value="#{peliculaController.pelicula.duracion}"/> 
+                   <p:message for="duracion"/>
+
+                   <p:outputLabel for="sinopsis" value="Sinopsis: "/>
+                   <p:inputText id="sinopsis" value="#{peliculaController.pelicula.sinopsis}"/> 
+                   <p:message for="sinopsis"/>
+
+                   <p:outputLabel for="puntuacion" value="Puntuación: "/>
+                   <p:inputText id="puntuacion" required="true" value="#{peliculaController.pelicula.puntuacion}"/> 
+                   <p:message for="puntuacion"/>
+                   
+                   <p:outputLabel for="compania" value="Compañía: "/>
+                   <p:inputText id="compania" required="true" value="#{peliculaController.pelicula.compania}"/> 
+                   <p:message for="compania"/>
+                   
+                   <p:outputLabel for="director" value="Director: "/>
+                   <p:inputText id="director" required="true" value="#{peliculaController.pelicula.director}"/> 
+                   <p:message for="director"/>
+
+                </p:panelGrid>
+            </p:fieldset>
+
+            <p:commandButton value="Registrar" action="#{peliculaController.insertar()}"/>    
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
