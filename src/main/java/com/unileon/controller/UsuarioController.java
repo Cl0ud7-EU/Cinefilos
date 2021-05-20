@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -50,6 +51,8 @@ public class UsuarioController implements Serializable {
         }         
         
         usuarioEJB.create(usuario);
+        
+        info();
     }
 
     public String compruebaUsuario(){
@@ -82,6 +85,10 @@ public class UsuarioController implements Serializable {
 //          System.out.println("error al comporbar el usuario " + e );
 //        }
 //            return "index.html";
+    }
+    
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
     }
 
     public Usuario getUsuario() {
