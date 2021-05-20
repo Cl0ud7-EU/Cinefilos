@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -36,6 +38,11 @@ public class SerieController implements Serializable{
             serieEJB.create(serie);
         } catch (Exception e) {
         }
+      info();
+    }
+    
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
     }
 
     public Serie getSerie() {

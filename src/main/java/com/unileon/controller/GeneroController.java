@@ -36,8 +36,14 @@ public class GeneroController implements Serializable{
     public void insertar(){
         try {
             generoEJB.create(genero);
+            info();
         } catch (Exception e) {
         }
+        
+    }
+    
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Género insertado correctamente"));
     }
 
     @Override
