@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.context.FacesContext;;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named
-@ViewScoped
+@ApplicationScoped
 public class PlantillaController implements Serializable {
     
     public void verificarYMostrar(){
