@@ -28,21 +28,29 @@
                 <p:message for="apellido"/>
 
                 <p:outputLabel for="numeroTelefono" value="Numero de Telefono: "/>
-                <p:inputText id="numeroTelefono" required="true" value="#{usuarioController.numeroTelefono}"/> 
+                <p:inputMask id="numeroTelefono" required="true" mask="999999999"
+                             value="#{usuarioController.numeroTelefono}"/> 
                 <p:message for="numeroTelefono"/>
                 
                 <p:outputLabel for="email" value="Email: "/>
                 <p:inputText id="email" required="true" value="#{usuarioController.email}"/> 
                 <p:message for="email"/>
                 
-                <p:outputLabel for="toggle1" value="Password: "/>
-                <p:password required="true" id="toggle1" value="#{usuarioController.password}" redisplay="true"/>
-                <p:message for="toggle1"/>
+                <p:outputLabel for="@next" value="Password:"/>
+                <p:password value="#{usuarioController.password}" id="password1" required="true" feedback="true" match="password2"
+                            strongLabel="Contraseña muy fuerte" goodLabel="Contraseña segura" weakLabel="Contraseña debil"
+                            requiredMessage="La contraseña es un campo obligatorio"/>                                
+                <p:message for="@previous"/>
+
+                <p:outputLabel for="@next" value="Repita la contraseña"/>
+                <p:password id="password2" required="true" feedback="true" 
+                            requiredMessage="La contraseña es un campo obligatorio"/>                                
+                <p:message for="@previous"/>
     
              </p:panelGrid>
         </p:fieldset>
 
-        <p:commandButton value="Registrar" action="#{usuarioController.insertarUsuario()}"/>
+        <p:commandButton value="Registrar" icon="pi pi-check" action="#{usuarioController.insertarUsuario()}"/>
         
        </h:form>
     </h:body>

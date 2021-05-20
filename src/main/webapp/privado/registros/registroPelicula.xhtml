@@ -28,11 +28,13 @@
                    <p:message for="duracion"/>
 
                    <p:outputLabel for="sinopsis" value="Sinopsis: "/>
-                   <p:inputText id="sinopsis" value="#{peliculaController.pelicula.sinopsis}"/> 
+                   <p:inputTextarea id="sinopsis" rows="6" cols="30" maxlength="300" 
+                                    value="#{peliculaController.pelicula.sinopsis}"/>
                    <p:message for="sinopsis"/>
 
                    <p:outputLabel for="puntuacion" value="Puntuación: "/>
-                   <p:inputText id="puntuacion" required="true" value="#{peliculaController.pelicula.puntuacion}"/> 
+                   <p:inputNumber id="puntuacion" required="true" minValue="0" maxValue="10" decimalPlaces="1" 
+                                  value="#{peliculaController.pelicula.puntuacion}"/> 
                    <p:message for="puntuacion"/>
                    
                    <p:outputLabel for="compania" value="Compañía: "/>

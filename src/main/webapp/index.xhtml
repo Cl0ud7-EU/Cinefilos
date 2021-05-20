@@ -15,7 +15,7 @@
                     <p:outputLabel for="email" value="Email: "/>
                     <p:inputText id="email" required="true" value="#{usuarioController.email}" /> 
                     <p:outputLabel for="toggle1" value="Password: "/>
-                    <p:password required="true" id="toggle1" value="#{usuarioController.password}" />
+                    <p:password required="true" id="toggle1" value="#{usuarioController.password}"/>
                 </h:panelGrid>
             </p:fieldset>
             <p:commandButton value="Acceder" action="#{usuarioController.compruebaUsuario()}"/>
