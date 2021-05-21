@@ -28,4 +28,12 @@ public class PlantillaController implements Serializable {
             }
         }
     }
+    public void salir() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        try {  
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/Cinefilos");
+        } catch (IOException ex) {
+            Logger.getLogger(PlantillaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
