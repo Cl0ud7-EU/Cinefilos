@@ -11,23 +11,73 @@
     <h:body>
         <h:form>
             <div class="all">
+                <!--<header><a>Cinefilos</a></header>-->
+                <p:menubar class="menuSup">
+                    <p:menuitem value="Cinefilos" />
+                </p:menubar>
                 <div class="menu">
-                    <p:menubar>
-                        <p:menuitem value="Gmail" url="http://www.google.com" />
-                        <p:menuitem value="Hotmail" url="http://www.hotmail.com" />
-                        <p:menuitem value="Yahoo Mail" url="http://mail.yahoo.com" />
-                        <p:menuitem value="Youtube" url="http://www.youtube.com" />
-                        <p:menuitem value="Break" url="http://www.break.com" />
-                        <p:menuitem value="Metacafe" url="http://www.metacafe.com" />
-                        <p:menuitem value="Facebook" url="http://www.facebook.com" />
+                    <p:menubar class="menuLat">
+                        <p:menuitem value="Peliculas" url="http://www.google.com" />
+                        <p:menuitem value="Series" url="http://www.hotmail.com" />
+                        <p:menuitem value="Directores" url="http://mail.yahoo.com" />
                         <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
-                    </p:menubar></div>
-                <div class="ui-g">
-                    <div class="ui-g-12 ui-md-6 ui-lg-3"> 
+                    </p:menubar>
+                </div>
+                <div class="contenido">
+                    <div class="subContenido">
+                        <h2>Peliculas</h2>
+                        <div class="ui-g">
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
-                    <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
-                    <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+                    <div class="subContenido">
+                        <h2>Series</h2>
+                        <div class="ui-g">
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subContenido">
+                        <h2>Directores</h2>
+                        <div class="ui-g">
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                            <div class="foto">
+                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </h:form>
@@ -39,11 +89,24 @@
             margin: 0;
             padding: 0;
         }
+        header {
+            height: 50px;
+            position: relative;
+            text-align: center;
+            line-height: 50px;
+        }
+        .menuSup {
+            height: 50px;
+            position: relative;
+            text-align: center;
+            line-height: 50px;
+        }
         form {
             height: auto;
             min-height: 100%;
         }
         .all {
+            background: #252525;
             height: 100%;
             min-height: 100%;
         }
@@ -55,18 +118,50 @@
             min-height: 100%;
             display: block;
         }
-        menubar {
+        .menuLat {
             height: auto;
             min-height: 100%;
-            white-space: nowrap;
+            
         }
-        .ui-menu {
+        .ui-menu.menuLat {
             height: 100%;
-            position: absolute;
             width: 230px;
+            border-radius: 0px !important;
+        }
+        .ui-menu.menuSup { 
+            width: 100%;
+            border-radius: 0px !important;
+        }
+        .contenido {
+            position: absolute;
+            width: 100%;
+            margin-left: 230px;
+            text-align: center;
+            background-color: #4c4c4c9c;
         }
         .ui-menu.ui-menubar > .ui-menu-list > .ui-menuitem {
             width: 210px !important;
+        }
+        .menuSup.ui-menu.ui-menubar > .ui-menu-list > .ui-menuitem > .ui-menuitem-link {
+            padding: 0px !important;
+        }
+        .ui-g {
+            
+            padding: 20px;
+            justify-content: center;
+            text-align: center;
+        }
+        .foto {
+            padding: .5em;
+        }
+        h2 {
+            margin-block-start: 0;
+            padding-block-start: 0.83em;
+        }
+        .subContenido {
+            margin-top: 50px;
+            width: 50%;
+            background: #252525;
         }
     </style>    
     
