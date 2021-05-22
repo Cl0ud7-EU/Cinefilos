@@ -6,12 +6,14 @@
 package com.unileon.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +36,12 @@ public class Actor implements Serializable{
    
    @Column(name="Biografia")
    private String biografia;
+   
+   @ManyToMany(mappedBy = "actor")
+    private List<Pelicula> peliculas;
+   
+   @ManyToMany(mappedBy = "actor")
+    private List<Serie> series;
    
    //GETTERS Y SETTERS
 
@@ -69,13 +77,31 @@ public class Actor implements Serializable{
         this.biografia = biografia;
     }
 
+    public List<Pelicula> getPeliculas() {
+        return peliculas;
+    }
+
+    public void setPeliculas(List<Pelicula> peliculas) {
+        this.peliculas = peliculas;
+    }
+
+    public List<Serie> getSeries() {
+        return series;
+    }
+
+    public void setSeries(List<Serie> series) {
+        this.series = series;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + Objects.hashCode(this.nombre);
-        hash = 37 * hash + Objects.hashCode(this.apellido);
-        hash = 37 * hash + Objects.hashCode(this.biografia);
+        int hash = 7;
+        hash = 79 * hash + this.id;
+        hash = 79 * hash + Objects.hashCode(this.nombre);
+        hash = 79 * hash + Objects.hashCode(this.apellido);
+        hash = 79 * hash + Objects.hashCode(this.biografia);
+        hash = 79 * hash + Objects.hashCode(this.peliculas);
+        hash = 79 * hash + Objects.hashCode(this.series);
         return hash;
     }
 
@@ -103,8 +129,15 @@ public class Actor implements Serializable{
         if (!Objects.equals(this.biografia, other.biografia)) {
             return false;
         }
+        if (!Objects.equals(this.peliculas, other.peliculas)) {
+            return false;
+        }
+        if (!Objects.equals(this.series, other.series)) {
+            return false;
+        }
         return true;
     }
+   
 
    
 }

@@ -7,14 +7,19 @@ package com.unileon.modelo;
 
 import java.io.Serializable;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -49,6 +54,40 @@ public class Serie implements Serializable{
     @JoinColumn (name="idCompania")
     @ManyToOne
     private Compania compania;
+    
+    @JoinTable(
+        name = "serie_genero",
+        joinColumns = @JoinColumn(name = "IdSerie", nullable = false),
+        inverseJoinColumns = @JoinColumn(name="IdGenero", nullable = false)
+    )
+    
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Genero> generos;
+   
+    public void addGenero(Genero genero){
+        if(this.generos == null){
+            this.generos = new ArrayList<>();
+        }
+        
+        this.generos.add(genero);
+    }
+    
+    @JoinTable(
+        name = "serie_actor",
+        joinColumns = @JoinColumn(name = "IdSerie", nullable = false),
+        inverseJoinColumns = @JoinColumn(name="IdActor", nullable = false)
+    )
+    
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Actor> actores;
+   
+    public void addActor(Actor actor){
+        if(this.actores == null){
+            this.actores = new ArrayList<>();
+        }
+        
+        this.actores.add(actor);
+    }
 
     public int getIdUsuario() {
         return IdUsuario;
@@ -106,16 +145,34 @@ public class Serie implements Serializable{
         this.compania = compania;
     }
 
+    public List<Genero> getGeneros() {
+        return generos;
+    }
+
+    public void setGeneros(List<Genero> generos) {
+        this.generos = generos;
+    }
+
+    public List<Actor> getActores() {
+        return actores;
+    }
+
+    public void setActores(List<Actor> actores) {
+        this.actores = actores;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + this.IdUsuario;
-        hash = 67 * hash + Objects.hashCode(this.titulo);
-        hash = 67 * hash + Objects.hashCode(this.anyoInicio);
-        hash = 67 * hash + this.temporadas;
-        hash = 67 * hash + Objects.hashCode(this.sinopsis);
-        hash = 67 * hash + this.puntuacion;
-        hash = 67 * hash + Objects.hashCode(this.compania);
+        int hash = 3;
+        hash = 61 * hash + this.IdUsuario;
+        hash = 61 * hash + Objects.hashCode(this.titulo);
+        hash = 61 * hash + Objects.hashCode(this.anyoInicio);
+        hash = 61 * hash + this.temporadas;
+        hash = 61 * hash + Objects.hashCode(this.sinopsis);
+        hash = 61 * hash + this.puntuacion;
+        hash = 61 * hash + Objects.hashCode(this.compania);
+        hash = 61 * hash + Objects.hashCode(this.generos);
+        hash = 61 * hash + Objects.hashCode(this.actores);
         return hash;
     }
 
@@ -152,8 +209,13 @@ public class Serie implements Serializable{
         if (!Objects.equals(this.compania, other.compania)) {
             return false;
         }
+        if (!Objects.equals(this.generos, other.generos)) {
+            return false;
+        }
+        if (!Objects.equals(this.actores, other.actores)) {
+            return false;
+        }
         return true;
     }
-
-    
+        
 }

@@ -6,12 +6,14 @@
 package com.unileon.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,12 +30,52 @@ public class Genero implements Serializable{
    
    @Column(name="Nombre")
    private String nombre;
+   
+   @ManyToMany(mappedBy = "genero")
+    private List<Pelicula> peliculas;
+   
+   @ManyToMany(mappedBy = "genero")
+    private List<Serie> series;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Pelicula> getPeliculas() {
+        return peliculas;
+    }
+
+    public void setPeliculas(List<Pelicula> peliculas) {
+        this.peliculas = peliculas;
+    }
+
+    public List<Serie> getSeries() {
+        return series;
+    }
+
+    public void setSeries(List<Serie> series) {
+        this.series = series;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.id;
-        hash = 97 * hash + Objects.hashCode(this.nombre);
+        int hash = 5;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.nombre);
+        hash = 89 * hash + Objects.hashCode(this.peliculas);
+        hash = 89 * hash + Objects.hashCode(this.series);
         return hash;
     }
 
@@ -55,22 +97,15 @@ public class Genero implements Serializable{
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
+        if (!Objects.equals(this.peliculas, other.peliculas)) {
+            return false;
+        }
+        if (!Objects.equals(this.series, other.series)) {
+            return false;
+        }
         return true;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+   
+   
 }
