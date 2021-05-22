@@ -49,7 +49,7 @@ public class Serie implements Serializable{
     private String sinopsis;
     
     @Column (name="Puntuacion")
-    private int puntuacion;
+    private float puntuacion;
     
     @JoinColumn (name="idCompania")
     @ManyToOne
@@ -129,11 +129,11 @@ public class Serie implements Serializable{
         this.sinopsis = sinopsis;
     }
 
-    public int getPuntuacion() {
+    public float getPuntuacion() {
         return puntuacion;
     }
 
-    public void setPuntuacion(int puntuacion) {
+    public void setPuntuacion(float puntuacion) {
         this.puntuacion = puntuacion;
     }
 
@@ -144,6 +144,8 @@ public class Serie implements Serializable{
     public void setCompania(Compania compania) {
         this.compania = compania;
     }
+
+    
 
 //    public List<Genero> getGeneros() {
 //        return generos;
@@ -161,16 +163,18 @@ public class Serie implements Serializable{
 //        this.actores = actores;
 //    }
 
+
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + this.IdUsuario;
-        hash = 61 * hash + Objects.hashCode(this.titulo);
-        hash = 61 * hash + Objects.hashCode(this.anyoInicio);
-        hash = 61 * hash + this.temporadas;
-        hash = 61 * hash + Objects.hashCode(this.sinopsis);
-        hash = 61 * hash + this.puntuacion;
-        hash = 61 * hash + Objects.hashCode(this.compania);
+        int hash = 5;
+        hash = 73 * hash + this.IdUsuario;
+        hash = 73 * hash + Objects.hashCode(this.titulo);
+        hash = 73 * hash + Objects.hashCode(this.anyoInicio);
+        hash = 73 * hash + this.temporadas;
+        hash = 73 * hash + Objects.hashCode(this.sinopsis);
+        hash = 73 * hash + Float.floatToIntBits(this.puntuacion);
+        hash = 73 * hash + Objects.hashCode(this.compania);
 //        hash = 61 * hash + Objects.hashCode(this.generos);
 //        hash = 61 * hash + Objects.hashCode(this.actores);
         return hash;
@@ -194,7 +198,7 @@ public class Serie implements Serializable{
         if (this.temporadas != other.temporadas) {
             return false;
         }
-        if (this.puntuacion != other.puntuacion) {
+        if (Float.floatToIntBits(this.puntuacion) != Float.floatToIntBits(other.puntuacion)) {
             return false;
         }
         if (!Objects.equals(this.titulo, other.titulo)) {
@@ -217,5 +221,5 @@ public class Serie implements Serializable{
 //        }
         return true;
     }
-        
+   
 }
