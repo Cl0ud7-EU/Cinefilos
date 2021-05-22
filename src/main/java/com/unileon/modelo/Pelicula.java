@@ -60,39 +60,39 @@ public class Pelicula implements Serializable{
     @ManyToOne
     private Director director;
     
-    @JoinTable(
-        name = "pelicula_genero",
-        joinColumns = @JoinColumn(name = "IdPelicula", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="IdGenero", nullable = false)
-    )
-    
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Genero> generos;
-   
-    public void addGenero(Genero genero){
-        if(this.generos == null){
-            this.generos = new ArrayList<>();
-        }
-        
-        this.generos.add(genero);
-    }
-
-    @JoinTable(
-        name = "pelicula_actor",
-        joinColumns = @JoinColumn(name = "IdPelicula", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="IdActor", nullable = false)
-    )
-    
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Actor> actores;
-   
-    public void addActor(Actor actor){
-        if(this.actores == null){
-            this.actores = new ArrayList<>();
-        }
-        
-        this.actores.add(actor);
-    }
+//    @JoinTable(
+//        name = "pelicula_genero",
+//        joinColumns = @JoinColumn(name = "IdPelicula", nullable = false),
+//        inverseJoinColumns = @JoinColumn(name="IdGenero", nullable = false)
+//    )
+//    
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Genero> generos;
+//   
+//    public void addGenero(Genero genero){
+//        if(this.generos == null){
+//            this.generos = new ArrayList<>();
+//        }
+//        
+//        this.generos.add(genero);
+//    }
+//
+//    @JoinTable(
+//        name = "pelicula_actor",
+//        joinColumns = @JoinColumn(name = "IdPelicula", nullable = false),
+//        inverseJoinColumns = @JoinColumn(name="IdActor", nullable = false)
+//    )
+//    
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Actor> actores;
+//   
+//    public void addActor(Actor actor){
+//        if(this.actores == null){
+//            this.actores = new ArrayList<>();
+//        }
+//        
+//        this.actores.add(actor);
+//    }
 
     public int getIdUsuario() {
         return IdUsuario;
@@ -158,21 +158,21 @@ public class Pelicula implements Serializable{
         this.director = director;
     }
 
-    public List<Genero> getGeneros() {
-        return generos;
-    }
-
-    public void setGeneros(List<Genero> generos) {
-        this.generos = generos;
-    }
-
-    public List<Actor> getActores() {
-        return actores;
-    }
-
-    public void setActores(List<Actor> actores) {
-        this.actores = actores;
-    }
+//    public List<Genero> getGeneros() {
+//        return generos;
+//    }
+//
+//    public void setGeneros(List<Genero> generos) {
+//        this.generos = generos;
+//    }
+//
+//    public List<Actor> getActores() {
+//        return actores;
+//    }
+//
+//    public void setActores(List<Actor> actores) {
+//        this.actores = actores;
+//    }
 
     @Override
     public int hashCode() {
@@ -185,8 +185,8 @@ public class Pelicula implements Serializable{
         hash = 83 * hash + this.puntuacion;
         hash = 83 * hash + Objects.hashCode(this.compania);
         hash = 83 * hash + Objects.hashCode(this.director);
-        hash = 83 * hash + Objects.hashCode(this.generos);
-        hash = 83 * hash + Objects.hashCode(this.actores);
+//        hash = 83 * hash + Objects.hashCode(this.generos);
+//        hash = 83 * hash + Objects.hashCode(this.actores);
         return hash;
     }
 
@@ -226,12 +226,12 @@ public class Pelicula implements Serializable{
         if (!Objects.equals(this.director, other.director)) {
             return false;
         }
-        if (!Objects.equals(this.generos, other.generos)) {
-            return false;
-        }
-        if (!Objects.equals(this.actores, other.actores)) {
-            return false;
-        }
+//        if (!Objects.equals(this.generos, other.generos)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.actores, other.actores)) {
+//            return false;
+//        }
         return true;
     }
     

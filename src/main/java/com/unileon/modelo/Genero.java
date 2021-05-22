@@ -31,11 +31,11 @@ public class Genero implements Serializable{
    @Column(name="Nombre")
    private String nombre;
    
-   @ManyToMany(mappedBy = "genero")
-    private List<Pelicula> peliculas;
-   
-   @ManyToMany(mappedBy = "genero")
-    private List<Serie> series;
+//   @ManyToMany(mappedBy = "genero")
+//    private List<Pelicula> peliculas;
+//   
+//   @ManyToMany(mappedBy = "genero")
+//    private List<Serie> series;
 
     public int getId() {
         return id;
@@ -53,29 +53,29 @@ public class Genero implements Serializable{
         this.nombre = nombre;
     }
 
-    public List<Pelicula> getPeliculas() {
-        return peliculas;
-    }
-
-    public void setPeliculas(List<Pelicula> peliculas) {
-        this.peliculas = peliculas;
-    }
-
-    public List<Serie> getSeries() {
-        return series;
-    }
-
-    public void setSeries(List<Serie> series) {
-        this.series = series;
-    }
+//    public List<Pelicula> getPeliculas() {
+//        return peliculas;
+//    }
+//
+//    public void setPeliculas(List<Pelicula> peliculas) {
+//        this.peliculas = peliculas;
+//    }
+//
+//    public List<Serie> getSeries() {
+//        return series;
+//    }
+//
+//    public void setSeries(List<Serie> series) {
+//        this.series = series;
+//    }
 
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 89 * hash + this.id;
         hash = 89 * hash + Objects.hashCode(this.nombre);
-        hash = 89 * hash + Objects.hashCode(this.peliculas);
-        hash = 89 * hash + Objects.hashCode(this.series);
+//        hash = 89 * hash + Objects.hashCode(this.peliculas);
+//        hash = 89 * hash + Objects.hashCode(this.series);
         return hash;
     }
 
@@ -97,12 +97,12 @@ public class Genero implements Serializable{
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
-        if (!Objects.equals(this.peliculas, other.peliculas)) {
-            return false;
-        }
-        if (!Objects.equals(this.series, other.series)) {
-            return false;
-        }
+//        if (!Objects.equals(this.peliculas, other.peliculas)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.series, other.series)) {
+//            return false;
+//        }
         return true;
     }
 

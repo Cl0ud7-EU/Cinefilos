@@ -55,39 +55,39 @@ public class Serie implements Serializable{
     @ManyToOne
     private Compania compania;
     
-    @JoinTable(
-        name = "serie_genero",
-        joinColumns = @JoinColumn(name = "IdSerie", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="IdGenero", nullable = false)
-    )
-    
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Genero> generos;
-   
-    public void addGenero(Genero genero){
-        if(this.generos == null){
-            this.generos = new ArrayList<>();
-        }
-        
-        this.generos.add(genero);
-    }
-    
-    @JoinTable(
-        name = "serie_actor",
-        joinColumns = @JoinColumn(name = "IdSerie", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="IdActor", nullable = false)
-    )
-    
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Actor> actores;
-   
-    public void addActor(Actor actor){
-        if(this.actores == null){
-            this.actores = new ArrayList<>();
-        }
-        
-        this.actores.add(actor);
-    }
+//    @JoinTable(
+//        name = "serie_genero",
+//        joinColumns = @JoinColumn(name = "IdSerie", nullable = false),
+//        inverseJoinColumns = @JoinColumn(name="IdGenero", nullable = false)
+//    )
+//    
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Genero> generos;
+//   
+//    public void addGenero(Genero genero){
+//        if(this.generos == null){
+//            this.generos = new ArrayList<>();
+//        }
+//        
+//        this.generos.add(genero);
+//    }
+//    
+//    @JoinTable(
+//        name = "serie_actor",
+//        joinColumns = @JoinColumn(name = "IdSerie", nullable = false),
+//        inverseJoinColumns = @JoinColumn(name="IdActor", nullable = false)
+//    )
+//    
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Actor> actores;
+//   
+//    public void addActor(Actor actor){
+//        if(this.actores == null){
+//            this.actores = new ArrayList<>();
+//        }
+//        
+//        this.actores.add(actor);
+//    }
 
     public int getIdUsuario() {
         return IdUsuario;
@@ -145,21 +145,21 @@ public class Serie implements Serializable{
         this.compania = compania;
     }
 
-    public List<Genero> getGeneros() {
-        return generos;
-    }
-
-    public void setGeneros(List<Genero> generos) {
-        this.generos = generos;
-    }
-
-    public List<Actor> getActores() {
-        return actores;
-    }
-
-    public void setActores(List<Actor> actores) {
-        this.actores = actores;
-    }
+//    public List<Genero> getGeneros() {
+//        return generos;
+//    }
+//
+//    public void setGeneros(List<Genero> generos) {
+//        this.generos = generos;
+//    }
+//
+//    public List<Actor> getActores() {
+//        return actores;
+//    }
+//
+//    public void setActores(List<Actor> actores) {
+//        this.actores = actores;
+//    }
 
     @Override
     public int hashCode() {
@@ -171,8 +171,8 @@ public class Serie implements Serializable{
         hash = 61 * hash + Objects.hashCode(this.sinopsis);
         hash = 61 * hash + this.puntuacion;
         hash = 61 * hash + Objects.hashCode(this.compania);
-        hash = 61 * hash + Objects.hashCode(this.generos);
-        hash = 61 * hash + Objects.hashCode(this.actores);
+//        hash = 61 * hash + Objects.hashCode(this.generos);
+//        hash = 61 * hash + Objects.hashCode(this.actores);
         return hash;
     }
 
@@ -209,12 +209,12 @@ public class Serie implements Serializable{
         if (!Objects.equals(this.compania, other.compania)) {
             return false;
         }
-        if (!Objects.equals(this.generos, other.generos)) {
-            return false;
-        }
-        if (!Objects.equals(this.actores, other.actores)) {
-            return false;
-        }
+//        if (!Objects.equals(this.generos, other.generos)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.actores, other.actores)) {
+//            return false;
+//        }
         return true;
     }
         

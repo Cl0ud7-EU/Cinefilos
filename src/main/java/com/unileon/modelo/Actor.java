@@ -37,11 +37,11 @@ public class Actor implements Serializable{
    @Column(name="Biografia")
    private String biografia;
    
-   @ManyToMany(mappedBy = "actor")
-    private List<Pelicula> peliculas;
-   
-   @ManyToMany(mappedBy = "actor")
-    private List<Serie> series;
+//   @ManyToMany(mappedBy = "actor")
+//    private List<Pelicula> peliculas;
+//   
+//   @ManyToMany(mappedBy = "actor")
+//    private List<Serie> series;
    
    //GETTERS Y SETTERS
 
@@ -77,21 +77,21 @@ public class Actor implements Serializable{
         this.biografia = biografia;
     }
 
-    public List<Pelicula> getPeliculas() {
-        return peliculas;
-    }
-
-    public void setPeliculas(List<Pelicula> peliculas) {
-        this.peliculas = peliculas;
-    }
-
-    public List<Serie> getSeries() {
-        return series;
-    }
-
-    public void setSeries(List<Serie> series) {
-        this.series = series;
-    }
+//    public List<Pelicula> getPeliculas() {
+//        return peliculas;
+//    }
+//
+//    public void setPeliculas(List<Pelicula> peliculas) {
+//        this.peliculas = peliculas;
+//    }
+//
+//    public List<Serie> getSeries() {
+//        return series;
+//    }
+//
+//    public void setSeries(List<Serie> series) {
+//        this.series = series;
+//    }
 
     @Override
     public int hashCode() {
@@ -100,8 +100,8 @@ public class Actor implements Serializable{
         hash = 79 * hash + Objects.hashCode(this.nombre);
         hash = 79 * hash + Objects.hashCode(this.apellido);
         hash = 79 * hash + Objects.hashCode(this.biografia);
-        hash = 79 * hash + Objects.hashCode(this.peliculas);
-        hash = 79 * hash + Objects.hashCode(this.series);
+//        hash = 79 * hash + Objects.hashCode(this.peliculas);
+//        hash = 79 * hash + Objects.hashCode(this.series);
         return hash;
     }
 
@@ -129,12 +129,12 @@ public class Actor implements Serializable{
         if (!Objects.equals(this.biografia, other.biografia)) {
             return false;
         }
-        if (!Objects.equals(this.peliculas, other.peliculas)) {
-            return false;
-        }
-        if (!Objects.equals(this.series, other.series)) {
-            return false;
-        }
+//        if (!Objects.equals(this.peliculas, other.peliculas)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.series, other.series)) {
+//            return false;
+//        }
         return true;
     }
    
