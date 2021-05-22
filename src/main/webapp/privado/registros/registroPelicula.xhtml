@@ -16,15 +16,15 @@
                 <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
 
                    <p:outputLabel for="titulo" value="Titulo: "/>
-                   <p:inputText id="titulo" required="true" value="#{peliculaController.pelicula.titulo}"/> 
+                   <p:inputText id="titulo" required="true" maxlength="50" value="#{peliculaController.pelicula.titulo}"/> 
                    <p:message for="titulo"/>
 
                    <p:outputLabel  for="anyo" value="Año: "/>
-                   <p:inputText id="anyo" required="true" value="#{peliculaController.pelicula.anyo}"/> 
+                   <p:inputNumber id="anyo" required="true" decimalPlaces="0" value="#{peliculaController.pelicula.anyo}"/> 
                    <p:message for="anyo"/>
 
-                   <p:outputLabel for="duracion" value="Duración: "/>
-                   <p:inputText id="duracion" required="true" value="#{peliculaController.pelicula.duracion}"/> 
+                   <p:outputLabel for="duracion" value="Duración: (min)"/>
+                   <p:inputNumber id="duracion" required="true" decimalPlaces="0" value="#{peliculaController.pelicula.duracion}"/> 
                    <p:message for="duracion"/>
 
                    <p:outputLabel for="sinopsis" value="Sinopsis: "/>
@@ -33,12 +33,12 @@
                    <p:message for="sinopsis"/>
 
                    <p:outputLabel for="puntuacion" value="Puntuación: "/>
-                   <p:inputNumber id="puntuacion" required="true" minValue="0" maxValue="10" decimalPlaces="1" 
+                   <p:spinner id="puntuacion" required="true" min="0" max="10" decimalPlaces="1" stepFactor="0.1"
                                   value="#{peliculaController.pelicula.puntuacion}"/> 
                    <p:message for="puntuacion"/>
                    
                    <p:outputLabel for="compania" value="Compañía: "/>
-                   <p:inputText id="compania" required="true" value="#{peliculaController.pelicula.compania}"/> 
+                   <p:inputText id="compania" required="true" maxlength="50" value="#{peliculaController.pelicula.compania}"/> 
                    <p:message for="compania"/>
                    
                    <p:outputLabel for="director" value="Director: "/>

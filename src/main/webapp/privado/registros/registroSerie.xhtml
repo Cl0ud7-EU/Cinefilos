@@ -16,7 +16,7 @@
                 <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
 
                    <p:outputLabel for="titulo" value="Titulo: "/>
-                   <p:inputText id="titulo" required="true" value="#{serieController.serie.titulo}"/> 
+                   <p:inputText id="titulo" required="true" maxlength="50" value="#{serieController.serie.titulo}"/> 
                    <p:message for="titulo"/>
 
                    <p:outputLabel  for="anyoInicio" value="Año: "/>
