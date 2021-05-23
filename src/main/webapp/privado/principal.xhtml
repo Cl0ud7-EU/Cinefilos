@@ -25,56 +25,89 @@
                 </div>
                 <div class="contenido">
                     <div class="subContenido">
-                        <h2>Peliculas</h2>
+                        <p:outputLabel class="label" value="Peliculas"/>
                         <div class="ui-g">
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
                         </div>
                     </div>
                     <div class="subContenido">
-                        <h2>Series</h2>
+                        <p:outputLabel class="label" value="Series"/>
                         <div class="ui-g">
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
                         </div>
                     </div>
                     <div class="subContenido">
-                        <h2>Directores</h2>
+                        <p:outputLabel class="label" value="Directores"/>
                         <div class="ui-g">
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
-                            <div class="foto">
-                                <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                </div>
+                                <p:outputLabel class="subText" value="King kong"/>
                             </div>
                         </div>
                     </div>
@@ -127,13 +160,14 @@
             height: 100%;
             width: 230px;
             border-radius: 0px !important;
+            border-bottom: 0px !important;
         }
         .ui-menu.menuSup { 
             width: 100%;
             border-radius: 0px !important;
         }
         .contenido {
-            position: absolute;
+            display: inline-block;
             width: 100%;
             margin-left: 230px;
             text-align: center;
@@ -159,9 +193,30 @@
             padding-block-start: 0.83em;
         }
         .subContenido {
+            margin-left: 15%;
             margin-top: 50px;
+            margin-bottom: 50px;
             width: 50%;
             background: #252525;
+            border-radius: 15px;
+        }
+        .label {
+            display: block;
+            padding-block-start: 0.83em;
+            color: white;
+            font-size: 1.5rem !important;
+            font-weight: bold;
+        }
+        .contenedorItem {
+            width: 140px;
+            background: white;
+            border-radius: 5px;
+            margin-left: 0.83em;
+            margin-block-end: 0.83em;
+        }
+        .subText {
+            display: block;
+            padding-block-end: 5px;
         }
     </style>    
     
