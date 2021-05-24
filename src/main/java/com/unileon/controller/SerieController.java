@@ -8,6 +8,7 @@ package com.unileon.controller;
 import com.unileon.EJB.SerieFacadeLocal;
 import com.unileon.modelo.Serie;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -43,6 +44,12 @@ public class SerieController implements Serializable{
     
     public void info() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
+    }
+    
+    public Serie datos(int index){ 
+        List<Serie> listaSeries = serieEJB.consultaTodo(index);
+        serie = listaSeries.get(index);
+        return serie;
     }
 
     public Serie getSerie() {

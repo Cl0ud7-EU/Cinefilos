@@ -8,6 +8,7 @@ package com.unileon.controller;
 import com.unileon.EJB.PeliculaFacadeLocal;
 import com.unileon.modelo.Pelicula;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -43,6 +44,12 @@ public class PeliculaController implements Serializable{
     
     public void info() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
+    }
+    
+    public Pelicula datos(int index){ 
+        List<Pelicula> listaPeliculas = peliculaEJB.consultaTodo(index);
+        pelicula = listaPeliculas.get(index);
+        return pelicula;
     }
 
     public Pelicula getPelicula() {

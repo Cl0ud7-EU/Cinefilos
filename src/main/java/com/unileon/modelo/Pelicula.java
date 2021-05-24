@@ -34,7 +34,7 @@ import javax.persistence.TemporalType;
 public class Pelicula implements Serializable{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int IdUsuario;
+    private int id;
     
     @Column (name="Titulo")
     private String titulo;
@@ -93,12 +93,31 @@ public class Pelicula implements Serializable{
 //        this.actores.add(actor);
 //    }
 
-    public int getIdUsuario() {
-        return IdUsuario;
+   
+    
+
+//    public List<Genero> getGeneros() {
+//        return generos;
+//    }
+//
+//    public void setGeneros(List<Genero> generos) {
+//        this.generos = generos;
+//    }
+//
+//    public List<Actor> getActores() {
+//        return actores;
+//    }
+//
+//    public void setActores(List<Actor> actores) {
+//        this.actores = actores;
+//    }
+
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int IdUsuario) {
-        this.IdUsuario = IdUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -156,37 +175,18 @@ public class Pelicula implements Serializable{
     public void setDirector(Director director) {
         this.director = director;
     }
-    
-
-//    public List<Genero> getGeneros() {
-//        return generos;
-//    }
-//
-//    public void setGeneros(List<Genero> generos) {
-//        this.generos = generos;
-//    }
-//
-//    public List<Actor> getActores() {
-//        return actores;
-//    }
-//
-//    public void setActores(List<Actor> actores) {
-//        this.actores = actores;
-//    }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + this.IdUsuario;
-        hash = 43 * hash + Objects.hashCode(this.titulo);
-        hash = 43 * hash + this.anyo;
-        hash = 43 * hash + this.duracion;
-        hash = 43 * hash + Objects.hashCode(this.sinopsis);
-        hash = 43 * hash + Float.floatToIntBits(this.puntuacion);
-        hash = 43 * hash + Objects.hashCode(this.compania);
-        hash = 43 * hash + Objects.hashCode(this.director);
-//        hash = 83 * hash + Objects.hashCode(this.generos);
-//        hash = 83 * hash + Objects.hashCode(this.actores);
+        int hash = 5;
+        hash = 67 * hash + this.id;
+        hash = 67 * hash + Objects.hashCode(this.titulo);
+        hash = 67 * hash + this.anyo;
+        hash = 67 * hash + this.duracion;
+        hash = 67 * hash + Objects.hashCode(this.sinopsis);
+        hash = 67 * hash + Float.floatToIntBits(this.puntuacion);
+        hash = 67 * hash + Objects.hashCode(this.compania);
+        hash = 67 * hash + Objects.hashCode(this.director);
         return hash;
     }
 
@@ -202,7 +202,7 @@ public class Pelicula implements Serializable{
             return false;
         }
         final Pelicula other = (Pelicula) obj;
-        if (this.IdUsuario != other.IdUsuario) {
+        if (this.id != other.id) {
             return false;
         }
         if (this.anyo != other.anyo) {
@@ -226,13 +226,8 @@ public class Pelicula implements Serializable{
         if (!Objects.equals(this.director, other.director)) {
             return false;
         }
-//        if (!Objects.equals(this.generos, other.generos)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.actores, other.actores)) {
-//            return false;
-//        }
         return true;
     }
+
    
 }

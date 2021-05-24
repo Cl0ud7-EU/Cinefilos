@@ -30,4 +30,5 @@ public interface SerieFacadeLocal {
 
     int count();
     
+    List<Serie> consultaTodo(int index);
 }

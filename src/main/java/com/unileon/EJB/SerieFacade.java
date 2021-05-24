@@ -6,9 +6,11 @@
 package com.unileon.EJB;
 
 import com.unileon.modelo.Serie;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,20 @@ public class SerieFacade extends AbstractFacade<Serie> implements SerieFacadeLoc
 
     public SerieFacade() {
         super(Serie.class);
+    }
+
+    @Override
+    public List<Serie> consultaTodo(int index) {
+        String consulta = "FROM Serie p WHERE p.id=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", index+1);
+
+        List<Serie> resultado = query.getResultList();
+        if(resultado.isEmpty()){
+            return null;
+        } else {
+            return resultado;
+        }
     }
     
 }

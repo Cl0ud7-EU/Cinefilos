@@ -20,7 +20,7 @@
                    <p:message for="titulo"/>
 
                    <p:outputLabel  for="anyoInicio" value="Año: "/>
-                   <p:inputText id="anyoInicio" required="true" value="#{serieController.serie.anyoInicio}"/> 
+                   <p:inputMask id="anyoInicio" required="true" mask="9999" value="#{serieController.serie.anyoInicio}"/> 
                    <p:message for="anyoInicio"/>
 
                    <p:outputLabel for="temporadas" value="Temporadas: "/>
@@ -28,8 +28,7 @@
                    <p:message for="temporadas"/>
 
                    <p:outputLabel for="sinopsis" value="Sinopsis: "/>
-                   <p:inputTextarea id="sinopsis" rows="6" cols="30" maxlength="300"
-                                value="#{serieController.serie.sinopsis}"/> 
+                   <p:inputTextarea id="sinopsis" rows="6" cols="30" maxlength="300" value="#{serieController.serie.sinopsis}"/> 
                    <p:message for="sinopsis"/>
 
                    <p:outputLabel for="puntuacion" value="Puntuación: "/>

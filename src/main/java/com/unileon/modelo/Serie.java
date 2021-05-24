@@ -34,13 +34,13 @@ import javax.persistence.TemporalType;
 public class Serie implements Serializable{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int IdUsuario;
+    private int id;
     
     @Column (name="Titulo")
     private String titulo;
     
     @Column (name="AnyoInicio")
-    private Year anyoInicio;
+    private int anyoInicio;
     
     @Column (name="Temporadas")
     private int temporadas;
@@ -89,12 +89,29 @@ public class Serie implements Serializable{
 //        this.actores.add(actor);
 //    }
 
-    public int getIdUsuario() {
-        return IdUsuario;
+
+//    public List<Genero> getGeneros() {
+//        return generos;
+//    }
+//
+//    public void setGeneros(List<Genero> generos) {
+//        this.generos = generos;
+//    }
+//
+//    public List<Actor> getActores() {
+//        return actores;
+//    }
+//
+//    public void setActores(List<Actor> actores) {
+//        this.actores = actores;
+//    }
+
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int IdUsuario) {
-        this.IdUsuario = IdUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -105,11 +122,11 @@ public class Serie implements Serializable{
         this.titulo = titulo;
     }
 
-    public Year getAnyoInicio() {
+    public int getAnyoInicio() {
         return anyoInicio;
     }
 
-    public void setAnyoInicio(Year anyoInicio) {
+    public void setAnyoInicio(int anyoInicio) {
         this.anyoInicio = anyoInicio;
     }
 
@@ -145,38 +162,16 @@ public class Serie implements Serializable{
         this.compania = compania;
     }
 
-    
-
-//    public List<Genero> getGeneros() {
-//        return generos;
-//    }
-//
-//    public void setGeneros(List<Genero> generos) {
-//        this.generos = generos;
-//    }
-//
-//    public List<Actor> getActores() {
-//        return actores;
-//    }
-//
-//    public void setActores(List<Actor> actores) {
-//        this.actores = actores;
-//    }
-
-
-
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 73 * hash + this.IdUsuario;
-        hash = 73 * hash + Objects.hashCode(this.titulo);
-        hash = 73 * hash + Objects.hashCode(this.anyoInicio);
-        hash = 73 * hash + this.temporadas;
-        hash = 73 * hash + Objects.hashCode(this.sinopsis);
-        hash = 73 * hash + Float.floatToIntBits(this.puntuacion);
-        hash = 73 * hash + Objects.hashCode(this.compania);
-//        hash = 61 * hash + Objects.hashCode(this.generos);
-//        hash = 61 * hash + Objects.hashCode(this.actores);
+        hash = 83 * hash + this.id;
+        hash = 83 * hash + Objects.hashCode(this.titulo);
+        hash = 83 * hash + this.anyoInicio;
+        hash = 83 * hash + this.temporadas;
+        hash = 83 * hash + Objects.hashCode(this.sinopsis);
+        hash = 83 * hash + Float.floatToIntBits(this.puntuacion);
+        hash = 83 * hash + Objects.hashCode(this.compania);
         return hash;
     }
 
@@ -192,7 +187,10 @@ public class Serie implements Serializable{
             return false;
         }
         final Serie other = (Serie) obj;
-        if (this.IdUsuario != other.IdUsuario) {
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.anyoInicio != other.anyoInicio) {
             return false;
         }
         if (this.temporadas != other.temporadas) {
@@ -207,19 +205,14 @@ public class Serie implements Serializable{
         if (!Objects.equals(this.sinopsis, other.sinopsis)) {
             return false;
         }
-        if (!Objects.equals(this.anyoInicio, other.anyoInicio)) {
-            return false;
-        }
         if (!Objects.equals(this.compania, other.compania)) {
             return false;
         }
-//        if (!Objects.equals(this.generos, other.generos)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.actores, other.actores)) {
-//            return false;
-//        }
         return true;
     }
+
+
+
+    
    
 }
