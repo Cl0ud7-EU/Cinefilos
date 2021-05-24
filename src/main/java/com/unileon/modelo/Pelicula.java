@@ -40,7 +40,7 @@ public class Pelicula implements Serializable{
     private String titulo;
     
     @Column (name="Anyo")
-    private Year anyo;
+    private int anyo;
     
     @Column (name="Duracion")
     private int duracion;
@@ -109,11 +109,11 @@ public class Pelicula implements Serializable{
         this.titulo = titulo;
     }
 
-    public Year getAnyo() {
+    public int getAnyo() {
         return anyo;
     }
 
-    public void setAnyo(Year anyo) {
+    public void setAnyo(int anyo) {
         this.anyo = anyo;
     }
 
@@ -156,7 +156,6 @@ public class Pelicula implements Serializable{
     public void setDirector(Director director) {
         this.director = director;
     }
-
     
 
 //    public List<Genero> getGeneros() {
@@ -178,14 +177,14 @@ public class Pelicula implements Serializable{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 59 * hash + this.IdUsuario;
-        hash = 59 * hash + Objects.hashCode(this.titulo);
-        hash = 59 * hash + Objects.hashCode(this.anyo);
-        hash = 59 * hash + this.duracion;
-        hash = 59 * hash + Objects.hashCode(this.sinopsis);
-        hash = 59 * hash + Float.floatToIntBits(this.puntuacion);
-        hash = 59 * hash + Objects.hashCode(this.compania);
-        hash = 59 * hash + Objects.hashCode(this.director);
+        hash = 43 * hash + this.IdUsuario;
+        hash = 43 * hash + Objects.hashCode(this.titulo);
+        hash = 43 * hash + this.anyo;
+        hash = 43 * hash + this.duracion;
+        hash = 43 * hash + Objects.hashCode(this.sinopsis);
+        hash = 43 * hash + Float.floatToIntBits(this.puntuacion);
+        hash = 43 * hash + Objects.hashCode(this.compania);
+        hash = 43 * hash + Objects.hashCode(this.director);
 //        hash = 83 * hash + Objects.hashCode(this.generos);
 //        hash = 83 * hash + Objects.hashCode(this.actores);
         return hash;
@@ -206,6 +205,9 @@ public class Pelicula implements Serializable{
         if (this.IdUsuario != other.IdUsuario) {
             return false;
         }
+        if (this.anyo != other.anyo) {
+            return false;
+        }
         if (this.duracion != other.duracion) {
             return false;
         }
@@ -216,9 +218,6 @@ public class Pelicula implements Serializable{
             return false;
         }
         if (!Objects.equals(this.sinopsis, other.sinopsis)) {
-            return false;
-        }
-        if (!Objects.equals(this.anyo, other.anyo)) {
             return false;
         }
         if (!Objects.equals(this.compania, other.compania)) {
@@ -235,4 +234,5 @@ public class Pelicula implements Serializable{
 //        }
         return true;
     }
+   
 }

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+    <ui:composition template="./../WEB-INF/template/templateMultimedia.xhtml">
+
+        <ui:define name="content">
+
+            <h:form>
+            <div class="all">
+                <!--<header><a>Cinefilos</a></header>-->
+                <p:menubar class="menuSup">
+                    <p:menuitem value="Cinefilos" />
+                </p:menubar>
+                <div class="menu">
+                    <p:menubar class="menuLat">
+                        <p:menuitem value="Peliculas" url="http://www.google.com" />
+                        <p:menuitem value="Series" url="http://www.hotmail.com" />
+                        <p:menuitem value="Directores" url="http://mail.yahoo.com" />
+                        <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
+                    </p:menubar>
+                </div>
+                <div class="contenido">
+                    
+                    <div class="Foto" style="width:40%" >
+                        <p:graphicImage value="../resources/imagenes/1.jpg" height="426px" width="270px"/>
+                    </div>
+                    <div class="Texto" style="width:60%">
+                        <p:outputLabel class="label" value="El Señor de los anillos: Las dos torres"/>
+                    </div>
+                    
+                </div>
+            </div>
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+
+    </body>
+</html>

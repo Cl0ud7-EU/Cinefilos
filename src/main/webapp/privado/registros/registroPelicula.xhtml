@@ -20,7 +20,7 @@
                    <p:message for="titulo"/>
 
                    <p:outputLabel  for="anyo" value="Año: "/>
-                   <p:inputNumber id="anyo" required="true" decimalPlaces="0" value="#{peliculaController.pelicula.anyo}"/> 
+                   <p:inputMask id="anyo" required="true" mask="9999" value="#{peliculaController.pelicula.anyo}"/> 
                    <p:message for="anyo"/>
 
                    <p:outputLabel for="duracion" value="Duración: (min)"/>
