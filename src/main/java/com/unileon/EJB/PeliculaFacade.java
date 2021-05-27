@@ -20,6 +20,7 @@ import javax.persistence.Query;
 @Stateless
 public class PeliculaFacade extends AbstractFacade<Pelicula> implements PeliculaFacadeLocal {
 
+    private int id;
     @PersistenceContext(unitName = "cinefilosPU")
     private EntityManager em;
 
@@ -46,17 +47,17 @@ public class PeliculaFacade extends AbstractFacade<Pelicula> implements Pelicula
         }
     }
 
-//    @Override
-//    public int maximoId() {
-//        //String consulta = "SELECT p FROM Pelicula p WHERE MAX(Id)";
-//         String consulta = "SELECT MAX(p.id) FROM Pelicula p";
-//        Query query = em.createQuery(consulta);
-//
-//        
-//        int resultado = query.getFirstResult();
-//        //int max = resultado.get(0).getId();
-//        return resultado;       
-//        
-//    }
+    public Pelicula peliculaSeleccionada(){
+        String consulta = "FROM Pelicula p WHERE p.id=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", id);
+
+        List<Pelicula> resultado = query.getResultList();
+        return resultado.get(0);
+    }
+    
+    public void seleccionarPelicula(int id){
+        this.id=id;
+    }
     
 }

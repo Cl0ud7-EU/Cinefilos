@@ -11,6 +11,9 @@
         <ui:composition template="./../../WEB-INF/template/templateRegistros.xhtml">
 
             <ui:define name="content">
+                <p:messages id="messages" showDetail="true" skipDetailIfEqualsSummary="true">
+                    <p:autoUpdate/>
+                </p:messages>
                 <h:form> 
                 <h1 class="p-mt-0">REGISTRAR SERIE</h1>    
             <p:fieldset legend="Datos">

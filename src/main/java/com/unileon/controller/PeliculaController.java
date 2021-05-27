@@ -12,6 +12,7 @@ import com.unileon.modelo.Compania;
 import com.unileon.modelo.Director;
 import com.unileon.modelo.Pelicula;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
@@ -34,6 +35,7 @@ public class PeliculaController implements Serializable{
     private List<Compania> listacompanias;
     private List<Director> listadirectores;
     private List<Pelicula> listapeliculas;
+    private List<Pelicula> listaPelis;
     @EJB
     private PeliculaFacadeLocal peliculaEJB;
     
@@ -47,6 +49,7 @@ public class PeliculaController implements Serializable{
         pelicula = new Pelicula();
         director = new Director();
         compania = new Compania();
+        listaPelis = new ArrayList<Pelicula>();
         
         pelicula.setDirector(director);
         pelicula.setCompania(compania);
@@ -55,8 +58,18 @@ public class PeliculaController implements Serializable{
             listadirectores = directorEJB.findAll();
             listacompanias = companiaEJB.findAll();
             listapeliculas = peliculaEJB.findAll();
-            //System.out.print(listacompanias.size());
         } catch (Exception e) {
+        }
+        
+        if(listapeliculas.size()>=5){
+            for (int i = 0; i < 5; i++) {
+                listaPelis.add(listapeliculas.get(i));
+            }
+        } else {
+            
+            for (int i = 0; i < listapeliculas.size(); i++) {
+                listaPelis.add(listapeliculas.get(i));
+            }
         }
         
     }
@@ -75,9 +88,13 @@ public class PeliculaController implements Serializable{
     }
     
     public Pelicula datos(){ 
-        List<Pelicula> lista = peliculaEJB.consultaTodo(1);
-        pelicula = lista.get(0);
+        Pelicula pelicula = peliculaEJB.peliculaSeleccionada();
         return pelicula;
+    }
+    
+    public String cambioPagina(Pelicula pelicula){
+        peliculaEJB.seleccionarPelicula(pelicula.getId());
+        return "privado/pelicula.softwareII";
     }
 
     public Pelicula getPelicula() {
@@ -134,6 +151,30 @@ public class PeliculaController implements Serializable{
 
     public void setListapeliculas(List<Pelicula> listapeliculas) {
         this.listapeliculas = listapeliculas;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
+    public Compania getCompania() {
+        return compania;
+    }
+
+    public void setCompania(Compania compania) {
+        this.compania = compania;
+    }
+
+    public List<Pelicula> getListaPelis() {
+        return listaPelis;
+    }
+
+    public void setListaPelis(List<Pelicula> listaPelis) {
+        this.listaPelis = listaPelis;
     }
 
     @Override

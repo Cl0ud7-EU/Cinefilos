@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar()}"/>
         <title>Cinefilos</title>
@@ -24,37 +25,24 @@
                     </p:menubar>
                 </div>
                 <div class="contenido">
+                    
                     <div class="subContenido">
                         <p:outputLabel class="label" value="Peliculas"/>
                         <div class="ui-g">
+                            <c:forEach items="#{peliculaController.listaPelis}" var="p">
                             <div class="contenedorItem">
                                 <div class="foto">
-                                    <h:commandLink action="...">
+                                    <h:commandLink action="#{peliculaController.cambioPagina(p)}">
                                         <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
                                     </h:commandLink>
                                 </div>
-                                <p:outputLabel class="subText" value="King kong"/>
+                                <p:outputLabel class="subText" value="#{p.titulo}"/>
                             </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
+                    
+                    
                     <div class="subContenido">
                         <p:outputLabel class="label" value="Series"/>
                         <div class="ui-g">
