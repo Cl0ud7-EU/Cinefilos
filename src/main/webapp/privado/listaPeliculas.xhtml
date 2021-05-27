@@ -17,7 +17,7 @@
                 </p:menubar>
                 <div class="menu">
                     <p:menubar class="menuLat">
-                        <p:menuitem value="Peliculas" url="http://www.google.com" />
+                        <p:menuitem value="Peliculas" url="listaPeliculas.xhtml" />
                         <p:menuitem value="Series" url="http://www.hotmail.com" />
                         <p:menuitem value="Directores" url="http://mail.yahoo.com" />
                         <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
@@ -27,90 +27,22 @@
                     <div class="subContenido">
                         <p:outputLabel class="label" value="Peliculas"/>
                         <div class="ui-g">
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <h:commandLink action="...">
-                                        <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                    </h:commandLink>
+                            <p:carousel value="#{peliculaController.listapeliculas}" var="p" responsive="true">
+                                <div class="contenedorItem">
+                                    <div class="foto">
+                                        <h:commandLink action="...">
+                                            <p:graphicImage value="../resources/imagenes/peliculas/1.jpg" height="142px" width="90px"/>
+                                        </h:commandLink>
+                                    </div>
+                                    <p:outputLabel class="subText" value="#{p.titulo}"/>
+                                    <p:outputLabel class="subText" value="#{p.puntuacion}"/>
                                 </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subContenido">
-                        <p:outputLabel class="label" value="Series"/>
-                        <div class="ui-g">
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subContenido">
-                        <p:outputLabel class="label" value="Directores"/>
-                        <div class="ui-g">
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
+                            </p:carousel>
+                           
+                            
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>
