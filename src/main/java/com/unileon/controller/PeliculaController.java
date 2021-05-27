@@ -7,7 +7,9 @@ package com.unileon.controller;
 
 import com.unileon.EJB.CompaniaFacadeLocal;
 import com.unileon.EJB.PeliculaFacadeLocal;
+import com.unileon.EJB.DirectorFacadeLocal;
 import com.unileon.modelo.Compania;
+import com.unileon.modelo.Director;
 import com.unileon.modelo.Pelicula;
 import java.io.Serializable;
 import java.util.List;
@@ -28,21 +30,32 @@ import javax.inject.Named;
 public class PeliculaController implements Serializable{
     private Pelicula pelicula;
     private List<Compania> listacompanias;
-    
+    private List<Director> listadirectores;
     @EJB
     private PeliculaFacadeLocal peliculaEJB;
     
     @EJB
     private CompaniaFacadeLocal companiaEJB;
+    @EJB
+    private DirectorFacadeLocal directorEJB;
     
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         pelicula = new Pelicula();
-        listacompanias = companiaEJB.findAll();
+     
+       
+        try {
+            listadirectores = directorEJB.findAll();
+            listacompanias = companiaEJB.findAll();
+            //System.out.print(listacompanias.size());
+        } catch (Exception e) {
+        }
+        
     }
     
     public void insertar(){
         try {
+            //pelicula.setCompania(compania);
             peliculaEJB.create(pelicula);
         } catch (Exception e) {
         }
@@ -91,13 +104,31 @@ public class PeliculaController implements Serializable{
         this.companiaEJB = companiaEJB;
     }
 
+    public List<Director> getListadirectores() {
+        return listadirectores;
+    }
+
+    public void setListadirectores(List<Director> listadirectores) {
+        this.listadirectores = listadirectores;
+    }
+
+    public DirectorFacadeLocal getDirectorEJB() {
+        return directorEJB;
+    }
+
+    public void setDirectorEJB(DirectorFacadeLocal directorEJB) {
+        this.directorEJB = directorEJB;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + Objects.hashCode(this.pelicula);
-        hash = 83 * hash + Objects.hashCode(this.listacompanias);
-        hash = 83 * hash + Objects.hashCode(this.peliculaEJB);
-        hash = 83 * hash + Objects.hashCode(this.companiaEJB);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.pelicula);
+        hash = 29 * hash + Objects.hashCode(this.listacompanias);
+        hash = 29 * hash + Objects.hashCode(this.listadirectores);
+        hash = 29 * hash + Objects.hashCode(this.peliculaEJB);
+        hash = 29 * hash + Objects.hashCode(this.companiaEJB);
+        hash = 29 * hash + Objects.hashCode(this.directorEJB);
         return hash;
     }
 
@@ -119,14 +150,22 @@ public class PeliculaController implements Serializable{
         if (!Objects.equals(this.listacompanias, other.listacompanias)) {
             return false;
         }
+        if (!Objects.equals(this.listadirectores, other.listadirectores)) {
+            return false;
+        }
         if (!Objects.equals(this.peliculaEJB, other.peliculaEJB)) {
             return false;
         }
         if (!Objects.equals(this.companiaEJB, other.companiaEJB)) {
             return false;
         }
+        if (!Objects.equals(this.directorEJB, other.directorEJB)) {
+            return false;
+        }
         return true;
     }
+
+   
 
    
     
