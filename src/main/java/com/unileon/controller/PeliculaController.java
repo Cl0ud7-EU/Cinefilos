@@ -66,10 +66,13 @@ public class PeliculaController implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
     }
     
-    public Pelicula datos(int index){ 
-        List<Pelicula> listaPeliculas = peliculaEJB.consultaTodo(index);
-        pelicula = listaPeliculas.get(index);
+    public Pelicula datos(){ 
+        List<Pelicula> listaPeliculas = peliculaEJB.consultaTodo(peliculaEJB.maximoId());
+        pelicula = listaPeliculas.get(peliculaEJB.maximoId());
         return pelicula;
+    }
+    public int max(){
+        return peliculaEJB.maximoId();
     }
 
     public Pelicula getPelicula() {

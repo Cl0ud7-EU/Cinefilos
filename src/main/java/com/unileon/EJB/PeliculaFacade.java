@@ -6,6 +6,7 @@
 package com.unileon.EJB;
 
 import com.unileon.modelo.Pelicula;
+import java.sql.ResultSet;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -35,7 +36,7 @@ public class PeliculaFacade extends AbstractFacade<Pelicula> implements Pelicula
     public List<Pelicula> consultaTodo(int index) {
         String consulta = "FROM Pelicula p WHERE p.id=:param1";
         Query query = em.createQuery(consulta);
-        query.setParameter("param1", index+1);
+        query.setParameter("param1", index);
 
         List<Pelicula> resultado = query.getResultList();
         if(resultado.isEmpty()){
@@ -43,6 +44,19 @@ public class PeliculaFacade extends AbstractFacade<Pelicula> implements Pelicula
         } else {
             return resultado;
         }
+    }
+
+    @Override
+    public int maximoId() {
+        //String consulta = "SELECT p FROM Pelicula p WHERE MAX(Id)";
+         String consulta = "SELECT MAX(p.id) FROM Pelicula p";
+        Query query = em.createQuery(consulta);
+
+        
+        int resultado = query.getFirstResult();
+        //int max = resultado.get(0).getId();
+        return resultado;       
+        
     }
     
 }

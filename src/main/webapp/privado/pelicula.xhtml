@@ -29,18 +29,18 @@
                 <div class="contenido">
                     
                     <div class="Foto" style="width:60%" >
-                        <p:graphicImage value="../resources/imagenes/peliculas/0.jpg" height="426px" width="270px"/>
+                        <p:graphicImage value="../resources/imagenes/peliculas/1.jpg" height="426px" width="270px"/>
                     </div>
                     <div class="Texto" style="width:60%">
-                        <p:outputLabel class="label" value="#{peliculaController.datos(0).titulo}"/>
+                        <p:outputLabel class="label" value="#{peliculaController.datos().titulo}"/>
                     </div>
                     <div class="Texto" style="width:60%">
-                        <p:outputLabel class="label" value="Año: #{peliculaController.datos(0).anyo}"/>
-                        <p:outputLabel class="label" value="Duración: #{peliculaController.datos(0).duracion} min"/>
-                        <p:outputLabel class="label" value="Sinopsis: #{peliculaController.datos(0).sinopsis}"/>
-                        <p:outputLabel class="label" value="Puntuación: #{peliculaController.datos(0).puntuacion}/10"/>
-                        <p:outputLabel class="label" value="Compañia: #{peliculaController.datos(0).compania.nombre}"/>
-                        <p:outputLabel class="label" value="Director: #{peliculaController.datos(0).director.nombre} #{peliculaController.datos(0).director.apellido}"/>
+                        <p:outputLabel class="label" value="Año: #{peliculaController.datos().anyo}"/>
+                        <p:outputLabel class="label" value="Duración: #{peliculaController.datos().duracion} min"/>
+                        <p:outputLabel class="label" value="Sinopsis: #{peliculaController.datos().sinopsis}"/>
+                        <p:outputLabel class="label" value="Puntuación: #{peliculaController.datos().puntuacion}/10"/>
+                        <p:outputLabel class="label" value="Compañia: #{peliculaController.datos().compania.nombre}"/>
+                        <p:outputLabel class="label" value="Director: #{peliculaController.datos().director.nombre} #{peliculaController.datos(0).director.apellido}"/>
                     </div>
                     
                 </div>
