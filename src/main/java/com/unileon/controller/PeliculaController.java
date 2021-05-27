@@ -31,6 +31,7 @@ public class PeliculaController implements Serializable{
     private Pelicula pelicula;
     private List<Compania> listacompanias;
     private List<Director> listadirectores;
+    private List<Pelicula> listapeliculas;
     @EJB
     private PeliculaFacadeLocal peliculaEJB;
     
@@ -47,6 +48,7 @@ public class PeliculaController implements Serializable{
         try {
             listadirectores = directorEJB.findAll();
             listacompanias = companiaEJB.findAll();
+            listapeliculas = peliculaEJB.findAll();
             //System.out.print(listacompanias.size());
         } catch (Exception e) {
         }
@@ -67,12 +69,9 @@ public class PeliculaController implements Serializable{
     }
     
     public Pelicula datos(){ 
-        List<Pelicula> listaPeliculas = peliculaEJB.consultaTodo(peliculaEJB.maximoId());
-        pelicula = listaPeliculas.get(peliculaEJB.maximoId());
+        List<Pelicula> lista = peliculaEJB.consultaTodo(1);
+        pelicula = lista.get(0);
         return pelicula;
-    }
-    public int max(){
-        return peliculaEJB.maximoId();
     }
 
     public Pelicula getPelicula() {
@@ -123,15 +122,24 @@ public class PeliculaController implements Serializable{
         this.directorEJB = directorEJB;
     }
 
+    public List<Pelicula> getListapeliculas() {
+        return listapeliculas;
+    }
+
+    public void setListapeliculas(List<Pelicula> listapeliculas) {
+        this.listapeliculas = listapeliculas;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.pelicula);
-        hash = 29 * hash + Objects.hashCode(this.listacompanias);
-        hash = 29 * hash + Objects.hashCode(this.listadirectores);
-        hash = 29 * hash + Objects.hashCode(this.peliculaEJB);
-        hash = 29 * hash + Objects.hashCode(this.companiaEJB);
-        hash = 29 * hash + Objects.hashCode(this.directorEJB);
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.pelicula);
+        hash = 43 * hash + Objects.hashCode(this.listacompanias);
+        hash = 43 * hash + Objects.hashCode(this.listadirectores);
+        hash = 43 * hash + Objects.hashCode(this.listapeliculas);
+        hash = 43 * hash + Objects.hashCode(this.peliculaEJB);
+        hash = 43 * hash + Objects.hashCode(this.companiaEJB);
+        hash = 43 * hash + Objects.hashCode(this.directorEJB);
         return hash;
     }
 
@@ -156,6 +164,9 @@ public class PeliculaController implements Serializable{
         if (!Objects.equals(this.listadirectores, other.listadirectores)) {
             return false;
         }
+        if (!Objects.equals(this.listapeliculas, other.listapeliculas)) {
+            return false;
+        }
         if (!Objects.equals(this.peliculaEJB, other.peliculaEJB)) {
             return false;
         }
@@ -167,10 +178,7 @@ public class PeliculaController implements Serializable{
         }
         return true;
     }
-
-   
-
-   
+    
     
     
 }

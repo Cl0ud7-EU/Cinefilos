@@ -46,17 +46,17 @@ public class PeliculaFacade extends AbstractFacade<Pelicula> implements Pelicula
         }
     }
 
-    @Override
-    public int maximoId() {
-        //String consulta = "SELECT p FROM Pelicula p WHERE MAX(Id)";
-         String consulta = "SELECT MAX(p.id) FROM Pelicula p";
-        Query query = em.createQuery(consulta);
-
-        
-        int resultado = query.getFirstResult();
-        //int max = resultado.get(0).getId();
-        return resultado;       
-        
-    }
+//    @Override
+//    public int maximoId() {
+//        //String consulta = "SELECT p FROM Pelicula p WHERE MAX(Id)";
+//         String consulta = "SELECT MAX(p.id) FROM Pelicula p";
+//        Query query = em.createQuery(consulta);
+//
+//        
+//        int resultado = query.getFirstResult();
+//        //int max = resultado.get(0).getId();
+//        return resultado;       
+//        
+//    }
     
 }

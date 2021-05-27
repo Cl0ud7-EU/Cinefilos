@@ -32,6 +32,6 @@ public interface PeliculaFacadeLocal {
     
     List<Pelicula> consultaTodo(int index);
     
-    int maximoId();
+//    int maximoId();
     
 }

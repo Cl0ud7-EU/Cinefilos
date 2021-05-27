@@ -16,7 +16,7 @@
                     <p:inputText id="email" required="true" value="#{usuarioController.email}" /> 
                     <p:outputLabel for="toggle1" value="Password: "/>
                     <p:password required="true" id="toggle1" value="#{usuarioController.password}"/>
-                    <p:outputLabel class="label" value="#{peliculaController.max()}"/>
+                    <p:outputLabel class="label" value="#{peliculaController.listapeliculas.size()}"/>
                 </h:panelGrid>
             </p:fieldset>
             <p:commandButton value="Acceder" action="#{usuarioController.compruebaUsuario()}"/>
