@@ -39,14 +39,14 @@
                    <p:message for="puntuacion"/>
                    
                     <p:outputLabel for="@next" value="Compañia:"/>
-                    <p:selectOneMenu value="#{peliculaController.pelicula.compania.id}" required="true" requiredMessage="El rol es un campo obligatorio">
+                    <p:selectOneMenu value="#{peliculaController.pelicula.compania.id}" required="true" requiredMessage="La compañia es un campo obligatorio">
                         <f:selectItem itemLabel="Seleccione..."/>
                         <f:selectItems value="#{peliculaController.listacompanias}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.id}" />
                     </p:selectOneMenu>
                     <p:message for="@previous"/>
                    
                    <p:outputLabel for="@next" value="Director:"/>
-                   <p:selectOneMenu value="#{peliculaController.pelicula.director.id}" required="true" requiredMessage="El rol es un campo obligatorio">
+                   <p:selectOneMenu value="#{peliculaController.pelicula.director.id}" required="true" requiredMessage="La compañia es un campo obligatorio">
                         <f:selectItem itemLabel="Seleccione..."/>
                         <f:selectItems value="#{peliculaController.listadirectores}" var="d" itemLabel="#{d.nombre}" itemValue="#{d.id}" />
                     </p:selectOneMenu>

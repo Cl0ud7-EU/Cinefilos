@@ -29,6 +29,8 @@ import javax.inject.Named;
 @ViewScoped
 public class PeliculaController implements Serializable{
     private Pelicula pelicula;
+    private Director director;
+    private Compania compania;
     private List<Compania> listacompanias;
     private List<Director> listadirectores;
     private List<Pelicula> listapeliculas;
@@ -43,7 +45,11 @@ public class PeliculaController implements Serializable{
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         pelicula = new Pelicula();
-     
+        director = new Director();
+        compania = new Compania();
+        
+        pelicula.setDirector(director);
+        pelicula.setCompania(compania);
        
         try {
             listadirectores = directorEJB.findAll();
