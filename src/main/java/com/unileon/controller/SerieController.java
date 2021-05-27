@@ -5,7 +5,12 @@
  */
 package com.unileon.controller;
 
+import com.unileon.EJB.CompaniaFacadeLocal;
 import com.unileon.EJB.SerieFacadeLocal;
+import com.unileon.EJB.PeliculaFacadeLocal;
+import com.unileon.EJB.DirectorFacadeLocal;
+import com.unileon.modelo.Compania;
+import com.unileon.modelo.Director;
 import com.unileon.modelo.Serie;
 import java.io.Serializable;
 import java.util.List;
@@ -26,12 +31,20 @@ import javax.inject.Named;
 public class SerieController implements Serializable{
     private Serie serie;
     
+   
+    private Compania compania;
+    
+    @EJB
+    private CompaniaFacadeLocal companiaEJB;
     @EJB
     private SerieFacadeLocal serieEJB;
     
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         serie = new Serie();
+        
+        compania = new Compania();
+        serie.setCompania(compania);
     }
     
     public void insertar(){
