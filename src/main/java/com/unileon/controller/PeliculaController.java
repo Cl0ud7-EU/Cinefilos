@@ -5,7 +5,9 @@
  */
 package com.unileon.controller;
 
+import com.unileon.EJB.CompaniaFacadeLocal;
 import com.unileon.EJB.PeliculaFacadeLocal;
+import com.unileon.modelo.Compania;
 import com.unileon.modelo.Pelicula;
 import java.io.Serializable;
 import java.util.List;
@@ -25,13 +27,18 @@ import javax.inject.Named;
 @ViewScoped
 public class PeliculaController implements Serializable{
     private Pelicula pelicula;
+    private List<Compania> listacompanias;
     
     @EJB
     private PeliculaFacadeLocal peliculaEJB;
     
+    @EJB
+    private CompaniaFacadeLocal companiaEJB;
+    
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         pelicula = new Pelicula();
+        listacompanias = companiaEJB.findAll();
     }
     
     public void insertar(){
@@ -60,6 +67,14 @@ public class PeliculaController implements Serializable{
         this.pelicula = pelicula;
     }
 
+    public List<Compania> getListacompanias() {
+        return listacompanias;
+    }
+
+    public void setListacompanias(List<Compania> listacompanias) {
+        this.listacompanias = listacompanias;
+    }
+
     public PeliculaFacadeLocal getPeliculaEJB() {
         return peliculaEJB;
     }
@@ -68,11 +83,21 @@ public class PeliculaController implements Serializable{
         this.peliculaEJB = peliculaEJB;
     }
 
+    public CompaniaFacadeLocal getCompaniaEJB() {
+        return companiaEJB;
+    }
+
+    public void setCompaniaEJB(CompaniaFacadeLocal companiaEJB) {
+        this.companiaEJB = companiaEJB;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.pelicula);
-        hash = 59 * hash + Objects.hashCode(this.peliculaEJB);
+        hash = 83 * hash + Objects.hashCode(this.pelicula);
+        hash = 83 * hash + Objects.hashCode(this.listacompanias);
+        hash = 83 * hash + Objects.hashCode(this.peliculaEJB);
+        hash = 83 * hash + Objects.hashCode(this.companiaEJB);
         return hash;
     }
 
@@ -91,11 +116,19 @@ public class PeliculaController implements Serializable{
         if (!Objects.equals(this.pelicula, other.pelicula)) {
             return false;
         }
+        if (!Objects.equals(this.listacompanias, other.listacompanias)) {
+            return false;
+        }
         if (!Objects.equals(this.peliculaEJB, other.peliculaEJB)) {
+            return false;
+        }
+        if (!Objects.equals(this.companiaEJB, other.companiaEJB)) {
             return false;
         }
         return true;
     }
+
+   
     
     
 }
