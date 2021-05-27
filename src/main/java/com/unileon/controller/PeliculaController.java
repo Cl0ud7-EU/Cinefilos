@@ -65,8 +65,7 @@ public class PeliculaController implements Serializable{
             for (int i = 0; i < 5; i++) {
                 listaPelis.add(listapeliculas.get(i));
             }
-        } else {
-            
+        } else { 
             for (int i = 0; i < listapeliculas.size(); i++) {
                 listaPelis.add(listapeliculas.get(i));
             }
@@ -84,17 +83,17 @@ public class PeliculaController implements Serializable{
     }
     
     public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Pelicula insertada correctamente"));
     }
     
     public Pelicula datos(){ 
-        Pelicula pelicula = peliculaEJB.peliculaSeleccionada();
+        pelicula = peliculaEJB.peliculaSeleccionada();
         return pelicula;
     }
     
     public String cambioPagina(Pelicula pelicula){
         peliculaEJB.seleccionarPelicula(pelicula.getId());
-        return "privado/pelicula.softwareII";
+        return "pelicula.softwareII";
     }
 
     public Pelicula getPelicula() {

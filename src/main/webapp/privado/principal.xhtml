@@ -14,7 +14,7 @@
             <div class="all">
                 <!--<header><a>Cinefilos</a></header>-->
                 <p:menubar class="menuSup">
-                    <p:menuitem value="Cinefilos" />
+                    <p:menuitem value="Cinefilos" url="principal.softwareII"/>
                 </p:menubar>
                 <div class="menu">
                     <p:menubar class="menuLat">
@@ -42,36 +42,22 @@
                         </div>
                     </div>
                     
-                    
                     <div class="subContenido">
                         <p:outputLabel class="label" value="Series"/>
                         <div class="ui-g">
+                            <c:forEach items="#{serieController.listaSerie}" var="s">
                             <div class="contenedorItem">
                                 <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                    <h:commandLink action="#{serieController.cambioPagina(s)}">
+                                        <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                    </h:commandLink>
                                 </div>
-                                <p:outputLabel class="subText" value="King kong"/>
+                                <p:outputLabel class="subText" value="#{s.titulo}"/>
                             </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
+                    
                     <div class="subContenido">
                         <p:outputLabel class="label" value="Directores"/>
                         <div class="ui-g">

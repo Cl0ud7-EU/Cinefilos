@@ -42,7 +42,7 @@ public class ActorController implements Serializable{
     }
     
     public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Actor insertada correctamente"));
     }
 
     public Actor getActor() {

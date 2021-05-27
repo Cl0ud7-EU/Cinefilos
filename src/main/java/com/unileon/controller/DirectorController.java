@@ -42,7 +42,7 @@ public class DirectorController implements Serializable{
     }
     
     public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Director insertado correctamente"));
     } 
 
     public Director getDirector() {

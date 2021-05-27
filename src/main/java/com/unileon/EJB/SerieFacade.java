@@ -19,6 +19,7 @@ import javax.persistence.Query;
 @Stateless
 public class SerieFacade extends AbstractFacade<Serie> implements SerieFacadeLocal {
 
+    private int id;
     @PersistenceContext(unitName = "cinefilosPU")
     private EntityManager em;
 
@@ -45,4 +46,16 @@ public class SerieFacade extends AbstractFacade<Serie> implements SerieFacadeLoc
         }
     }
     
+    public Serie serieSeleccionada(){
+        String consulta = "FROM Serie s WHERE s.id=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", id);
+
+        List<Serie> resultado = query.getResultList();
+        return resultado.get(0);
+    }
+    
+    public void seleccionarSerie(int id){
+        this.id=id;
+    }
 }
