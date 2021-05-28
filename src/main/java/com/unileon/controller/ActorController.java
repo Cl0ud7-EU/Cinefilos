@@ -8,6 +8,8 @@ package com.unileon.controller;
 import com.unileon.EJB.ActorFacadeLocal;
 import com.unileon.modelo.Actor;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,12 +27,27 @@ import javax.inject.Named;
 public class ActorController implements Serializable{
     
     private Actor actor;
+    private List<Actor> listaActores;
     @EJB
     private ActorFacadeLocal actorEJB;
     
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         actor = new Actor();
+        listaActores = new ArrayList<Actor>();
+        
+        try {
+            listaActores = actorEJB.findAll();
+        } catch (Exception e) {
+        }
+    }
+
+    public List<Actor> getListaActores() {
+        return listaActores;
+    }
+
+    public void setListaActores(List<Actor> listaActores) {
+        this.listaActores = listaActores;
     }
     
     public void insertar(){
