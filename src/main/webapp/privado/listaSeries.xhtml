@@ -32,7 +32,7 @@
                             <div class="contenedorItem">
                                 <div class="foto">
                                     <h:commandLink action="#{serieController.cambioPagina(s)}">
-                                        <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                        <p:graphicImage value="#{serieController.rutaPortada(s.id)}" height="142px" width="90px"/>
                                     </h:commandLink>
                                 </div>
                                 <p:outputLabel class="subText" value="#{s.titulo}"/>
