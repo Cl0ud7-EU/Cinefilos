@@ -30,4 +30,9 @@ public interface SerieFacadeLocal {
 
     int count();
     
+    List<Serie> consultaTodo(int index);
+    
+    Serie serieSeleccionada();
+    
+    void seleccionarSerie(int id);
 }

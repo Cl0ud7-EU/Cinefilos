@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -24,7 +26,7 @@ public class CompaniaController implements Serializable{
         
     private Compania compania;
     @EJB
-    private CompaniaFacadeLocal directorEJB;
+    private CompaniaFacadeLocal companiaEJB;
     
     @PostConstruct //Se accede después de crear la clase
     public void init(){
@@ -33,9 +35,14 @@ public class CompaniaController implements Serializable{
     
     public void insertar(){
         try {
-            directorEJB.create(compania);
+            companiaEJB.create(compania);
         } catch (Exception e) {
         }
+      info();
+    }
+    
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Compañia insertada correctamente"));
     }  
 
     public Compania getCompania() {
@@ -46,19 +53,19 @@ public class CompaniaController implements Serializable{
         this.compania = compania;
     }
 
-    public CompaniaFacadeLocal getDirectorEJB() {
-        return directorEJB;
+    public CompaniaFacadeLocal getcompaniaEJB() {
+        return companiaEJB;
     }
 
-    public void setDirectorEJB(CompaniaFacadeLocal directorEJB) {
-        this.directorEJB = directorEJB;
+    public void setcompaniaEJB(CompaniaFacadeLocal companiaEJB) {
+        this.companiaEJB = companiaEJB;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 83 * hash + Objects.hashCode(this.compania);
-        hash = 83 * hash + Objects.hashCode(this.directorEJB);
+        hash = 83 * hash + Objects.hashCode(this.companiaEJB);
         return hash;
     }
 
@@ -77,7 +84,7 @@ public class CompaniaController implements Serializable{
         if (!Objects.equals(this.compania, other.compania)) {
             return false;
         }
-        if (!Objects.equals(this.directorEJB, other.directorEJB)) {
+        if (!Objects.equals(this.companiaEJB, other.companiaEJB)) {
             return false;
         }
         return true;

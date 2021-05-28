@@ -27,7 +27,7 @@ public class Comentario implements Serializable{
    @GeneratedValue(strategy = GenerationType.IDENTITY) //Hace que se autoincremente y le asocia el valor de tal forma que lo que cambiemos aquí se cambia en la BBDD
    private int id;
    
-   @Column(name="comentario")
+   @Column(name="Comentario")
    private String comentario;
    
    @JoinColumn(name="IdUsuario")

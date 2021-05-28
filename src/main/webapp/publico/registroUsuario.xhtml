@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Registro de Usuario</title>
+    </h:head>
+    <h:body>
+       <h:form>
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+
+        <h1 class="p-mt-0">CINÉFILOS</h1>
+        <p:messages id="messages" showDetail="true" skipDetailIfEqualsSummary="true">
+            <p:autoUpdate/>
+        </p:messages>
+        <p:fieldset legend="Datos">
+             <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center"
+                 >
+                     
+                <p:outputLabel for="nombre" value="Nombre: "/>
+                <p:inputText id="nombre" required="true" value="#{usuarioController.nombre}"/> 
+                <p:message for="nombre"/>
+                
+                <p:outputLabel  for="apellido" value="Apellido: "/>
+                <p:inputText id="apellido" required="true" value="#{usuarioController.apellido}"/> 
+                <p:message for="apellido"/>
+
+                <p:outputLabel for="numeroTelefono" value="Numero de Telefono: "/>
+                <p:inputMask id="numeroTelefono" required="true" mask="999999999"
+                             value="#{usuarioController.numeroTelefono}"/> 
+                <p:message for="numeroTelefono"/>
+                
+                <p:outputLabel for="email" value="Email: "/>
+                <p:inputText id="email" required="true" value="#{usuarioController.email}"/> 
+                <p:message for="email"/>
+                
+                <p:outputLabel for="@next" value="Password:"/>
+                <p:password value="#{usuarioController.password}" id="password1" required="true" feedback="true" match="password2"
+                            strongLabel="Contraseña muy fuerte" goodLabel="Contraseña segura" weakLabel="Contraseña debil"
+                            requiredMessage="La contraseña es un campo obligatorio"/>                                
+                <p:message for="@previous"/>
+
+                <p:outputLabel for="@next" value="Repita la contraseña"/>
+                <p:password id="password2" required="true" feedback="true" 
+                            requiredMessage="La contraseña es un campo obligatorio"/>                                
+                <p:message for="@previous"/>
+    
+             </p:panelGrid>
+        </p:fieldset>
+
+        <p:commandButton value="Registrar" icon="pi pi-check" action="#{usuarioController.insertarUsuario()}"/>
+        
+       </h:form>
+    </h:body>
+</html>
+

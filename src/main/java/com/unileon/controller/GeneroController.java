@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -34,8 +36,14 @@ public class GeneroController implements Serializable{
     public void insertar(){
         try {
             generoEJB.create(genero);
+            info();
         } catch (Exception e) {
         }
+        
+    }
+    
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Género insertado correctamente"));
     }
 
     @Override

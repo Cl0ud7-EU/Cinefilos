@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>CINÉFILOS</h1>       
+        <h:form>
+            <p:fieldset legend="Datos personales">
+                <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
+                    
+                    <p:outputLabel for="@next" value="Nombre:"/>
+                    <p:inputText value="#{usuarioController.nombre}" required="true" requiredMessage="El nombre es un campo obligatorio"/>
+                    <p:message for="@previous"/>
+                    
+                    <p:outputLabel for="@next" value="Primer apellido:"/>
+                    <p:inputText value="#{usuarioController.apellido1}" required="true" requiredMessage="El apellido es un campo obligatorio"/>
+                    <p:message for="@previous"/>
+                    
+                    <p:outputLabel for="@next" value="Segundo apellido:"/>
+                    <p:inputText value="#{usuarioController.apellido2}" required="true" requiredMessage="El apellido es un campo obligatorio"/>
+                    <p:message for="@previous"/>
+                    
+                    <p:outputLabel for="@next" value="Sexo:"/>
+                    <p:selectOneButton value="#{usuarioController.sexo}" required="true" requiredMessage="El sexo es un campo obligatorio">
+                        <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                        <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                    </p:selectOneButton>
+                    <p:message for="@previous"/>
+                                    
+                </p:panelGrid>
+            </p:fieldset>
+            
+            <p:fieldset legend="Datos de acceso">
+                <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
+                    
+                    <p:outputLabel for="@next" value="Rol:"/>
+                    <p:selectOneMenu value="#{usuarioController.rol.idRol}" required="true" requiredMessage="El rol es un campo obligatorio">
+                        <f:selectItem itemLabel="Seleccione..."/>
+                        <f:selectItems value="#{usuarioController.listaRoles}" var="r" itemLabel="#{r.descripcion}" itemValue="#{r.idRol}" />
+                    </p:selectOneMenu>
+                    <p:message for="@previous"/>
+                    
+                    <p:outputLabel for="@next" value="Nombre de usuario:"/>
+                    <p:inputText value="#{usuarioController.user}" required="true" requiredMessage="El nombre de usuario es un campo obligatorio"/>
+                    <p:message for="@previous"/>
+                    
+                    <p:outputLabel for="@next" value="Password:"/>
+                    <p:password value="#{usuarioController.password}" id="password1" required="true" feedback="true" match="password2"
+                                strongLabel="Contraseña muy fuerte" goodLabel="Contraseña segura" weakLabel="Contraseña debil"
+                                requiredMessage="La contraseña es un campo obligatorio"/>                                
+                    <p:message for="@previous"/>
+                    
+                    <p:outputLabel for="@next" value="Repita la contraseña"/>
+                    <p:password id="password2" required="true" feedback="true" 
+                                requiredMessage="La contraseña es un campo obligatorio"/>                                
+                    <p:message for="@previous"/>
+                    
+                </p:panelGrid>
+            </p:fieldset>
+            <p:commandButton value="Registrar" action="#{usuarioController.insertar()}"/>
+
+            <p:link outcome="/Resources/registroUsuario.xhtml" value="Registro Usuario"/>
+            
+        </h:form>
+    </h:body>
+</html>
+

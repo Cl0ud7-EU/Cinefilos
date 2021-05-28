@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template/templateMultimedia.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+            <div class="all">
+                <!--<header><a>Cinefilos</a></header>-->
+                <p:menubar class="menuSup">
+                    <p:menuitem value="Cinefilos" url="principal.softwareII"/>
+                </p:menubar>
+                <div class="menu">
+                    <p:menubar class="menuLat">
+                        <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
+                        <p:menuitem value="Series" url="listaSeries.softwareII" />
+                        <p:menuitem value="Directores" url="listaDirectores.softwareII" />
+                        <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
+                    </p:menubar>
+                </div>
+                <div class="contenido">
+                    
+                    <div class="Foto" style="width:60%" >
+                        <p:graphicImage value="#{serieController.rutaPortada(serieController.datos().id)}" height="426px" width="270px"/>
+                    </div>
+                    <div class="Texto" style="width:60%">
+                        <p:outputLabel class="label" value="#{serieController.datos().titulo}"/>
+                    </div>
+                    <div class="Texto" style="width:60%">
+                        <p:outputLabel class="label" value="Año: #{serieController.datos().anyoInicio}"/>
+                        <p:outputLabel class="label" value="Nº Temporadas: #{serieController.datos().temporadas}"/>
+                        <p:outputLabel class="label" value="Sinopsis: #{serieController.datos().sinopsis}"/>
+                        <p:outputLabel class="label" value="Puntuación: #{serieController.datos().puntuacion}/10"/>
+                        <p:outputLabel class="label" value="Compañia: #{serieController.datos().compania.nombre}"/>
+                    </div>
+                    
+                </div>
+            </div>
+            </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

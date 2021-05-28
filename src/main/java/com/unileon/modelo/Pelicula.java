@@ -7,14 +7,19 @@ package com.unileon.modelo;
 
 import java.io.Serializable;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,23 +34,22 @@ import javax.persistence.TemporalType;
 public class Pelicula implements Serializable{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int IdUsuario;
+    private int id;
     
     @Column (name="Titulo")
     private String titulo;
     
     @Column (name="Anyo")
-    private Year anyo;
+    private int anyo;
     
     @Column (name="Duracion")
-    @Temporal(TemporalType.TIME)
-    private Date duracion;
+    private int duracion;
     
     @Column (name="Sinopsis")
     private String sinopsis;
     
     @Column (name="Puntuacion")
-    private int puntuacion;
+    private float puntuacion;
     
     @JoinColumn (name="idCompania")
     @ManyToOne
@@ -54,13 +58,66 @@ public class Pelicula implements Serializable{
     @JoinColumn (name="idDirector")
     @ManyToOne
     private Director director;
+    
+//    @JoinTable(
+//        name = "pelicula_genero",
+//        joinColumns = @JoinColumn(name = "IdPelicula", nullable = false),
+//        inverseJoinColumns = @JoinColumn(name="IdGenero", nullable = false)
+//    )
+//    
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Genero> generos;
+//   
+//    public void addGenero(Genero genero){
+//        if(this.generos == null){
+//            this.generos = new ArrayList<>();
+//        }
+//        
+//        this.generos.add(genero);
+//    }
+//
+//    @JoinTable(
+//        name = "pelicula_actor",
+//        joinColumns = @JoinColumn(name = "IdPelicula", nullable = false),
+//        inverseJoinColumns = @JoinColumn(name="IdActor", nullable = false)
+//    )
+//    
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Actor> actores;
+//   
+//    public void addActor(Actor actor){
+//        if(this.actores == null){
+//            this.actores = new ArrayList<>();
+//        }
+//        
+//        this.actores.add(actor);
+//    }
 
-    public int getIdUsuario() {
-        return IdUsuario;
+   
+    
+
+//    public List<Genero> getGeneros() {
+//        return generos;
+//    }
+//
+//    public void setGeneros(List<Genero> generos) {
+//        this.generos = generos;
+//    }
+//
+//    public List<Actor> getActores() {
+//        return actores;
+//    }
+//
+//    public void setActores(List<Actor> actores) {
+//        this.actores = actores;
+//    }
+
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int IdUsuario) {
-        this.IdUsuario = IdUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -71,19 +128,19 @@ public class Pelicula implements Serializable{
         this.titulo = titulo;
     }
 
-    public Year getAnyo() {
+    public int getAnyo() {
         return anyo;
     }
 
-    public void setAnyo(Year anyo) {
+    public void setAnyo(int anyo) {
         this.anyo = anyo;
     }
 
-    public Date getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Date duracion) {
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 
@@ -95,11 +152,11 @@ public class Pelicula implements Serializable{
         this.sinopsis = sinopsis;
     }
 
-    public int getPuntuacion() {
+    public float getPuntuacion() {
         return puntuacion;
     }
 
-    public void setPuntuacion(int puntuacion) {
+    public void setPuntuacion(float puntuacion) {
         this.puntuacion = puntuacion;
     }
 
@@ -122,14 +179,14 @@ public class Pelicula implements Serializable{
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 23 * hash + this.IdUsuario;
-        hash = 23 * hash + Objects.hashCode(this.titulo);
-        hash = 23 * hash + Objects.hashCode(this.anyo);
-        hash = 23 * hash + Objects.hashCode(this.duracion);
-        hash = 23 * hash + Objects.hashCode(this.sinopsis);
-        hash = 23 * hash + this.puntuacion;
-        hash = 23 * hash + Objects.hashCode(this.compania);
-        hash = 23 * hash + Objects.hashCode(this.director);
+        hash = 67 * hash + this.id;
+        hash = 67 * hash + Objects.hashCode(this.titulo);
+        hash = 67 * hash + this.anyo;
+        hash = 67 * hash + this.duracion;
+        hash = 67 * hash + Objects.hashCode(this.sinopsis);
+        hash = 67 * hash + Float.floatToIntBits(this.puntuacion);
+        hash = 67 * hash + Objects.hashCode(this.compania);
+        hash = 67 * hash + Objects.hashCode(this.director);
         return hash;
     }
 
@@ -145,22 +202,22 @@ public class Pelicula implements Serializable{
             return false;
         }
         final Pelicula other = (Pelicula) obj;
-        if (this.IdUsuario != other.IdUsuario) {
+        if (this.id != other.id) {
             return false;
         }
-        if (this.puntuacion != other.puntuacion) {
+        if (this.anyo != other.anyo) {
+            return false;
+        }
+        if (this.duracion != other.duracion) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.puntuacion) != Float.floatToIntBits(other.puntuacion)) {
             return false;
         }
         if (!Objects.equals(this.titulo, other.titulo)) {
             return false;
         }
         if (!Objects.equals(this.sinopsis, other.sinopsis)) {
-            return false;
-        }
-        if (!Objects.equals(this.anyo, other.anyo)) {
-            return false;
-        }
-        if (!Objects.equals(this.duracion, other.duracion)) {
             return false;
         }
         if (!Objects.equals(this.compania, other.compania)) {
@@ -171,6 +228,6 @@ public class Pelicula implements Serializable{
         }
         return true;
     }
-    
-    
+
+   
 }

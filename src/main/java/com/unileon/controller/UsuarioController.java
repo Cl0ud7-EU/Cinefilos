@@ -11,12 +11,15 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 
 @Named
-@ViewScoped
+@ApplicationScoped
 public class UsuarioController implements Serializable {
     private Usuario usuario;
 
@@ -49,9 +52,23 @@ public class UsuarioController implements Serializable {
         }         
         
         usuarioEJB.create(usuario);
+        
+        info();
     }
 
-//    public String compruebaUsuario(){
+    public String compruebaUsuario(){
+        
+        usuario.setEmail(email);
+        usuario.setPassword(password);
+
+        if (usuarioEJB.verificarUsuario(usuario) != null) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+            System.out.println("principal.xhtml");
+            return "privado/principal.xhtml?faces-redirect=true";
+        } else{
+            System.out.println("permisosInsuficientes.xhtml");
+            return "publico/permisosInsuficientes.xhtml?faces-redirect=true";
+        }     
 //        try{
 //            if(persona.getNombre().equals("")){
 //                FacesContext.getCurrentInstance().addMessage("idUserMal", new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención: ","Campo nombre vacío"));
@@ -68,8 +85,12 @@ public class UsuarioController implements Serializable {
 //        }catch(Exception e){
 //          System.out.println("error al comporbar el usuario " + e );
 //        }
-//        return "index.html";
-//    }
+//            return "index.html";
+    }
+    
+    public void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Usted se ha registrado correctamente"));
+    }
 
     public Usuario getUsuario() {
         return usuario;

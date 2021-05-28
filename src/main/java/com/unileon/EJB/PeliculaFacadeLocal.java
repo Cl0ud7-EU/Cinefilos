@@ -30,4 +30,9 @@ public interface PeliculaFacadeLocal {
 
     int count();
     
+    List<Pelicula> consultaTodo(int index);
+    
+    Pelicula peliculaSeleccionada();
+    
+    void seleccionarPelicula(int id);
 }
