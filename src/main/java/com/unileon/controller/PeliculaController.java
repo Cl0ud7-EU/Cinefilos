@@ -88,6 +88,7 @@ public class PeliculaController implements Serializable{
     
     public Pelicula datos(){ 
         pelicula = peliculaEJB.peliculaSeleccionada();
+        
         return pelicula;
     }
     

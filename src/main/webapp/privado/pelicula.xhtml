@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -41,6 +42,10 @@
                         <p:outputLabel class="label" value="Puntuación: #{peliculaController.datos().puntuacion}/10"/>
                         <p:outputLabel class="label" value="Compañia: #{peliculaController.datos().compania.nombre}"/>
                         <p:outputLabel class="label" value="Director: #{peliculaController.datos().director.nombre} #{peliculaController.datos().director.apellido}"/>
+                        <p:outputLabel class="label2" value="Actores: "/>
+                        <c:forEach items="#{actorController.listaActoresPelis()}" var="ap">  
+                            <p:outputLabel class="label2" value="#{ap.nombre}, "/>
+                        </c:forEach>
                     </div>
                     
                 </div>

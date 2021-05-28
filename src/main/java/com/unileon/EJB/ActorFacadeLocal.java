@@ -6,6 +6,7 @@
 package com.unileon.EJB;
 
 import com.unileon.modelo.Actor;
+import com.unileon.modelo.Pelicula;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -27,6 +28,8 @@ public interface ActorFacadeLocal {
     List<Actor> findAll();
 
     List<Actor> findRange(int[] range);
+    
+    List<Actor> findActorPelis(Pelicula peli);
 
     int count();
     

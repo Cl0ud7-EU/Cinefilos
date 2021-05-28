@@ -6,9 +6,12 @@
 package com.unileon.EJB;
 
 import com.unileon.modelo.Actor;
+import com.unileon.modelo.Pelicula;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,15 @@ public class ActorFacade extends AbstractFacade<Actor> implements ActorFacadeLoc
 
     public ActorFacade() {
         super(Actor.class);
+    }
+    
+    public  List<Actor> findActorPelis(Pelicula peli) {
+        String consulta = "SELECT pa.actor FROM PeliculaActor pa WHERE pa.pelicula.id=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", peli.getId());
+
+        List<Actor> resultado = query.getResultList();
+        return resultado; 
     }
     
 }

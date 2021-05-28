@@ -6,7 +6,9 @@
 package com.unileon.controller;
 
 import com.unileon.EJB.ActorFacadeLocal;
+import com.unileon.EJB.PeliculaFacadeLocal;
 import com.unileon.modelo.Actor;
+import com.unileon.modelo.Pelicula;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,22 +30,51 @@ public class ActorController implements Serializable{
     
     private Actor actor;
     private List<Actor> listaActores;
+    
+    private Pelicula pelicula;
     @EJB
     private ActorFacadeLocal actorEJB;
+    @EJB
+    private PeliculaFacadeLocal peliculaEJB;
+    
+    
     
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         actor = new Actor();
         listaActores = new ArrayList<Actor>();
-        
+        pelicula = new Pelicula();
+        pelicula = peliculaEJB.peliculaSeleccionada();
         try {
+            
             listaActores = actorEJB.findAll();
         } catch (Exception e) {
         }
     }
 
+    public List<Actor> listaActoresPelis() {
+        listaActores = actorEJB.findActorPelis(pelicula);
+        return listaActores;
+    }
+
     public List<Actor> getListaActores() {
         return listaActores;
+    }
+
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
+
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
+    }
+
+    public PeliculaFacadeLocal getPeliculaEJB() {
+        return peliculaEJB;
+    }
+
+    public void setPeliculaEJB(PeliculaFacadeLocal peliculaEJB) {
+        this.peliculaEJB = peliculaEJB;
     }
 
     public void setListaActores(List<Actor> listaActores) {
