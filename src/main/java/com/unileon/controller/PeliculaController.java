@@ -62,7 +62,7 @@ public class PeliculaController implements Serializable{
         }
         
         if(listapeliculas.size()>=5){
-            for (int i = 0; i < 5; i++) {
+            for (int i = listapeliculas.size()-1; i > listapeliculas.size()-6; i--) {
                 listaPelis.add(listapeliculas.get(i));
             }
         } else { 
@@ -94,6 +94,11 @@ public class PeliculaController implements Serializable{
     public String cambioPagina(Pelicula pelicula){
         peliculaEJB.seleccionarPelicula(pelicula.getId());
         return "pelicula.softwareII";
+    }
+    
+    public String rutaPortada(int id){
+        String ruta = "../resources/imagenes/peliculas/"+id+".jpg";
+        return ruta;
     }
 
     public Pelicula getPelicula() {

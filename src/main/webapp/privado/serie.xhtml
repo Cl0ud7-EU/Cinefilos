@@ -20,14 +20,14 @@
                     <p:menubar class="menuLat">
                         <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
                         <p:menuitem value="Series" url="listaSeries.softwareII" />
-                        <p:menuitem value="Directores" url="http://mail.yahoo.com" />
+                        <p:menuitem value="Directores" url="listaDirectores.softwareII" />
                         <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
                     </p:menubar>
                 </div>
                 <div class="contenido">
                     
                     <div class="Foto" style="width:60%" >
-                        <p:graphicImage value="../resources/imagenes/series/1.jpg" height="426px" width="270px"/>
+                        <p:graphicImage value="#{serieController.rutaPortada(serieController.datos().id)}" height="426px" width="270px"/>
                     </div>
                     <div class="Texto" style="width:60%">
                         <p:outputLabel class="label" value="#{serieController.datos().titulo}"/>

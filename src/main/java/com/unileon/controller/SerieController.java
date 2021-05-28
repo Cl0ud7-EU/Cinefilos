@@ -7,10 +7,7 @@ package com.unileon.controller;
 
 import com.unileon.EJB.CompaniaFacadeLocal;
 import com.unileon.EJB.SerieFacadeLocal;
-import com.unileon.EJB.PeliculaFacadeLocal;
-import com.unileon.EJB.DirectorFacadeLocal;
 import com.unileon.modelo.Compania;
-import com.unileon.modelo.Director;
 import com.unileon.modelo.Serie;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -53,7 +50,7 @@ public class SerieController implements Serializable{
         }
         
         if(listaseries.size()>=5){
-            for (int i = 0; i < 5; i++) {
+            for (int i = listaseries.size()-1; i < listaseries.size()-6; i--) {
                 listaSerie.add(listaseries.get(i));
             }
         } else {
@@ -83,6 +80,11 @@ public class SerieController implements Serializable{
     public String cambioPagina(Serie serie){
         serieEJB.seleccionarSerie(serie.getId());
         return "serie.softwareII";
+    }
+    
+    public String rutaPortada(int id){
+        String ruta = "../resources/imagenes/series/"+id+".jpg";
+        return ruta;
     }
 
     public Serie getSerie() {

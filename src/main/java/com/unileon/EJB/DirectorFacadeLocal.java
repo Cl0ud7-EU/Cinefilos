@@ -30,4 +30,8 @@ public interface DirectorFacadeLocal {
 
     int count();
     
+    Director directorSeleccionado();
+    
+    void seleccionarDirector(int id);
+    
 }

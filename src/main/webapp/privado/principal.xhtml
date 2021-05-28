@@ -20,7 +20,7 @@
                     <p:menubar class="menuLat">
                         <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
                         <p:menuitem value="Series" url="listaSeries.softwareII" />
-                        <p:menuitem value="Directores" url="http://mail.yahoo.com" />
+                        <p:menuitem value="Directores" url="listaDirectores.softwareII" />
                         <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
                     </p:menubar>
                 </div>
@@ -37,6 +37,7 @@
                                     </h:commandLink>
                                 </div>
                                 <p:outputLabel class="subText" value="#{p.titulo}"/>
+                                <p:outputLabel class="puntuacion" value="#{p.puntuacion}"/>
                             </div>
                             </c:forEach>
                         </div>
@@ -52,7 +53,8 @@
                                         <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
                                     </h:commandLink>
                                 </div>
-                                <p:outputLabel class="subText" value="#{s.titulo}"/>
+                                <p:outputLabel class="subText" value="#{s.titulo}       "/>
+                                <p:outputLabel class="puntuacion" value="#{s.puntuacion}"/>
                             </div>
                             </c:forEach>
                         </div>
@@ -61,30 +63,16 @@
                     <div class="subContenido">
                         <p:outputLabel class="label" value="Directores"/>
                         <div class="ui-g">
+                            <c:forEach items="#{directorController.listaDirectores}" var="d">
                             <div class="contenedorItem">
                                 <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                    <h:commandLink action="#{directorController.cambioPagina(d)}">
+                                        <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
+                                    </h:commandLink>
                                 </div>
-                                <p:outputLabel class="subText" value="King kong"/>
+                                <p:outputLabel class="subText" value="#{d.nombre} #{d.apellido}"/>
                             </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <p:graphicImage value="../resources/imagenes/imagen1.jpg" height="142px" width="90px"/>
-                                </div>
-                                <p:outputLabel class="subText" value="King kong"/>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
