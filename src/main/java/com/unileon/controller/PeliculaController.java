@@ -61,13 +61,16 @@ public class PeliculaController implements Serializable{
         } catch (Exception e) {
         }
         
-        if(listapeliculas.size()>=5){
-            for (int i = listapeliculas.size()-1; i > listapeliculas.size()-6; i--) {
+        int i = listapeliculas.size()-1;
+        if(listapeliculas.size()>5){
+            while(i>listapeliculas.size()-6){
                 listaPelis.add(listapeliculas.get(i));
+                i--;
             }
         } else { 
-            for (int i = 0; i < listapeliculas.size(); i++) {
+            while(i>=0){
                 listaPelis.add(listapeliculas.get(i));
+                i--;
             }
         }
         

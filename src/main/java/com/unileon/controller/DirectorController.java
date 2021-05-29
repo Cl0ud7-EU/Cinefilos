@@ -41,13 +41,16 @@ public class DirectorController implements Serializable{
         } catch (Exception e) {
         }
         
-        if(listadirectores.size()>=5){
-            for (int i = listadirectores.size()-1; i < listadirectores.size()-6; i--) {
+        int i = listadirectores.size()-1;
+        if(listadirectores.size()>5){
+            while(i>listadirectores.size()-6){
                 listaDirectores.add(listadirectores.get(i));
+                i--;
             }
-        } else {
-            for (int i = 0; i < listadirectores.size(); i++) {
+        } else { 
+            while(i>=0){
                 listaDirectores.add(listadirectores.get(i));
+                i--;
             }
         }
     }
