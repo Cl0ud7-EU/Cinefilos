@@ -7,12 +7,14 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar()}"/>
+        <f:event type="preRenderView" listener="#{usuarioController.compruebaRol()}"/>
         <title>Cinefilos</title>
     </h:head>
     <h:body>
         <h:form>
             <div class="all">
                 <!--<header><a>Cinefilos</a></header>-->
+             
                 <p:menubar class="menuSup">
                     <p:menuitem value="Cinefilos" url="principal.softwareII"/>
                 </p:menubar>
@@ -22,6 +24,7 @@
                         <p:menuitem value="Series" url="listaSeries.softwareII" />
                         <p:menuitem value="Directores" url="listaDirectores.softwareII" />
                         <p:menuitem value="Actores" url="listaActores.softwareII" />
+                        <p:menuitem value="Registros" url="registros/registroPelicula.softwareII" rendered="#{usuarioController.usuario.rol}"/>
                         <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
                     </p:menubar>
                 </div>

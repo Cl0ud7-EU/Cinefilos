@@ -12,6 +12,7 @@ import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -28,6 +29,7 @@ public class UsuarioController implements Serializable {
     private String password;
     private String email;
     private int numeroTelefono;
+    private Boolean rol;
 
     @EJB
     private UsuarioFacadeLocal usuarioEJB;
@@ -35,6 +37,7 @@ public class UsuarioController implements Serializable {
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         usuario = new Usuario();
+        //compruebaRol();
     }
 
     //Da de alta al usuario en la BBDD:
@@ -55,16 +58,30 @@ public class UsuarioController implements Serializable {
         
         info();
     }
+    public void compruebaRol() {
+        //Usuario name = (Usuario) getObjectFromSession("LOGGEDIN_USER");
+        try {
+            usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 
+        } catch (Exception e) {
+        }
+        
+        
+        
+    }
     public String compruebaUsuario(){
         
         usuario.setEmail(email);
         usuario.setPassword(password);
 
         if (usuarioEJB.verificarUsuario(usuario) != null) {
+            usuario = usuarioEJB.verificarUsuario(usuario);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+            
             System.out.println("principal.xhtml");
+            //compruebaRol();
             return "privado/principal.xhtml?faces-redirect=true";
+            
         } else{
             System.out.println("permisosInsuficientes.xhtml");
             return "publico/permisosInsuficientes.xhtml?faces-redirect=true";
@@ -86,6 +103,7 @@ public class UsuarioController implements Serializable {
 //          System.out.println("error al comporbar el usuario " + e );
 //        }
 //            return "index.html";
+        
     }
     
     public void info() {
@@ -146,6 +164,14 @@ public class UsuarioController implements Serializable {
 
     public void setUsuarioEJB(UsuarioFacadeLocal usuarioEJB) {
         this.usuarioEJB = usuarioEJB;
+    }
+
+    public Boolean getRol() {
+        return rol;
+    }
+
+    public void setRol(Boolean rol) {
+        this.rol = rol;
     }
 
     @Override

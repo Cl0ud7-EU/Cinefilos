@@ -37,6 +37,10 @@ public class Usuario implements Serializable {
    @Column(name="NumeroTelefono")
    private int numeroTelefono;
    
+   @Column(name="Rol")
+   private Boolean rol;
+
+    
    //GETTERS Y SETTERS
 
     public int getId() {
@@ -86,7 +90,15 @@ public class Usuario implements Serializable {
     public void setNumeroTelefono(int numeroTelefono) {
         this.numeroTelefono = numeroTelefono;
     }
+    
+    public Boolean getRol() {
+        return rol;
+    }
 
+    public void setRol(Boolean rol) {
+        this.rol = rol;
+    }
+   
     @Override
     public int hashCode() {
         int hash = 3;
