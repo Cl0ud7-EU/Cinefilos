@@ -21,6 +21,7 @@ import javax.persistence.Query;
 @Stateless
 public class ActorFacade extends AbstractFacade<Actor> implements ActorFacadeLocal {
 
+    private int id;
     @PersistenceContext(unitName = "cinefilosPU")
     private EntityManager em;
 
@@ -49,6 +50,20 @@ public class ActorFacade extends AbstractFacade<Actor> implements ActorFacadeLoc
 
         List<Actor> resultado = query.getResultList();
         return resultado; 
+    }
+
+    @Override
+    public Actor actorSeleccionado() {
+        String consulta = "FROM Actor a WHERE a.id=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", id);
+
+        List<Actor> resultado = query.getResultList();
+        return resultado.get(0);      }
+
+    @Override
+    public void seleccionarActor(int id) {
+        this.id=id;
     }
     
 }

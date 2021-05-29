@@ -36,6 +36,8 @@ public interface ActorFacadeLocal {
 
     int count();
 
+    Actor actorSeleccionado();
     
+    void seleccionarActor(int id);
     
 }

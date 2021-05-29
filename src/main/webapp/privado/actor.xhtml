@@ -29,29 +29,13 @@
                     <div class="contenido">
 
                         <div class="Foto" style="width:60%" >
-                            <p:graphicImage value="#{directorController.rutaPortada(directorController.datos().id)}" height="426px" width="270px"/>
+                            <p:graphicImage value="#{actorController.rutaPortada(actorController.datos().id)}" height="426px" width="270px"/>
                         </div>
                         <div class="Texto" style="width:60%">
-                            <p:outputLabel class="label" value="#{directorController.datos().nombre} #{directorController.datos().apellido}"/>
+                            <p:outputLabel class="label" value="#{actorController.datos().nombre} #{actorController.datos().apellido}"/>
                         </div>
                         <div class="Texto" style="width:60%">
-                            <p:outputLabel class="label" value="Biografía: #{directorController.datos().biografia}"/>
-                        </div>
-                        <div class="subContenido">
-                        <p:outputLabel class="label" value="Peliculas dirigidas"/>
-                        <div class="ui-g">
-                            <c:forEach items="#{directorController.peliculas(directorController.datos().id)}" var="p">
-                            <div class="contenedorItem">
-                                <div class="foto">
-                                    <h:commandLink action="#{peliculaController.cambioPagina(p)}">
-                                        <p:graphicImage value="#{peliculaController.rutaPortada(p.id)}" height="142px" width="90px"/>
-                                    </h:commandLink>
-                                </div>
-                                <p:outputLabel class="subText" value="#{p.titulo}"/>
-                                <p:outputLabel class="puntuacion" value="#{p.puntuacion}"/>
-                            </div>
-                            </c:forEach>
-                        </div>
+                            <p:outputLabel class="label" value="Biografía: #{actorController.datos().biografia}"/>
                         </div>
 
                     </div>

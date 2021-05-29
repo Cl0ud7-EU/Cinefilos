@@ -25,18 +25,19 @@
                         <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
                     </p:menubar>
                 </div>
+                
                 <div class="contenido">
                      <div class="subContenido">
-                        <p:outputLabel class="label" value="Series"/>
+                        <p:outputLabel class="label" value="Directores"/>
                         <div class="ui-g">
-                            <c:forEach items="#{serieController.listaseries}" var="s">
+                            <c:forEach items="#{actorController.listaActores}" var="a">
                             <div class="contenedorItem">
                                 <div class="foto">
-                                    <h:commandLink action="#{serieController.cambioPagina(s)}">
-                                        <p:graphicImage value="#{serieController.rutaPortada(s.id)}" height="142px" width="90px"/>
+                                    <h:commandLink action="#{actorController.cambioPagina(a)}">
+                                        <p:graphicImage value="#{actorController.rutaPortada(a.id)}" height="142px" width="90px"/>
                                     </h:commandLink>
                                 </div>
-                                <p:outputLabel class="subText" value="#{s.titulo}"/>
+                                <p:outputLabel class="subText" value="#{a.nombre} #{a.apellido}"/>
                             </div>
                             </c:forEach>
                         </div>
@@ -44,8 +45,8 @@
                 </div>
             </div>
         </h:form>
-    </h:body>
-    <style>
+    </h:body>   
+<style>
         body{
             height: 100%;
             min-height: 100%;
@@ -148,6 +149,6 @@
             display: block;
             padding-block-end: 5px;
         }
-    </style>    
+    </style>        
     
 </html>

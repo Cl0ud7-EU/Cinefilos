@@ -32,6 +32,7 @@ public class ActorController implements Serializable{
     
     private Actor actor;
     private List<Actor> listaActores;
+    private List<Actor> listaActor;
     
     private Pelicula pelicula;
     private Serie serie;
@@ -48,6 +49,7 @@ public class ActorController implements Serializable{
     public void init(){
         actor = new Actor();
         listaActores = new ArrayList<Actor>();
+        listaActor = new ArrayList<Actor>();
         pelicula = new Pelicula();
         serie = new Serie();
         
@@ -65,6 +67,18 @@ public class ActorController implements Serializable{
             listaActores = actorEJB.findAll();
         } catch (Exception e) {
         }
+        int i = listaActores.size()-1;
+        if(listaActores.size()>5){
+            while(i>listaActores.size()-6){
+                listaActor.add(listaActores.get(i));
+                i--;
+            }
+        } else { 
+            while(i>=0){
+                listaActor.add(listaActores.get(i));
+                i--;
+            }
+        }
     }
 
     public List<Actor> listaActoresPeli() {
@@ -74,6 +88,56 @@ public class ActorController implements Serializable{
     public List<Actor> listaActoresSerie() {
         listaActores = actorEJB.findActoresSerie(serie);
         return listaActores;
+    }
+    
+     public Actor datos(){ 
+        actor = actorEJB.actorSeleccionado();
+        return actor;
+    }
+    
+    public List<Pelicula> peliculas(int id){
+        List<Pelicula> listaPeliculas = peliculaEJB.findAll();
+        List<Pelicula> listaPeliculasActor = new ArrayList<>();
+        for (int i = 0; i < listaPeliculas.size(); i++) {
+            if(listaPeliculas.get(i).getId()== id){
+                listaPeliculasActor.add(listaPeliculas.get(i));
+            }
+        }
+        return listaPeliculasActor;
+    }
+
+    public String cambioPagina(Actor actor){
+        actorEJB.seleccionarActor(actor.getId());
+        return "actor.softwareII";
+    }
+    
+    public String rutaPortada(int id){
+        String ruta = "../resources/imagenes/actores/"+id+".jpg";
+        return ruta;
+    }
+    
+    public List<Actor> getListaActor() {
+        return listaActor;
+    }
+
+    public void setListaActor(List<Actor> listaActor) {
+        this.listaActor = listaActor;
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+
+    public SerieFacadeLocal getSerieEJB() {
+        return serieEJB;
+    }
+
+    public void setSerieEJB(SerieFacadeLocal serieEJB) {
+        this.serieEJB = serieEJB;
     }
 
     public List<Actor> getListaActores() {

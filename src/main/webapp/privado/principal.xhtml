@@ -21,6 +21,7 @@
                         <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
                         <p:menuitem value="Series" url="listaSeries.softwareII" />
                         <p:menuitem value="Directores" url="listaDirectores.softwareII" />
+                        <p:menuitem value="Actores" url="listaActores.softwareII" />
                         <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
                     </p:menubar>
                 </div>
@@ -71,6 +72,21 @@
                                     </h:commandLink>
                                 </div>
                                 <p:outputLabel class="subText" value="#{d.nombre} #{d.apellido}"/>
+                            </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                     <div class="subContenido">
+                        <p:outputLabel class="label" value="Actores"/>
+                        <div class="ui-g">
+                            <c:forEach items="#{actorController.listaActor}" var="a">
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <h:commandLink action="#{actorController.cambioPagina(a)}">
+                                        <p:graphicImage value="#{actorController.rutaPortada(a.id)}" height="142px" width="90px"/>
+                                    </h:commandLink>
+                                </div>
+                                <p:outputLabel class="subText" value="#{a.nombre} #{a.apellido}"/>
                             </div>
                             </c:forEach>
                         </div>
