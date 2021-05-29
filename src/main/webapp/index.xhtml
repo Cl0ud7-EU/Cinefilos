@@ -13,15 +13,9 @@
             <p:fieldset legend="REGISTRO USUARIO">
                 <h:panelGrid columns="2" id="grid" cellpadding="2">
                     <p:outputLabel for="email" value="Email: "/>
-                    <span class="ui-input-icon-left">
-                        <i class="pi pi-user" />
                         <p:inputText id="email" required="true" value="#{usuarioController.email}" /> 
-                    </span>
                     <p:outputLabel for="toggle1" value="Password: "/>
-                    <span class="ui-input-icon-left">
-                        <i class="pi pi-search" />
                         <p:password required="true" id="toggle1" value="#{usuarioController.password}"/>
-                    </span>
                 </h:panelGrid>
             </p:fieldset>
             <p:commandButton value="Acceder" icon="pi pi-sign-in" action="#{usuarioController.compruebaUsuario()}"/>
