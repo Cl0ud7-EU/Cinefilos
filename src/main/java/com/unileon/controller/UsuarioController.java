@@ -49,6 +49,7 @@ public class UsuarioController implements Serializable {
         usuario.setPassword(password);
         usuario.setEmail(email);
         usuario.setNumeroTelefono(numeroTelefono);
+        usuario.setRol(false);
                 
         }catch(Exception e){
             System.out.println("Error al iniciar el objeto Usuario " +e);
