@@ -12,6 +12,7 @@ import com.unileon.modelo.Genero;
 import com.unileon.modelo.Pelicula;
 import com.unileon.modelo.Serie;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
@@ -32,8 +33,7 @@ public class GeneroController implements Serializable{
     private List<Genero> listaGeneros;
     private Pelicula pelicula;
     private Serie serie;
-    
-    
+
     @EJB
     private GeneroFacadeLocal generoEJB;
     
@@ -45,7 +45,7 @@ public class GeneroController implements Serializable{
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         genero = new Genero();
-        
+
         try {
             pelicula = peliculaEJB.peliculaSeleccionada();
         } catch (Exception e) {
@@ -79,6 +79,52 @@ public class GeneroController implements Serializable{
     
     public void info() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Género insertado correctamente"));
+    }
+    
+    public Genero datos(){ 
+        genero = generoEJB.generoSeleccionado();
+        return genero;
+    }
+    
+    public List<Pelicula> peliculas(int id){
+        List<Pelicula> listaPeliculas = peliculaEJB.findAll();
+        List<Pelicula> listaPeliculasGenero = new ArrayList<>();
+        
+        for (int i = 0; i < listaPeliculas.size(); i++) {
+            listaGeneros = generoEJB.findGenerosPeli(listaPeliculas.get(i));
+            for (int j = 0; j < listaGeneros.size(); j++) {
+                if(listaGeneros.get(j).getId() == id){
+                    listaPeliculasGenero.add(listaPeliculas.get(i));
+                }
+            }
+            
+        }
+        return listaPeliculasGenero;
+    }
+    
+    public List<Serie> series(int id){
+        List<Serie> listaSeries = serieEJB.findAll();
+        List<Serie> listaSeriesGenero = new ArrayList<>();
+        
+        for (int i = 0; i < listaSeries.size(); i++) {
+            listaGeneros = generoEJB.findGenerosSerie(listaSeries.get(i));
+            for (int j = 0; j < listaGeneros.size(); j++) {
+                if(listaGeneros.get(j).getId() == id){
+                    listaSeriesGenero.add(listaSeries.get(i));
+                }
+            }  
+        }
+        return listaSeriesGenero;
+    }
+
+    public String cambioPagina(Genero genero){
+        generoEJB.seleccionarGenero(genero.getId());
+        return "genero.softwareII";
+    }
+    
+    public String rutaPortada(int id){
+        String ruta = "../resources/imagenes/generos/"+id+".jpg";
+        return ruta;
     }
 
     @Override

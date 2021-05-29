@@ -59,7 +59,8 @@ public class ActorFacade extends AbstractFacade<Actor> implements ActorFacadeLoc
         query.setParameter("param1", id);
 
         List<Actor> resultado = query.getResultList();
-        return resultado.get(0);      }
+        return resultado.get(0);      
+    }
 
     @Override
     public void seleccionarActor(int id) {

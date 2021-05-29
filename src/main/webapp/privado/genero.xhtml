@@ -9,9 +9,9 @@
     <body>
 
         <ui:composition template="./../WEB-INF/template/templateMultimedia.xhtml">
-
             <ui:define name="content">
-                <h:form>
+
+           <h:form>
                 <div class="all">
                 <!--<header><a>Cinefilos</a></header>-->
                     <p:menubar class="menuSup">
@@ -27,21 +27,11 @@
                         </p:menubar>
                     </div>
                     <div class="contenido">
-
-                        <div class="Foto" style="width:60%" >
-                            <p:graphicImage value="#{actorController.rutaPortada(actorController.datos().id)}" height="426px" width="270px"/>
-                        </div>
-                        <div class="Texto" style="width:60%">
-                            <p:outputLabel class="label" value="#{actorController.datos().nombre} #{actorController.datos().apellido}"/>
-                        </div>
-                        <div class="Texto" style="width:60%">
-                            <p:outputLabel class="label" value="Biografía: #{actorController.datos().biografia}"/>
-                        </div>
-
+                        <p:outputLabel class="label" value="#{generoController.datos().nombre}" style="width:80%"/>
                         <div class="subContenido">
-                        <p:outputLabel class="label" value="Peliculas en las que participa"/>
+                        <p:outputLabel class="label" value="Peliculas"/>
                             <div class="ui-g">
-                                <c:forEach items="#{actorController.peliculas(actorController.datos().id)}" var="p">
+                                <c:forEach items="#{generoController.peliculas(generoController.datos().id)}" var="p">
                                 <div class="contenedorItem">
                                     <div class="foto">
                                         <h:commandLink action="#{peliculaController.cambioPagina(p)}">
@@ -55,9 +45,9 @@
                             </div>
                         </div>
                         <div class="subContenido">
-                        <p:outputLabel class="label" value="Series en las que participa"/>
+                        <p:outputLabel class="label" value="Series"/>
                             <div class="ui-g">
-                                <c:forEach items="#{actorController.series(actorController.datos().id)}" var="p">
+                                <c:forEach items="#{generoController.series(generoController.datos().id)}" var="p">
                                 <div class="contenedorItem">
                                     <div class="foto">
                                         <h:commandLink action="#{serieController.cambioPagina(p)}">

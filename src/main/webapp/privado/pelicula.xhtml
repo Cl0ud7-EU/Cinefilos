@@ -42,14 +42,14 @@
                         <p:outputLabel class="label" value="Sinopsis: #{peliculaController.datos().sinopsis}"/>
                         <p:outputLabel class="label" value="Puntuación: #{peliculaController.datos().puntuacion}/10"/>
                         <p:outputLabel class="label" value="Compañia: #{peliculaController.datos().compania.nombre}"/>
-                        <p:outputLabel class="label" value="Director: #{peliculaController.datos().director.nombre} #{peliculaController.datos().director.apellido}"/>
+                        <p:link class="label" value="Director: #{peliculaController.datos().director.nombre} #{peliculaController.datos().director.apellido}" outcome="#{directorController.cambioPagina(peliculaController.datos().director)}"/>
                         <p:outputLabel class="label" value="Actores: "/>
                         <c:forEach items="#{actorController.listaActoresPeli()}" var="pa">  
-                            <p:outputLabel class="label2" value="#{pa.nombre} #{pa.apellido}. "/>
+                            <p:link class="label2" value="#{pa.nombre} #{pa.apellido}. " outcome="#{actorController.cambioPagina(pa)}"/>
                         </c:forEach>
                         <p:outputLabel class="label" value="Generos: "/>
                         <c:forEach items="#{generoController.listaGenerosPeli()}" var="pg">  
-                            <p:outputLabel class="label2" value="#{pg.nombre} "/>
+                            <p:link class="label2" value="#{pg.nombre} " outcome="#{generoController.cambioPagina(pg)}"/>
                         </c:forEach>
                     </div>
                     

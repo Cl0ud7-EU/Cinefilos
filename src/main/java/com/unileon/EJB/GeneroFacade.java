@@ -21,6 +21,7 @@ import javax.persistence.Query;
 @Stateless
 public class GeneroFacade extends AbstractFacade<Genero> implements GeneroFacadeLocal {
 
+    private int id;
     @PersistenceContext(unitName = "cinefilosPU")
     private EntityManager em;
 
@@ -50,6 +51,21 @@ public class GeneroFacade extends AbstractFacade<Genero> implements GeneroFacade
 
     public GeneroFacade() {
         super(Genero.class);
+    }
+
+    @Override
+    public Genero generoSeleccionado() {
+        String consulta = "FROM Genero g WHERE g.id=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", id);
+
+        List<Genero> resultado = query.getResultList();
+        return resultado.get(0);  
+    }
+
+    @Override
+    public void seleccionarGenero(int id) {
+        this.id=id;
     }
     
 }

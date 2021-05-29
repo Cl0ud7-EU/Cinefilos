@@ -90,7 +90,7 @@ public class ActorController implements Serializable{
         return listaActores;
     }
     
-     public Actor datos(){ 
+    public Actor datos(){ 
         actor = actorEJB.actorSeleccionado();
         return actor;
     }
@@ -98,12 +98,33 @@ public class ActorController implements Serializable{
     public List<Pelicula> peliculas(int id){
         List<Pelicula> listaPeliculas = peliculaEJB.findAll();
         List<Pelicula> listaPeliculasActor = new ArrayList<>();
+        
         for (int i = 0; i < listaPeliculas.size(); i++) {
-            if(listaPeliculas.get(i).getId()== id){
-                listaPeliculasActor.add(listaPeliculas.get(i));
+            listaActores = actorEJB.findActoresPeli(listaPeliculas.get(i));
+            for (int j = 0; j < listaActores.size(); j++) {
+                if(listaActores.get(j).getId() == id){
+                    listaPeliculasActor.add(listaPeliculas.get(i));
+                }
             }
+            
         }
         return listaPeliculasActor;
+    }
+    
+    public List<Serie> series(int id){
+        List<Serie> listaSeries = serieEJB.findAll();
+        List<Serie> listaSeriesActor = new ArrayList<>();
+        
+        for (int i = 0; i < listaSeries.size(); i++) {
+            listaActores = actorEJB.findActoresSerie(listaSeries.get(i));
+            for (int j = 0; j < listaActores.size(); j++) {
+                if(listaActores.get(j).getId() == id){
+                    listaSeriesActor.add(listaSeries.get(i));
+                }
+            }
+            
+        }
+        return listaSeriesActor;
     }
 
     public String cambioPagina(Actor actor){

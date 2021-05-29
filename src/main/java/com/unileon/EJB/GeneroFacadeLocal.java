@@ -36,6 +36,8 @@ public interface GeneroFacadeLocal {
 
     int count();
 
+    Genero generoSeleccionado();
     
+    void seleccionarGenero(int id);
     
 }

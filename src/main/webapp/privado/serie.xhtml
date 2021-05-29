@@ -42,11 +42,11 @@
                         <p:outputLabel class="label" value="Compañia: #{serieController.datos().compania.nombre}"/>
                         <p:outputLabel class="label" value="Actores: "/>
                         <c:forEach items="#{actorController.listaActoresSerie()}" var="sa">  
-                            <p:outputLabel class="label2" value="#{sa.nombre} #{sa.apellido}. "/>
+                            <p:link class="label2" value="#{sa.nombre} #{sa.apellido}. " outcome="#{actorController.cambioPagina(sa)}"/>
                         </c:forEach>
                         <p:outputLabel class="label" value="Generos: "/>
                         <c:forEach items="#{generoController.listaGenerosSerie()}" var="sg">  
-                            <p:outputLabel class="label2" value="#{sg.nombre} "/>
+                            <p:link class="label2" value="#{sg.nombre} " outcome="#{generoController.cambioPagina(sg)}"/>
                         </c:forEach>
                     </div>
                     
