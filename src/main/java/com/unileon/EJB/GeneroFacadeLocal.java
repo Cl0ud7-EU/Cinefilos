@@ -6,6 +6,8 @@
 package com.unileon.EJB;
 
 import com.unileon.modelo.Genero;
+import com.unileon.modelo.Pelicula;
+import com.unileon.modelo.Serie;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -27,7 +29,13 @@ public interface GeneroFacadeLocal {
     List<Genero> findAll();
 
     List<Genero> findRange(int[] range);
+    
+    List<Genero> findGenerosPeli(Pelicula peli);
+    
+    List<Genero> findGenerosSerie(Serie serie);
 
     int count();
+
+    
     
 }

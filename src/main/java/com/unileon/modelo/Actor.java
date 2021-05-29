@@ -48,6 +48,11 @@ public class Actor implements Serializable{
    @JoinTable(name = "pelicula_actor", joinColumns = { @JoinColumn(name = "IdActor") }, inverseJoinColumns = {
             @JoinColumn(name = "IdPelicula") })
     private Set<Pelicula> peliculas;
+   
+   @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+   @JoinTable(name = "serie_actor", joinColumns = { @JoinColumn(name = "IdActor") }, inverseJoinColumns = {
+            @JoinColumn(name = "IdSerie") })
+    private Set<Serie> series;
 //   
 //   @ManyToMany(mappedBy = "actor")
 //    private List<Serie> series;

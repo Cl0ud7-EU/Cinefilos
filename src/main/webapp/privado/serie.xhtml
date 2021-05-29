@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -38,6 +39,14 @@
                         <p:outputLabel class="label" value="Sinopsis: #{serieController.datos().sinopsis}"/>
                         <p:outputLabel class="label" value="Puntuación: #{serieController.datos().puntuacion}/10"/>
                         <p:outputLabel class="label" value="Compañia: #{serieController.datos().compania.nombre}"/>
+                        <p:outputLabel class="label" value="Actores: "/>
+                        <c:forEach items="#{actorController.listaActoresSerie()}" var="sa">  
+                            <p:outputLabel class="label2" value="#{sa.nombre} #{sa.apellido}. "/>
+                        </c:forEach>
+                        <p:outputLabel class="label" value="Generos: "/>
+                        <c:forEach items="#{generoController.listaGenerosSerie()}" var="sg">  
+                            <p:outputLabel class="label2" value="#{sg.nombre} "/>
+                        </c:forEach>
                     </div>
                     
                 </div>

@@ -7,8 +7,10 @@ package com.unileon.controller;
 
 import com.unileon.EJB.ActorFacadeLocal;
 import com.unileon.EJB.PeliculaFacadeLocal;
+import com.unileon.EJB.SerieFacadeLocal;
 import com.unileon.modelo.Actor;
 import com.unileon.modelo.Pelicula;
+import com.unileon.modelo.Serie;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +34,13 @@ public class ActorController implements Serializable{
     private List<Actor> listaActores;
     
     private Pelicula pelicula;
+    private Serie serie;
     @EJB
     private ActorFacadeLocal actorEJB;
     @EJB
     private PeliculaFacadeLocal peliculaEJB;
+    @EJB
+    private SerieFacadeLocal serieEJB;
     
     
     
@@ -44,7 +49,17 @@ public class ActorController implements Serializable{
         actor = new Actor();
         listaActores = new ArrayList<Actor>();
         pelicula = new Pelicula();
-        pelicula = peliculaEJB.peliculaSeleccionada();
+        serie = new Serie();
+        
+        try {
+            pelicula = peliculaEJB.peliculaSeleccionada();
+            
+        } catch (Exception e) {
+        }
+        try {
+            serie = serieEJB.serieSeleccionada();
+        } catch (Exception e) {
+        }
         try {
             
             listaActores = actorEJB.findAll();
@@ -52,8 +67,12 @@ public class ActorController implements Serializable{
         }
     }
 
-    public List<Actor> listaActoresPelis() {
-        listaActores = actorEJB.findActorPelis(pelicula);
+    public List<Actor> listaActoresPeli() {
+        listaActores = actorEJB.findActoresPeli(pelicula);
+        return listaActores;
+    }
+    public List<Actor> listaActoresSerie() {
+        listaActores = actorEJB.findActoresSerie(serie);
         return listaActores;
     }
 

@@ -64,6 +64,10 @@ public class Pelicula implements Serializable{
     //@JsonIgnore
     private Set<Actor> Actores;
     
+    @ManyToMany(mappedBy = "peliculas")
+    //@JsonIgnore
+    private Set<Genero> Generos;
+    
 //    @JoinTable(
 //        name = "pelicula_genero",
 //        joinColumns = @JoinColumn(name = "IdPelicula", nullable = false),

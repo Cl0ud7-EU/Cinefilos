@@ -15,19 +15,19 @@
                     <p:autoUpdate/>
                 </p:messages>
                 <h:form>
-                <h1 class="p-mt-0">REGISTRAR ACTOR EN PELICULA</h1>    
+                <h1 class="p-mt-0">REGISTRAR GENERO EN PELICULA</h1>    
             <p:fieldset legend="Datos">
                 <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
 
-                   <p:outputLabel for="@next" value="Actor:"/>
-                   <p:selectOneMenu value="#{peliculaActorController.peliculaActor.actor.id}" required="true" requiredMessage="El Actor es un campo obligatorio">
+                   <p:outputLabel for="@next" value="Genero:"/>
+                   <p:selectOneMenu value="#{peliculaGeneroController.peliculaGenero.genero.id}" required="true" requiredMessage="El Genero es un campo obligatorio">
                         <f:selectItem itemLabel="Seleccione..."/>
-                        <f:selectItems value="#{actorController.listaActores}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.id}" />
+                        <f:selectItems value="#{generoController.listaGeneros}" var="g" itemLabel="#{g.nombre}" itemValue="#{g.id}" />
                     </p:selectOneMenu>
                     <p:message for="@previous"/>
                     
                     <p:outputLabel for="@next" value="Pelicula:"/>
-                    <p:selectOneMenu value="#{peliculaActorController.peliculaActor.pelicula.id}" required="true" requiredMessage="La pelicula es un campo obligatorio">
+                    <p:selectOneMenu value="#{peliculaGeneroController.peliculaGenero.pelicula.id}" required="true" requiredMessage="La pelicula es un campo obligatorio">
                         <f:selectItem itemLabel="Seleccione..."/>
                         <f:selectItems value="#{peliculaController.listaPelis}" var="p" itemLabel="#{p.titulo}" itemValue="#{p.id}" />
                     </p:selectOneMenu>
@@ -36,7 +36,7 @@
                 </p:panelGrid>
             </p:fieldset>
 
-                <p:commandButton value="Registrar" action="#{peliculaActorController.insertar()}"/>
+                <p:commandButton value="Registrar" action="#{peliculaGeneroController.insertar()}"/>
                 </h:form>
             </ui:define>
 

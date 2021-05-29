@@ -6,8 +6,13 @@
 package com.unileon.controller;
 
 import com.unileon.EJB.GeneroFacadeLocal;
+import com.unileon.EJB.PeliculaFacadeLocal;
+import com.unileon.EJB.SerieFacadeLocal;
 import com.unileon.modelo.Genero;
+import com.unileon.modelo.Pelicula;
+import com.unileon.modelo.Serie;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -24,13 +29,35 @@ import javax.inject.Named;
 @ViewScoped
 public class GeneroController implements Serializable{
     private Genero genero;
+    private List<Genero> listaGeneros;
+    private Pelicula pelicula;
+    private Serie serie;
+    
     
     @EJB
     private GeneroFacadeLocal generoEJB;
     
+    @EJB
+    private PeliculaFacadeLocal peliculaEJB;
+    @EJB
+    private SerieFacadeLocal serieEJB;
+    
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         genero = new Genero();
+        
+        try {
+            pelicula = peliculaEJB.peliculaSeleccionada();
+        } catch (Exception e) {
+        }
+        try {
+            serie = serieEJB.serieSeleccionada();
+        } catch (Exception e) {
+        }
+        try {
+            listaGeneros = generoEJB.findAll();
+        } catch (Exception e) {
+        }
     }
     
     public void insertar(){
@@ -40,6 +67,14 @@ public class GeneroController implements Serializable{
         } catch (Exception e) {
         }
         
+    }
+    public List<Genero> listaGenerosPeli() {
+        listaGeneros = generoEJB.findGenerosPeli(pelicula);
+        return listaGeneros;
+    }
+    public List<Genero> listaGenerosSerie() {
+        listaGeneros = generoEJB.findGenerosSerie(serie);
+        return listaGeneros;
     }
     
     public void info() {
@@ -89,6 +124,14 @@ public class GeneroController implements Serializable{
 
     public void setGeneroEJB(GeneroFacadeLocal generoEJB) {
         this.generoEJB = generoEJB;
+    }
+
+    public List<Genero> getListaGeneros() {
+        return listaGeneros;
+    }
+
+    public void setListaGeneros(List<Genero> listaGeneros) {
+        this.listaGeneros = listaGeneros;
     }
     
     
