@@ -13,13 +13,18 @@
             <p:fieldset legend="REGISTRO USUARIO">
                 <h:panelGrid columns="2" id="grid" cellpadding="2">
                     <p:outputLabel for="email" value="Email: "/>
-                    <p:inputText id="email" required="true" value="#{usuarioController.email}" /> 
+                    <span class="ui-input-icon-left">
+                        <i class="pi pi-user" />
+                        <p:inputText id="email" required="true" value="#{usuarioController.email}" /> 
+                    </span>
                     <p:outputLabel for="toggle1" value="Password: "/>
-                    <p:password required="true" id="toggle1" value="#{usuarioController.password}"/>
-                    <p:outputLabel class="label" value="#{peliculaController.listapeliculas.size()}"/>
+                    <span class="ui-input-icon-left">
+                        <i class="pi pi-search" />
+                        <p:password required="true" id="toggle1" value="#{usuarioController.password}"/>
+                    </span>
                 </h:panelGrid>
             </p:fieldset>
-            <p:commandButton value="Acceder" action="#{usuarioController.compruebaUsuario()}"/>
+            <p:commandButton value="Acceder" icon="pi pi-sign-in" action="#{usuarioController.compruebaUsuario()}"/>
             <h:link outcome="publico/registroUsuario.xhtml" value="¿No tienes cuenta? Crea una cuenta aquí          "/>
             <h:link outcome="privado/registros/registroPelicula.xhtml" value="Pagina de registros"/>
         </h:form>

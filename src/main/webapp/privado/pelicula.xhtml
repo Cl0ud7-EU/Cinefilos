@@ -45,11 +45,15 @@
                         <p:link class="label" value="Director: #{peliculaController.datos().director.nombre} #{peliculaController.datos().director.apellido}" outcome="#{directorController.cambioPagina(peliculaController.datos().director)}"/>
                         <p:outputLabel class="label" value="Actores: "/>
                         <c:forEach items="#{actorController.listaActoresPeli()}" var="pa">  
-                            <p:link class="label2" value="#{pa.nombre} #{pa.apellido}. " outcome="#{actorController.cambioPagina(pa)}"/>
+                            <h:commandLink action="#{actorController.cambioPagina(pa)}">
+                                <p:outputLabel class="label2" value="#{pa.nombre} #{pa.apellido}. "/>
+                            </h:commandLink>
                         </c:forEach>
                         <p:outputLabel class="label" value="Generos: "/>
                         <c:forEach items="#{generoController.listaGenerosPeli()}" var="pg">  
-                            <p:link class="label2" value="#{pg.nombre} " outcome="#{generoController.cambioPagina(pg)}"/>
+                            <h:commandLink action="#{generoController.cambioPagina(pg)}">
+                                <p:outputLabel class="label" value="#{pg.nombre} "/>
+                            </h:commandLink>
                         </c:forEach>
                     </div>
                     
