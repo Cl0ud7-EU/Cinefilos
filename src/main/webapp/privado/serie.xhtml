@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -21,23 +22,39 @@
                         <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
                         <p:menuitem value="Series" url="listaSeries.softwareII" />
                         <p:menuitem value="Directores" url="listaDirectores.softwareII" />
-                        <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
+                        <p:menuitem value="Actores" url="listaActores.softwareII" />
+                        <p:menuitem value="Salir" icon="pi pi-sign-out" action="#{plantillaController.salir()}" />
                     </p:menubar>
                 </div>
                 <div class="contenido">
                     
-                    <div class="Foto" style="width:60%" >
+                    <div class="Foto" style="width:80%" >
                         <p:graphicImage value="#{serieController.rutaPortada(serieController.datos().id)}" height="426px" width="270px"/>
                     </div>
-                    <div class="Texto" style="width:60%">
-                        <p:outputLabel class="label" value="#{serieController.datos().titulo}"/>
+                    <div class="Texto" style="width:80%">
+                        <p:outputLabel class="labelBold" value="#{serieController.datos().titulo}"/>
                     </div>
-                    <div class="Texto" style="width:60%">
-                        <p:outputLabel class="label" value="Año: #{serieController.datos().anyoInicio}"/>
-                        <p:outputLabel class="label" value="Nº Temporadas: #{serieController.datos().temporadas}"/>
-                        <p:outputLabel class="label" value="Sinopsis: #{serieController.datos().sinopsis}"/>
-                        <p:outputLabel class="label" value="Puntuación: #{serieController.datos().puntuacion}/10"/>
-                        <p:outputLabel class="label" value="Compañia: #{serieController.datos().compania.nombre}"/>
+                    <div class="Texto" style="width:80%">
+                        <p:outputLabel class="labelBold" value="Año: #{serieController.datos().anyoInicio}"/>
+                        <p:outputLabel class="labelBold" value="Nº Temporadas: #{serieController.datos().temporadas}"/>
+                        <p:outputLabel class="labelBold" value="Sinopsis: "/>
+                        <p:outputLabel class="label" value="#{serieController.datos().sinopsis}"/>
+                        <p:outputLabel class="labelBold" value="Puntuación: #{serieController.datos().puntuacion}/10"/>
+                        <p:outputLabel class="labelBold" value="Compañia: "/>
+                        <p:outputLabel class="label" value="#{serieController.datos().compania.nombre}"/>
+                        <p:outputLabel class="labelBold" value="Actores: "/>
+                        <c:forEach items="#{actorController.listaActoresSerie()}" var="sa">  
+                            <h:commandLink action="#{actorController.cambioPagina(sa)}">
+                            <p:outputLabel class="label2" value="#{sa.nombre} #{sa.apellido}.  " />
+                            </h:commandLink>
+                        </c:forEach>
+                        
+                        <p:outputLabel class="labelBold" value="Generos: "/>
+                        <c:forEach items="#{generoController.listaGenerosSerie()}" var="sg">  
+                            <h:commandLink action="#{generoController.cambioPagina(sg)}">
+                            <p:outputLabel class="label2" value="#{sg.nombre}.  " />
+                            </h:commandLink>
+                        </c:forEach>
                     </div>
                     
                 </div>

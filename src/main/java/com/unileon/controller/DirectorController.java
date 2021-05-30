@@ -6,7 +6,9 @@
 package com.unileon.controller;
 
 import com.unileon.EJB.DirectorFacadeLocal;
+import com.unileon.EJB.PeliculaFacadeLocal;
 import com.unileon.modelo.Director;
+import com.unileon.modelo.Pelicula;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,8 @@ public class DirectorController implements Serializable{
     private List<Director> listaDirectores;
     @EJB
     private DirectorFacadeLocal directorEJB;
+    @EJB
+    private PeliculaFacadeLocal peliculaEJB;
     
     @PostConstruct //Se accede después de crear la clase
     public void init(){
@@ -41,13 +45,16 @@ public class DirectorController implements Serializable{
         } catch (Exception e) {
         }
         
-        if(listadirectores.size()>=5){
-            for (int i = listadirectores.size()-1; i < listadirectores.size()-6; i--) {
+        int i = listadirectores.size()-1;
+        if(listadirectores.size()>5){
+            while(i>listadirectores.size()-6){
                 listaDirectores.add(listadirectores.get(i));
+                i--;
             }
-        } else {
-            for (int i = 0; i < listadirectores.size(); i++) {
+        } else { 
+            while(i>=0){
                 listaDirectores.add(listadirectores.get(i));
+                i--;
             }
         }
     }
@@ -67,6 +74,25 @@ public class DirectorController implements Serializable{
     public Director datos(){ 
         director = directorEJB.directorSeleccionado();
         return director;
+    }
+    
+    public List<Pelicula> peliculas(int id){
+        List<Pelicula> listaPeliculas = peliculaEJB.findAll();
+        List<Pelicula> listaPeliculasDirector = new ArrayList<>();
+        for (int i = 0; i < listaPeliculas.size(); i++) {
+            if(listaPeliculas.get(i).getDirector().getId()== id){
+                listaPeliculasDirector.add(listaPeliculas.get(i));
+            }
+        }
+        return listaPeliculasDirector;
+    }
+
+    public PeliculaFacadeLocal getPeliculaEJB() {
+        return peliculaEJB;
+    }
+
+    public void setPeliculaEJB(PeliculaFacadeLocal peliculaEJB) {
+        this.peliculaEJB = peliculaEJB;
     }
     
     public String cambioPagina(Director director){

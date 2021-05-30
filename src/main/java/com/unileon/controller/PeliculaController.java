@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -61,13 +62,16 @@ public class PeliculaController implements Serializable{
         } catch (Exception e) {
         }
         
-        if(listapeliculas.size()>=5){
-            for (int i = listapeliculas.size()-1; i > listapeliculas.size()-6; i--) {
+        int i = listapeliculas.size()-1;
+        if(listapeliculas.size()>5){
+            while(i>listapeliculas.size()-6){
                 listaPelis.add(listapeliculas.get(i));
+                i--;
             }
         } else { 
-            for (int i = 0; i < listapeliculas.size(); i++) {
+            while(i>=0){
                 listaPelis.add(listapeliculas.get(i));
+                i--;
             }
         }
         
@@ -88,10 +92,14 @@ public class PeliculaController implements Serializable{
     
     public Pelicula datos(){ 
         pelicula = peliculaEJB.peliculaSeleccionada();
+        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("pelicula", pelicula);
+        
         return pelicula;
     }
     
     public String cambioPagina(Pelicula pelicula){
+        
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("pelicula", pelicula);
         peliculaEJB.seleccionarPelicula(pelicula.getId());
         return "pelicula.softwareII";
     }

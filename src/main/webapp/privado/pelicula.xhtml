@@ -4,9 +4,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <body>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:event type="preRenderView" listener="#{comentarioController.listaComentarios()}"/>
+    <h:body>
 
     <ui:composition template="./../WEB-INF/template/templateMultimedia.xhtml">
 
@@ -14,7 +15,6 @@
 
             <h:form>
             <div class="all">
-                <!--<header><a>Cinefilos</a></header>-->
                 <p:menubar class="menuSup">
                     <p:menuitem value="Cinefilos" url="principal.softwareII"/>
                 </p:menubar>
@@ -23,24 +23,51 @@
                         <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
                         <p:menuitem value="Series" url="listaSeries.softwareII" />
                         <p:menuitem value="Directores" url="listaDirectores.softwareII" />
-                        <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
+                        <p:menuitem value="Actores" url="listaActores.softwareII" />
+                        <p:menuitem value="Salir" icon="pi pi-sign-out" action="#{plantillaController.salir()}" />
                     </p:menubar>
                 </div>
                 <div class="contenido">
                     
-                    <div class="Foto" style="width:60%" >
+                    <div class="Foto" style="width:80%" >
                         <p:graphicImage value="#{peliculaController.rutaPortada(peliculaController.datos().id)}" height="426px" width="270px"/>
                     </div>
-                    <div class="Texto" style="width:60%">
-                        <p:outputLabel class="label" value="#{peliculaController.datos().titulo}"/>
+                    <div class="Texto" style="width:80%">
+                        <p:outputLabel class="labelBold" value="#{peliculaController.datos().titulo}"/>
                     </div>
-                    <div class="Texto" style="width:60%">
-                        <p:outputLabel class="label" value="Año: #{peliculaController.datos().anyo}"/>
-                        <p:outputLabel class="label" value="Duración: #{peliculaController.datos().duracion} min"/>
-                        <p:outputLabel class="label" value="Sinopsis: #{peliculaController.datos().sinopsis}"/>
-                        <p:outputLabel class="label" value="Puntuación: #{peliculaController.datos().puntuacion}/10"/>
-                        <p:outputLabel class="label" value="Compañia: #{peliculaController.datos().compania.nombre}"/>
-                        <p:outputLabel class="label" value="Director: #{peliculaController.datos().director.nombre} #{peliculaController.datos().director.apellido}"/>
+                    <div class="Texto" style="width:80%">
+                        <p:outputLabel class="labelBold" value="Año: #{peliculaController.datos().anyo}"/>
+                        <p:outputLabel class="labelBold" value="Duración: #{peliculaController.datos().duracion} min"/>
+                        <p:outputLabel class="labelBold" value="Sinopsis: "/>
+                        <p:outputLabel class="label" value="#{peliculaController.datos().sinopsis}"/>
+                        <p:outputLabel class="labelBold" value="Puntuación: #{peliculaController.datos().puntuacion}/10"/>
+                        <p:outputLabel class="labelBold" value="Compañia: "/>
+                        <p:outputLabel class="label" value="#{peliculaController.datos().compania.nombre}"/>
+                        <p:outputLabel class="labelBold" value="Director: "/>
+                        <p:link class="label" value="#{peliculaController.datos().director.nombre} #{peliculaController.datos().director.apellido}" outcome="#{directorController.cambioPagina(peliculaController.datos().director)}"/>
+                        <p:outputLabel class="labelBold" value="Actores: "/>
+                        <c:forEach items="#{actorController.listaActoresPeli()}" var="pa">  
+                            <h:commandLink action="#{actorController.cambioPagina(pa)}">
+                                <p:outputLabel class="label2" value="#{pa.nombre} #{pa.apellido}.  "/>
+                            </h:commandLink>
+                        </c:forEach>
+                        <p:outputLabel class="labelBold" value="Generos: "/>
+                        <c:forEach items="#{generoController.listaGenerosPeli()}" var="pg">  
+                            <h:commandLink action="#{generoController.cambioPagina(pg)}">
+                                <p:outputLabel class="label2" value="#{pg.nombre}.  "/>
+                            </h:commandLink>
+                        </c:forEach>
+                        <p:outputLabel class="labelBold" value="Comentario: "/>
+                        <p:inputTextarea id="sinopsi" rows="6" cols="40" maxlength="300" 
+                                         value="#{comentarioController.comentario.comentario}"/>
+                        <p:commandButton   class="publicar" value="Publicar" icon="pi pi-sign-in" action="#{comentarioController.insertar()}"/>
+                        
+                        <p:outputLabel class="labelBold" value="Comentarios: "/>
+                        <c:forEach items="#{comentarioController.listaComentarios()}" var="c">
+                            <div class="contenedorComent">
+                                <p:outputLabel class="comentario" value="#{c.comentario} "/>
+                            </div>
+                        </c:forEach>
                     </div>
                     
                 </div>
@@ -51,5 +78,6 @@
 
     </ui:composition>
 
-    </body>
+    </h:body>
+      
 </html>

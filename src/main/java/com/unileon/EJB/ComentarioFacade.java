@@ -6,9 +6,12 @@
 package com.unileon.EJB;
 
 import com.unileon.modelo.Comentario;
+import com.unileon.modelo.Pelicula;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -23,6 +26,19 @@ public class ComentarioFacade extends AbstractFacade<Comentario> implements Come
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public List<Comentario> consultaTodo(Pelicula pelicula) {
+        String consulta = "FROM Comentario c WHERE c.pelicula.id=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", pelicula.getId());
+
+        List<Comentario> resultado = query.getResultList();
+        if(resultado.isEmpty()){
+            return null;
+        } else {
+            return resultado;
+        }
     }
 
     public ComentarioFacade() {

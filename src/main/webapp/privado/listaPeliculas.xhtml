@@ -21,7 +21,8 @@
                         <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
                         <p:menuitem value="Series" url="listaSeries.softwareII" />
                         <p:menuitem value="Directores" url="listaDirectores.softwareII" />
-                        <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
+                        <p:menuitem value="Actores" url="listaActores.softwareII" />
+                        <p:menuitem value="Salir" icon="pi pi-sign-out" action="#{plantillaController.salir()}" />
                     </p:menubar>
                 </div>
                 
@@ -46,8 +47,16 @@
         </h:form>
     </h:body>   
 <style>
-        body{
+        html {
+            display: table;
             height: 100%;
+            width: 100%;
+        }
+        body{
+            
+            display: table;
+            height: 100%;
+            width: 100%;
             min-height: 100%;
             margin: 0;
             padding: 0;
@@ -59,8 +68,8 @@
             line-height: 50px;
         }
         .menuSup {
+            display:table-caption;
             height: 50px;
-            position: relative;
             text-align: center;
             line-height: 50px;
         }
@@ -69,17 +78,21 @@
             min-height: 100%;
         }
         .all {
+            display:table;
             background: #252525;
             height: 100%;
             min-height: 100%;
+            width: 100%;
+            position: absolute;
         }
         .menu {
-            position: absolute;
+            
             left:0;
             width: 230px;
             height: 100%;
             min-height: 100%;
-            display: block;
+            display:table-cell;
+            vertical-align: top;
         }
         .menuLat {
             height: auto;
@@ -97,11 +110,14 @@
             border-radius: 0px !important;
         }
         .contenido {
-            display: inline-block;
+            
+            display: table-cell;
             width: 100%;
-            margin-left: 230px;
+            
             text-align: center;
             background-color: #4c4c4c9c;
+
+            padding-left: 150px;
         }
         .ui-menu.ui-menubar > .ui-menu-list > .ui-menuitem {
             width: 210px !important;
@@ -133,6 +149,11 @@
         .label {
             display: block;
             padding-block-start: 0.83em;
+            color: white;
+            font-size: 1.5rem !important;
+            font-weight: bold;
+        }
+        .label2 {
             color: white;
             font-size: 1.5rem !important;
             font-weight: bold;

@@ -2,10 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar()}"/>
         <h:outputStylesheet library="css" name="default.css"/>
         <h:outputStylesheet library="css" name="cssLayout.css"/>
         <title>Facelets Template</title>
@@ -14,21 +17,29 @@
     <h:body>
 
 
-        <div id="top" class="top">
+        <div id="top" class="top" align="center">
             <ui:insert name="top">
-                <h1 class="p-mt-0">CINÉFILOS</h1> 
-                <h2 class="p-mt-0">REGISTROS DE DATOS</h2> 
+                <h:form>
+                <p:menubar class="menuSup">
+                    <p:menuitem value="Cinefilos" url="../principal.softwareII"/>
+                </p:menubar>
+                </h:form>
             </ui:insert>
         </div>
         <div>
             <div id="left">
                 <ui:insert name="left">
-                    <h:link outcome="/privado/registros/registroPelicula" value="Registro Pelicula  "/>
+                    <h:link outcome="/privado/registros/registroPelicula.xhtml" value="Registro Pelicula  "/>
                     <h:link outcome="/privado/registros/registroSerie.xhtml" value="Registro Serie  "/>
                     <h:link outcome="/privado/registros/registroDirector.xhtml" value="Registro Director    "/>
                     <h:link outcome="/privado/registros/registroActor.xhtml" value="Registro Actor  "/>
                     <h:link outcome="/privado/registros/registroCompania.xhtml" value="Registro Compañia    "/>
                     <h:link outcome="/privado/registros/registroGenero.xhtml" value="Registro Genero    "/>
+                    <h:link outcome="/privado/registros/registroActor-Pelicula.xhtml" value="Registro Actor-Peli    "/>
+                    <h:link outcome="/privado/registros/registroPelicula-Genero.xhtml" value="Registro Peli-Genero    "/>
+                    <h:link outcome="/privado/registros/registroActor-Serie.xhtml" value="Registro Actor-Serie   "/>
+                    <h:link outcome="/privado/registros/registroSerie-Genero.xhtml" value="Registro Serie-Genero   "/>
+                    
 
                 </ui:insert>
             </div>

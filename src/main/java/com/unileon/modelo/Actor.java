@@ -8,11 +8,15 @@ package com.unileon.modelo;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -37,14 +41,28 @@ public class Actor implements Serializable{
    @Column(name="Biografia")
    private String biografia;
    
-//   @ManyToMany(mappedBy = "actor")
-//    private List<Pelicula> peliculas;
+   /*@ManyToMany(mappedBy = "actor")
+   private List<Pelicula> peliculas; */
+   
+   @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+   @JoinTable(name = "pelicula_actor", joinColumns = { @JoinColumn(name = "IdActor") }, inverseJoinColumns = {
+            @JoinColumn(name = "IdPelicula") })
+    private Set<Pelicula> peliculas;
+   
+   @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+   @JoinTable(name = "serie_actor", joinColumns = { @JoinColumn(name = "IdActor") }, inverseJoinColumns = {
+            @JoinColumn(name = "IdSerie") })
+    private Set<Serie> series;
 //   
 //   @ManyToMany(mappedBy = "actor")
 //    private List<Serie> series;
    
    //GETTERS Y SETTERS
-
+    /*public void addPeli(Pelicula pelicula) {
+        this.peliculas.add(pelicula);
+        pelicula.
+    }*/
+    
     public int getId() {
         return id;
     }

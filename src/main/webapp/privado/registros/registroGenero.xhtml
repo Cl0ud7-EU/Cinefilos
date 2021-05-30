@@ -15,8 +15,8 @@
                 </p:messages>
                 <h:form>
                 <h1 class="p-mt-0">REGISTRAR GÉNERO</h1>    
-            <p:fieldset legend="Datos">
-                <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
+                <p:fieldset legend="Datos" id="panel">
+                <p:panelGrid  columns="3" layout="grid" styleClass="showcase-text-align-center">
 
                    <p:outputLabel for="nombre" value="Nombre: "/>
                    <p:inputText id="nombre" required="true" value="#{generoController.genero.nombre}" />
@@ -25,7 +25,7 @@
                 </p:panelGrid>
             </p:fieldset>
 
-                <p:commandButton value="Registrar" action="#{generoController.insertar()}"/>
+                <p:commandButton update="panel" value="Registrar" action="#{generoController.insertar()}"/>
                 </h:form>
             </ui:define>
 

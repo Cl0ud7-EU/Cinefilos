@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,6 +55,18 @@ public class Serie implements Serializable{
     @JoinColumn (name="idCompania")
     @ManyToOne
     private Compania compania;
+    
+    @ManyToMany(mappedBy = "series")
+    //@JsonIgnore
+    private Set<Actor> Actores;
+    
+    @ManyToMany(mappedBy = "series")
+    //@JsonIgnore
+    private Set<Genero> Generos;
+    
+    /*@ManyToMany(mappedBy = "series")
+    //@JsonIgnore
+    private Set<Genero> Genero; */
     
 //    @JoinTable(
 //        name = "serie_genero",

@@ -6,6 +6,7 @@
 package com.unileon.EJB;
 
 import com.unileon.modelo.Comentario;
+import com.unileon.modelo.Pelicula;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -27,6 +28,8 @@ public interface ComentarioFacadeLocal {
     List<Comentario> findAll();
 
     List<Comentario> findRange(int[] range);
+    
+    List<Comentario> consultaTodo(Pelicula pelicula);
 
     int count();
     

@@ -6,8 +6,14 @@
 package com.unileon.controller;
 
 import com.unileon.EJB.ActorFacadeLocal;
+import com.unileon.EJB.PeliculaFacadeLocal;
+import com.unileon.EJB.SerieFacadeLocal;
 import com.unileon.modelo.Actor;
+import com.unileon.modelo.Pelicula;
+import com.unileon.modelo.Serie;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,12 +31,158 @@ import javax.inject.Named;
 public class ActorController implements Serializable{
     
     private Actor actor;
+    private List<Actor> listaActores;
+    private List<Actor> listaActor;
+    
+    private Pelicula pelicula;
+    private Serie serie;
     @EJB
     private ActorFacadeLocal actorEJB;
+    @EJB
+    private PeliculaFacadeLocal peliculaEJB;
+    @EJB
+    private SerieFacadeLocal serieEJB;
+    
+    
     
     @PostConstruct //Se accede después de crear la clase
     public void init(){
         actor = new Actor();
+        listaActores = new ArrayList<Actor>();
+        listaActor = new ArrayList<Actor>();
+        pelicula = new Pelicula();
+        serie = new Serie();
+        
+        try {
+            pelicula = peliculaEJB.peliculaSeleccionada();
+            
+        } catch (Exception e) {
+        }
+        try {
+            serie = serieEJB.serieSeleccionada();
+        } catch (Exception e) {
+        }
+        try {
+            
+            listaActores = actorEJB.findAll();
+        } catch (Exception e) {
+        }
+        int i = listaActores.size()-1;
+        if(listaActores.size()>5){
+            while(i>listaActores.size()-6){
+                listaActor.add(listaActores.get(i));
+                i--;
+            }
+        } else { 
+            while(i>=0){
+                listaActor.add(listaActores.get(i));
+                i--;
+            }
+        }
+    }
+
+    public List<Actor> listaActoresPeli() {
+        listaActores = actorEJB.findActoresPeli(pelicula);
+        return listaActores;
+    }
+    public List<Actor> listaActoresSerie() {
+        listaActores = actorEJB.findActoresSerie(serie);
+        return listaActores;
+    }
+    
+    public Actor datos(){ 
+        actor = actorEJB.actorSeleccionado();
+        return actor;
+    }
+    
+    public List<Pelicula> peliculas(int id){
+        List<Pelicula> listaPeliculas = peliculaEJB.findAll();
+        List<Pelicula> listaPeliculasActor = new ArrayList<>();
+        
+        for (int i = 0; i < listaPeliculas.size(); i++) {
+            listaActores = actorEJB.findActoresPeli(listaPeliculas.get(i));
+            for (int j = 0; j < listaActores.size(); j++) {
+                if(listaActores.get(j).getId() == id){
+                    listaPeliculasActor.add(listaPeliculas.get(i));
+                }
+            }
+            
+        }
+        return listaPeliculasActor;
+    }
+    
+    public List<Serie> series(int id){
+        List<Serie> listaSeries = serieEJB.findAll();
+        List<Serie> listaSeriesActor = new ArrayList<>();
+        
+        for (int i = 0; i < listaSeries.size(); i++) {
+            listaActores = actorEJB.findActoresSerie(listaSeries.get(i));
+            for (int j = 0; j < listaActores.size(); j++) {
+                if(listaActores.get(j).getId() == id){
+                    listaSeriesActor.add(listaSeries.get(i));
+                }
+            }
+            
+        }
+        return listaSeriesActor;
+    }
+
+    public String cambioPagina(Actor actor){
+        actorEJB.seleccionarActor(actor.getId());
+        return "actor.softwareII";
+    }
+    
+    public String rutaPortada(int id){
+        String ruta = "../resources/imagenes/actores/"+id+".jpg";
+        return ruta;
+    }
+    
+    public List<Actor> getListaActor() {
+        return listaActor;
+    }
+
+    public void setListaActor(List<Actor> listaActor) {
+        this.listaActor = listaActor;
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+
+    public SerieFacadeLocal getSerieEJB() {
+        return serieEJB;
+    }
+
+    public void setSerieEJB(SerieFacadeLocal serieEJB) {
+        this.serieEJB = serieEJB;
+    }
+
+    public List<Actor> getListaActores() {
+        return listaActores;
+    }
+
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
+
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
+    }
+
+    public PeliculaFacadeLocal getPeliculaEJB() {
+        return peliculaEJB;
+    }
+
+    public void setPeliculaEJB(PeliculaFacadeLocal peliculaEJB) {
+        this.peliculaEJB = peliculaEJB;
+    }
+
+    public void setListaActores(List<Actor> listaActores) {
+        this.listaActores = listaActores;
     }
     
     public void insertar(){

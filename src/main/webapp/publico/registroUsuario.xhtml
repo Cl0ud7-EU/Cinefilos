@@ -8,14 +8,16 @@
         <title>Registro de Usuario</title>
     </h:head>
     <h:body>
+        <div class="all">
+        <div class="contenido" align="center">
+            <p:graphicImage value="../resources/imagenes/cinefilos.png" height="90px" width="280px"/>
        <h:form>
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
 
-        <h1 class="p-mt-0">CINÉFILOS</h1>
         <p:messages id="messages" showDetail="true" skipDetailIfEqualsSummary="true">
             <p:autoUpdate/>
         </p:messages>
-        <p:fieldset legend="Datos">
+        <p:fieldset legend="Registro de Usuario">
              <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center"
                  >
                      
@@ -50,9 +52,157 @@
              </p:panelGrid>
         </p:fieldset>
 
-        <p:commandButton value="Registrar" icon="pi pi-check" action="#{usuarioController.insertarUsuario()}"/>
+        <p:commandButton value="Registrar" icon="pi pi-check-circle" action="#{usuarioController.insertarUsuario()}"/>
         
        </h:form>
+        </div>
+        </div>
     </h:body>
+    <style>
+       body{
+            position: absolute;
+            display: table-cell;
+            height: 100%;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+        body .ui-button {
+            background: #C5E1A5;
+            color: #212529;
+            border: 1px solid #C5E1A5;
+            margin: 40px;
+            outline: 0 none;
+            border-radius: 5px;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        body .ui-fieldset {
+            border: 1px solid #191919;
+            background: #323232;
+            color: #dedede;
+            padding: 0.571rem 1rem;
+            border-radius: 3px;
+            margin: 20px;
+        }
+        header {
+            height: 50px;
+            position: relative;
+            text-align: center;
+            line-height: 50px;
+        }
+        .menuSup {
+            display:table-caption;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        form {
+            height: auto;
+            min-height: 100%;
+        }
+        .all {
+            display:table;
+            background: #252525;
+            height: 100%;
+            min-height: 100%;
+            width: 100%;
+        }
+        .menu {
+            
+            left:0;
+            width: 230px;
+            height: 100%;
+            min-height: 100%;
+            display:table-cell;
+            vertical-align: top;
+        }
+        .menuLat {
+            height: auto;
+            min-height: 100%;
+            
+        }
+        .ui-menu.menuLat {
+            height: 100%;
+            width: 230px;
+            border-radius: 0px !important;
+            border-bottom: 0px !important;
+        }
+        .ui-menu.menuSup { 
+            width: 100%;
+            border-radius: 0px !important;
+        }
+        .contenido {
+            
+            display: table-cell;
+            width: 100%;
+            
+            text-align: center;
+            background-color: #4c4c4c9c;
+
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        .ui-menu.ui-menubar > .ui-menu-list > .ui-menuitem {
+            width: 210px !important;
+        }
+        .menuSup.ui-menu.ui-menubar > .ui-menu-list > .ui-menuitem > .ui-menuitem-link {
+            padding: 0px !important;
+        }
+        .ui-g {
+            
+            padding: 20px;
+            justify-content: center;
+            text-align: center;
+        }
+        .foto {
+            padding: .5em;
+        }
+        h2 {
+            margin-block-start: 0;
+            padding-block-start: 0.83em;
+        }
+        .subContenido {
+            margin-left: 15%;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            width: 50%;
+            background: #252525;
+            border-radius: 15px;
+        }
+        .label {
+            display: block;
+            padding-block-start: 0.83em;
+            color: white;
+            font-size: 1.5rem !important;
+            font-weight: bold;
+        }
+        .label2 {
+            color: white;
+            font-size: 1.5rem !important;
+            font-weight: bold;
+        }
+        .contenedorItem {
+            width: 140px;
+            background: white;
+            border-radius: 5px;
+            margin-left: 0.83em;
+            margin-block-end: 0.83em;
+        }
+        .subText {
+            display: block;
+            padding-block-end: 5px;
+        }
+        body .ui-fieldset .ui-fieldset-legend {
+            border: 1px solid #191919;
+            background: #C5E1A5;
+            color: #191919;
+            padding: 0.857rem 1rem;
+            font-weight: 700;
+            border-radius: 3px;
+            user-select: none;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+    </style>    
 </html>
 

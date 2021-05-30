@@ -49,13 +49,16 @@ public class SerieController implements Serializable{
         } catch (Exception e) {
         }
         
-        if(listaseries.size()>=5){
-            for (int i = listaseries.size()-1; i < listaseries.size()-6; i--) {
+        int i = listaseries.size()-1;
+        if(listaseries.size()>5){
+            while(i>listaseries.size()-6){
                 listaSerie.add(listaseries.get(i));
+                i--;
             }
-        } else {
-            for (int i = 0; i < listaseries.size(); i++) {
+        } else { 
+            while(i>=0){
                 listaSerie.add(listaseries.get(i));
+                i--;
             }
         }
     }

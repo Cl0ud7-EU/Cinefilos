@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template/templateMultimedia.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                <div class="all">
+                <!--<header><a>Cinefilos</a></header>-->
+                    <p:menubar class="menuSup">
+                        <p:menuitem value="Cinefilos" url="principal.softwareII"/>
+                    </p:menubar>
+                    <div class="menu">
+                        <p:menubar class="menuLat">
+                            <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
+                            <p:menuitem value="Series" url="listaSeries.softwareII" />
+                            <p:menuitem value="Directores" url="listaDirectores.softwareII" />
+                            <p:menuitem value="Actores" url="listaActores.softwareII" />
+                            <p:menuitem value="Salir" icon="pi pi-sign-out" action="#{plantillaController.salir()}" />
+                        </p:menubar>
+                    </div>
+                    <div class="contenido">
+
+                        <div class="Foto" style="width:80%" >
+                            <p:graphicImage value="#{actorController.rutaPortada(actorController.datos().id)}" height="426px" width="270px"/>
+                        </div>
+                        <div class="Texto" style="width:80%">
+                            <p:outputLabel class="label" value="#{actorController.datos().nombre} #{actorController.datos().apellido}"/>
+                        </div>
+                        <div class="Texto" style="width:80%">
+                            <p:outputLabel class="label" value="Biografía: #{actorController.datos().biografia}"/>
+                        </div>
+
+                        <div class="subContenido">
+                        <p:outputLabel class="label" value="Peliculas en las que participa"/>
+                            <div class="ui-g">
+                                <c:forEach items="#{actorController.peliculas(actorController.datos().id)}" var="p">
+                                <div class="contenedorItem">
+                                    <div class="foto">
+                                        <h:commandLink action="#{peliculaController.cambioPagina(p)}">
+                                            <p:graphicImage value="#{peliculaController.rutaPortada(p.id)}" height="142px" width="90px"/>
+                                        </h:commandLink>
+                                    </div>
+                                    <p:outputLabel class="subText" value="#{p.titulo}"/>
+                                    <p:outputLabel class="puntuacion" value="#{p.puntuacion}"/>
+                                </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                        <div class="subContenido">
+                        <p:outputLabel class="label" value="Series en las que participa"/>
+                            <div class="ui-g">
+                                <c:forEach items="#{actorController.series(actorController.datos().id)}" var="p">
+                                <div class="contenedorItem">
+                                    <div class="foto">
+                                        <h:commandLink action="#{serieController.cambioPagina(p)}">
+                                            <p:graphicImage value="#{serieController.rutaPortada(p.id)}" height="142px" width="90px"/>
+                                        </h:commandLink>
+                                    </div>
+                                    <p:outputLabel class="subText" value="#{p.titulo}"/>
+                                    <p:outputLabel class="puntuacion" value="#{p.puntuacion}"/>
+                                </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

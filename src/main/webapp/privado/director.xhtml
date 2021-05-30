@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -21,19 +22,36 @@
                             <p:menuitem value="Peliculas" url="listaPeliculas.softwareII" />
                             <p:menuitem value="Series" url="listaSeries.softwareII" />
                             <p:menuitem value="Directores" url="listaDirectores.softwareII" />
-                            <p:menuitem value="Salir" action="#{plantillaController.salir()}" />
+                            <p:menuitem value="Actores" url="listaActores.softwareII" />
+                            <p:menuitem value="Salir" icon="pi pi-sign-out" action="#{plantillaController.salir()}" />
                         </p:menubar>
                     </div>
                     <div class="contenido">
 
-                        <div class="Foto" style="width:60%" >
+                        <div class="Foto" style="width:80%" >
                             <p:graphicImage value="#{directorController.rutaPortada(directorController.datos().id)}" height="426px" width="270px"/>
                         </div>
-                        <div class="Texto" style="width:60%">
+                        <div class="Texto" style="width:80%">
                             <p:outputLabel class="label" value="#{directorController.datos().nombre} #{directorController.datos().apellido}"/>
                         </div>
-                        <div class="Texto" style="width:60%">
+                        <div class="Texto" style="width:80%">
                             <p:outputLabel class="label" value="Biografía: #{directorController.datos().biografia}"/>
+                        </div>
+                        <div class="subContenido">
+                        <p:outputLabel class="label" value="Peliculas dirigidas"/>
+                        <div class="ui-g">
+                            <c:forEach items="#{directorController.peliculas(directorController.datos().id)}" var="p">
+                            <div class="contenedorItem">
+                                <div class="foto">
+                                    <h:commandLink action="#{peliculaController.cambioPagina(p)}">
+                                        <p:graphicImage value="#{peliculaController.rutaPortada(p.id)}" height="142px" width="90px"/>
+                                    </h:commandLink>
+                                </div>
+                                <p:outputLabel class="subText" value="#{p.titulo}"/>
+                                <p:outputLabel class="puntuacion" value="#{p.puntuacion}"/>
+                            </div>
+                            </c:forEach>
+                        </div>
                         </div>
 
                     </div>
