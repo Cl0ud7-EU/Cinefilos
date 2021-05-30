@@ -57,10 +57,10 @@
                                 <p:outputLabel class="label2" value="#{pg.nombre}.  "/>
                             </h:commandLink>
                         </c:forEach>
-                        <p:outputLabel class="label" for="sinopsis" value="Comentario: "/>
-                        <p:inputTextarea id="sinopsis" rows="6" cols="40" maxlength="300" required="true"
+                        <p:outputLabel class="labelBold" value="Comentario: "/>
+                        <p:inputTextarea id="sinopsi" rows="6" cols="40" maxlength="300" 
                                          value="#{comentarioController.comentario.comentario}"/>
-                        <p:commandButton class="publicar" value="Publicar" icon="pi pi-sign-in" action="#{comentarioController.insertar()}"/>
+                        <p:commandButton   class="publicar" value="Publicar" icon="pi pi-sign-in" action="#{comentarioController.insertar()}"/>
                         
                         <p:outputLabel class="labelBold" value="Comentarios: "/>
                         <c:forEach items="#{comentarioController.listaComentarios()}" var="c">
