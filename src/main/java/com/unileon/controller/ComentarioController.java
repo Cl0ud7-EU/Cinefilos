@@ -7,10 +7,16 @@ package com.unileon.controller;
 
 import com.unileon.EJB.ComentarioFacadeLocal;
 import com.unileon.modelo.Comentario;
+import com.unileon.modelo.Pelicula;
+import com.unileon.modelo.Usuario;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -19,25 +25,70 @@ import javax.inject.Named;
  * @author Cl0ud7
  */
 @Named
-@ViewScoped
+@ApplicationScoped
 public class ComentarioController implements Serializable{
     private Comentario comentario;
+    private Pelicula pelicula;
+    private Usuario usuario;
+    private List<Comentario> comentarios;
     
     @EJB
     private ComentarioFacadeLocal comentarioEJB;
     
     @PostConstruct //Se accede después de crear la clase
     public void init(){
+        comentarios = new ArrayList<Comentario>();
         comentario = new Comentario();
+        pelicula = new Pelicula();
+        usuario = new Usuario();
+        comentario.setPelicula(pelicula);
+        comentario.setUsuario(usuario);
+        pelicula = (Pelicula) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("pelicula");
+       
+        
+        //
+        
     }
     
     public void insertar(){
+            
+            usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+            pelicula = (Pelicula) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("pelicula");
+            
+            comentario.getPelicula().setId(pelicula.getId());
+            comentario.getUsuario().setId(usuario.getId());
+            System.out.println("pelicula "+ comentario.getPelicula().getId());
+            System.out.println("usuario "+ comentario.getUsuario().getId());
+            System.out.println("comentario "+ comentario.getComentario());
+            
         try {
             comentarioEJB.create(comentario);
         } catch (Exception e) {
         }
     }
+    public List<Comentario> listaComentarios() {
+     
+        comentarios = comentarioEJB.consultaTodo(pelicula);
+        System.out.println("comentario "+ comentarios.get(0).getComentario());
+        return comentarios;
+    } 
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
 
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
     public Comentario getComentario() {
         return comentario;
     }
@@ -52,6 +103,14 @@ public class ComentarioController implements Serializable{
 
     public void setComentarioEJB(ComentarioFacadeLocal comentarioEJB) {
         this.comentarioEJB = comentarioEJB;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     @Override

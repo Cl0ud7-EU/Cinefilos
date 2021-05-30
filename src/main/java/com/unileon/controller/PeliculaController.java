@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -27,7 +28,7 @@ import javax.inject.Named;
  * @author jcorral
  */
 @Named
-@ViewScoped
+@ApplicationScoped
 public class PeliculaController implements Serializable{
     private Pelicula pelicula;
     private Director director;
@@ -91,11 +92,13 @@ public class PeliculaController implements Serializable{
     
     public Pelicula datos(){ 
         pelicula = peliculaEJB.peliculaSeleccionada();
+        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("pelicula", pelicula);
         
         return pelicula;
     }
     
     public String cambioPagina(Pelicula pelicula){
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("pelicula", pelicula);
         peliculaEJB.seleccionarPelicula(pelicula.getId());
         return "pelicula.softwareII";
     }
