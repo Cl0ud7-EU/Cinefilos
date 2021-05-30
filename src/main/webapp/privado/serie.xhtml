@@ -46,7 +46,9 @@
                         </c:forEach>
                         <p:outputLabel class="label" value="Generos: "/>
                         <c:forEach items="#{generoController.listaGenerosSerie()}" var="sg">  
-                            <p:link class="label2" value="#{sg.nombre} " outcome="#{generoController.cambioPagina(sg)}"/>
+                            <h:commandLink action="#{generoController.cambioPagina(sg)}">
+                            <p:outputLabel class="label2" value="#{sg.nombre} " />
+                            </h:commandLink>
                         </c:forEach>
                     </div>
                     
