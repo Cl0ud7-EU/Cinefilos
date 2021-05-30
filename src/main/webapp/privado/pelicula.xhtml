@@ -33,25 +33,28 @@
                         <p:graphicImage value="#{peliculaController.rutaPortada(peliculaController.datos().id)}" height="426px" width="270px"/>
                     </div>
                     <div class="Texto" style="width:80%">
-                        <p:outputLabel class="label" value="#{peliculaController.datos().titulo}"/>
+                        <p:outputLabel class="labelBold" value="#{peliculaController.datos().titulo}"/>
                     </div>
                     <div class="Texto" style="width:80%">
-                        <p:outputLabel class="label" value="Año: #{peliculaController.datos().anyo}"/>
-                        <p:outputLabel class="label" value="Duración: #{peliculaController.datos().duracion} min"/>
-                        <p:outputLabel class="label" value="Sinopsis: #{peliculaController.datos().sinopsis}"/>
-                        <p:outputLabel class="label" value="Puntuación: #{peliculaController.datos().puntuacion}/10"/>
-                        <p:outputLabel class="label" value="Compañia: #{peliculaController.datos().compania.nombre}"/>
-                        <p:link class="label" value="Director: #{peliculaController.datos().director.nombre} #{peliculaController.datos().director.apellido}" outcome="#{directorController.cambioPagina(peliculaController.datos().director)}"/>
-                        <p:outputLabel class="label" value="Actores: "/>
+                        <p:outputLabel class="labelBold" value="Año: #{peliculaController.datos().anyo}"/>
+                        <p:outputLabel class="labelBold" value="Duración: #{peliculaController.datos().duracion} min"/>
+                        <p:outputLabel class="labelBold" value="Sinopsis: "/>
+                        <p:outputLabel class="label" value="#{peliculaController.datos().sinopsis}"/>
+                        <p:outputLabel class="labelBold" value="Puntuación: #{peliculaController.datos().puntuacion}/10"/>
+                        <p:outputLabel class="labelBold" value="Compañia: "/>
+                        <p:outputLabel class="label" value="#{peliculaController.datos().compania.nombre}"/>
+                        <p:outputLabel class="labelBold" value="Director: "/>
+                        <p:link class="label" value="#{peliculaController.datos().director.nombre} #{peliculaController.datos().director.apellido}" outcome="#{directorController.cambioPagina(peliculaController.datos().director)}"/>
+                        <p:outputLabel class="labelBold" value="Actores: "/>
                         <c:forEach items="#{actorController.listaActoresPeli()}" var="pa">  
                             <h:commandLink action="#{actorController.cambioPagina(pa)}">
-                                <p:outputLabel class="label2" value="#{pa.nombre} #{pa.apellido}. "/>
+                                <p:outputLabel class="label2" value="#{pa.nombre} #{pa.apellido}.  "/>
                             </h:commandLink>
                         </c:forEach>
-                        <p:outputLabel class="label" value="Generos: "/>
+                        <p:outputLabel class="labelBold" value="Generos: "/>
                         <c:forEach items="#{generoController.listaGenerosPeli()}" var="pg">  
                             <h:commandLink action="#{generoController.cambioPagina(pg)}">
-                                <p:outputLabel class="label" value="#{pg.nombre} "/>
+                                <p:outputLabel class="label2" value="#{pg.nombre}.  "/>
                             </h:commandLink>
                         </c:forEach>
                         <p:outputLabel class="label" for="sinopsis" value="Comentario: "/>
@@ -59,7 +62,7 @@
                                          value="#{comentarioController.comentario.comentario}"/>
                         <p:commandButton class="publicar" value="Publicar" icon="pi pi-sign-in" action="#{comentarioController.insertar()}"/>
                         
-                        <p:outputLabel class="label" value="Comentarios: "/>
+                        <p:outputLabel class="labelBold" value="Comentarios: "/>
                         <c:forEach items="#{comentarioController.listaComentarios()}" var="c">
                             <div class="contenedorComent">
                                 <p:outputLabel class="comentario" value="#{c.comentario} "/>
