@@ -58,8 +58,12 @@
                         <p:inputTextarea id="sinopsis" rows="6" cols="40" maxlength="300" required="true"
                                          value="#{comentarioController.comentario.comentario}"/>
                         <p:commandButton class="publicar" value="Publicar" icon="pi pi-sign-in" action="#{comentarioController.insertar()}"/>
-                        <c:forEach items="#{comentarioController.listaComentarios()}" var="c">  
-                            <p:outputLabel class="label" value="#{c.comentario} "/>
+                        
+                        <p:outputLabel class="label" value="Comentarios: "/>
+                        <c:forEach items="#{comentarioController.listaComentarios()}" var="c">
+                            <div class="contenedorComent">
+                                <p:outputLabel class="comentario" value="#{c.comentario} "/>
+                            </div>
                         </c:forEach>
                     </div>
                     
