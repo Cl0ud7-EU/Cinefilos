@@ -57,9 +57,6 @@ public class ComentarioController implements Serializable{
             
             comentario.getPelicula().setId(pelicula.getId());
             comentario.getUsuario().setId(usuario.getId());
-            System.out.println("pelicula "+ comentario.getPelicula().getId());
-            System.out.println("usuario "+ comentario.getUsuario().getId());
-            System.out.println("comentario "+ comentario.getComentario());
             
         try {
             comentarioEJB.create(comentario);
@@ -67,9 +64,9 @@ public class ComentarioController implements Serializable{
         }
     }
     public List<Comentario> listaComentarios() {
-     
+        pelicula = (Pelicula) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("pelicula");
+        
         comentarios = comentarioEJB.consultaTodo(pelicula);
-        System.out.println("comentario "+ comentarios.get(0).getComentario());
         return comentarios;
     } 
     public Pelicula getPelicula() {

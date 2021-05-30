@@ -28,7 +28,7 @@ import javax.inject.Named;
  * @author jcorral
  */
 @Named
-@ApplicationScoped
+@ViewScoped
 public class PeliculaController implements Serializable{
     private Pelicula pelicula;
     private Director director;
@@ -98,6 +98,7 @@ public class PeliculaController implements Serializable{
     }
     
     public String cambioPagina(Pelicula pelicula){
+        
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("pelicula", pelicula);
         peliculaEJB.seleccionarPelicula(pelicula.getId());
         return "pelicula.softwareII";

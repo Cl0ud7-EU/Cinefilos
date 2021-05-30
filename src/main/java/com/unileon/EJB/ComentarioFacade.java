@@ -29,9 +29,9 @@ public class ComentarioFacade extends AbstractFacade<Comentario> implements Come
     }
     
     public List<Comentario> consultaTodo(Pelicula pelicula) {
-        String consulta = "FROM Comentario c WHERE c.pelicula=:param1";
+        String consulta = "FROM Comentario c WHERE c.pelicula.id=:param1";
         Query query = em.createQuery(consulta);
-        query.setParameter("param1", pelicula);
+        query.setParameter("param1", pelicula.getId());
 
         List<Comentario> resultado = query.getResultList();
         if(resultado.isEmpty()){
