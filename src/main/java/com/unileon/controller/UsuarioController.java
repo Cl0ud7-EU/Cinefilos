@@ -41,7 +41,7 @@ public class UsuarioController implements Serializable {
     }
 
     //Da de alta al usuario en la BBDD:
-    public void insertarUsuario(){
+    public String insertarUsuario(){
         
         try{
         usuario.setNombre(nombre);
@@ -58,7 +58,9 @@ public class UsuarioController implements Serializable {
         usuarioEJB.create(usuario);
         
         info();
+        return "/index.xhtml?faces-redirect=true";
     }
+    
     public void compruebaRol() {
         //Usuario name = (Usuario) getObjectFromSession("LOGGEDIN_USER");
         try {
