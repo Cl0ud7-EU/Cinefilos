@@ -1,7 +1,7 @@
 
 #top {
     position: relative;
-    background-color: #036fab;
+    background-color: #252525;
     color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
@@ -16,7 +16,7 @@
 
 #left {
     float: left;
-    background-color: #ece3a5;
+    background-color: #C5E1A5;
     padding: 5px;
     width: 150px;
 }
@@ -30,18 +30,18 @@
 
 .center_content {
     position: relative;
-    background-color: #dddddd;
+    background-color: #252525;
     padding: 5px;
 }
 
 .left_content {
-    background-color: #dddddd;
+    background-color: #252525;
     padding: 5px;
     margin-left: 170px;
 }
 
 .right_content {
-    background-color: #dddddd;
+    background-color: #252525;
     padding: 5px;
     margin: 0px 170px 0px 170px;
 }
@@ -56,6 +56,17 @@
   color: black;
   font-weight : bold;
   text-decoration : underline;
+}
+
+body .ui-fieldset .ui-fieldset-legend {
+    border: 1px solid #191919;
+    background: #C5E1A5;
+    color: #191919;
+    padding: 0.857rem 1rem;
+    font-weight: 700;
+    border-radius: 3px;
+    user-select: none;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 
